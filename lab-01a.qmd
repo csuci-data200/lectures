@@ -27,10 +27,12 @@ In order to use these functions we have to load the packages into our session en
 library(tidyverse)
 ```
 
-This data is read in from a file called `california-popular-baby-names.csv` saved in a folder called `data`.
+This data is read in from a file called `california-popular-baby-names.csv` available online.
 We will save this data into an **object** called `baby-names`.
 ```{r}
-baby_names <- read_csv("data/california-popular-baby-names.csv")
+#baby_names <- read_csv("data/california-popular-baby-names.csv")
+
+baby_names <- read_csv("csuci-data200.github.io/data200-week01/data/california-popular-baby-names.csv")
 ```
 
 Let's look at what is in our `baby_names` object.
