@@ -41,7 +41,7 @@ baby_names
 This dataset has 5 columns and 3,203 rows in total, which would be a lot to print, so only the first 10 are displayed.
 
 
-For each year and sex at birth this data contains the 25 most popular baby first names and counts.
+For each year and specified sex at birth this data contains the 25 most popular baby first names and counts.
 We have data for each year from 1960 to 2023.
 
 Let's use this data to explore some questions.
@@ -51,7 +51,8 @@ Let's use this data to explore some questions.
 ```{r}
 baby_names |> 
   filter(Year == 2023) |>
-  filter(Rank <= 10) |> 
+  arrange(desc(Count)) |> 
+  slice(1:20) |> 
   ggplot(aes(x = Count, y = reorder(Name, Count))) +
   geom_count() +
   geom_text(aes(label = Count), hjust = -0.25) +
@@ -70,7 +71,8 @@ In the Quarto document change the "2023" below to the year you were born and ren
 ```{r}
 baby_names |> 
   filter(Year == 2023) |>
-  filter(Rank <= 10) |> 
+  arrange(desc(Count)) |> 
+  slice(1:20) |> 
   ggplot(aes(x = Count, y = reorder(Name, Count))) +
   geom_count() +
   geom_text(aes(label = Count), hjust = -0.25) +
@@ -122,11 +124,13 @@ When we look at names across the entire time period we may get different results
 This truncation is accounted for in the plot below.
 
 ```{r}
-corrected_all_names_plot <- baby_names |> 
+baby_names <- baby_names |> 
   mutate(name_fixed = case_when(
     str_length(Name) > 8 ~ (str_trunc(Name, width = 9, ellipsis = "*")),
     str_length(Name) <= 8 ~ Name
-  )) |> 
+  )) 
+
+corrected_all_names_plot <-  baby_names |> 
   group_by(name_fixed) |> 
   summarise(total_count = sum(Count)) |> 
   arrange(desc(total_count)) |> 
@@ -146,3 +150,34 @@ gridExtra::grid.arrange(all_names_plot, corrected_all_names_plot, ncol = 2)
 ```
 
 Do you notice any difference?
+
+
+## How did the 5 overall most popular names change over the years?
+
+```{r}
+most_popular_names <- baby_names |> 
+  group_by(name_fixed) |> 
+  summarise(total_count = sum(Count)) |> 
+  arrange(desc(total_count)) |> 
+  slice(1:5) |> 
+  pull(name_fixed)
+
+baby_names |> 
+  filter(name_fixed %in% most_popular_names) |> 
+  ggplot(aes(x = Year, y = Count, color = name_fixed, linetype = name_fixed)) +
+  geom_line(linewidth = 1) +
+  theme_minimal() +
+  labs(
+    x = "Year",
+    y = "Number of babies born",
+    color = "Name",
+    linetype = "Name"
+  ) +
+  ylim(0, 9000)
+```
+
+Did the most popular name in 1960 stay the most popular? 
+
+If not, when did a different name become more popular and what was it?
+
+Notice that the line for the name "Matthew" does not start until approximately the year 1968. Why do you think that is?
