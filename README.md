@@ -1,3 +1,3 @@
-# DATA 200 week 1
+# DATA 200: Introduction to Data Science
 
-This repo contains the material for week 1 of my Introduction to Data Science Course.
+This repo contains the lecture material for DATA 200 course.

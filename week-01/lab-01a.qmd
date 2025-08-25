@@ -30,7 +30,7 @@ library(tidyverse)
 This data is read in from a file called `california-popular-baby-names.csv` available online.
 We will save this data into an **object** called `baby-names`.
 ```{r}
-baby_names <- read_csv("http://csuci-data200.github.io/data200-week01/data/california-popular-baby-names.csv")
+baby_names <- read_csv("http://csuci-data200.github.io/lectures/week-01/data/california-popular-baby-names.csv")
 ```
 
 Let's look at what is in our `baby_names` object.
