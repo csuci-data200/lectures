@@ -1,0 +1,7 @@
+Field Title,Field Name,Data Type,Description
+Year,Year,Number,Four-digit year in which the birth occurred.
+Sex,Sex,Text,"The sex of the child as it appears on the birth certificate. Includes ""Female"" and ""Male."" Records with nonbinary and unknown sex are excluded due to small counts."
+Rank,Rank,Number,"Rank based on counts of the of first names for each sex. If two or more names for a given year and sex have the same count, all names will have the minimum rank for that count and the next rank will continue as if there was no tie and each of the tied names had been given a rank. Tied names are sorted in alphabetical order."
+Name,Name,Text,"First name on birth certificate of child born in California. Spaces and special characters have been removed. An asterisk (*) denotes names which may be truncated. Names in records from data years 1960 through 1977 are truncated to 8 characters, and 1978 through 2017 are truncated to 12 characters. For example, the names CHRISTINA, CHRISTINE, and CHRISTIN would all be included in CHRISTIN*."
+Count,Count,Number,Count of births with the name and sex for the data year.
+Data Revision Date,Data_Revision_Date,Date,Date data was created or revised (MM/DD/YYYY).

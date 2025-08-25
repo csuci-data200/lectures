@@ -1,0 +1,148 @@
+---
+title: "Lab 01a"
+author: Dr. Medina
+format: html
+knitr:
+  opts_chunk:
+    message: false
+    warning: false
+---
+
+## Preface 
+
+This file is a **Quarto document** and it allows us to combine text and code.
+By clicking **Render**, an html will be produced with all of the output from our code included.
+For today we will not worry about how the code, instead we will focus on our investigation.
+
+Start by clicking `Render` and examine the html produced.
+
+In this lab we will explore popular baby names for the state of California.
+This data comes from California birth certificates and is available on the [California Open Data Portal](https://data.ca.gov/dataset/most-popular-baby-names).
+
+## Obtain and familiarize yourself with the data
+
+The functions we will use to explore the data are contained in **packages**.
+In order to use these functions we have to load the packages into our session environment.
+```{r}
+library(tidyverse)
+```
+
+This data is read in from a file called `california-popular-baby-names.csv` saved in a folder called `data`.
+We will save this data into an **object** called `baby-names`.
+```{r}
+baby_names <- read_csv("data/california-popular-baby-names.csv")
+```
+
+Let's look at what is in our `baby_names` object.
+```{r}
+baby_names
+```
+
+This dataset has 5 columns and 3,203 rows in total, which would be a lot to print, so only the first 10 are displayed.
+
+
+For each year and sex at birth this data contains the 25 most popular baby first names and counts.
+We have data for each year from 1960 to 2023.
+
+Let's use this data to explore some questions.
+
+## What were the 20 most popular baby names in 2023?
+
+```{r}
+baby_names |> 
+  filter(Year == 2023) |>
+  filter(Rank <= 10) |> 
+  ggplot(aes(x = Count, y = reorder(Name, Count))) +
+  geom_count() +
+  geom_text(aes(label = Count), hjust = -0.25) +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  labs(
+    x = "Number of babies born in 2023",
+    y = "Name"
+  ) +
+  scale_x_discrete(expand = expansion(mult = c(0.05, 0.15)))
+```
+
+## What were the 20 most popular baby names in the year you were born?
+
+In the Quarto document change the "2023" below to the year you were born and render the html again.
+```{r}
+baby_names |> 
+  filter(Year == 2023) |>
+  filter(Rank <= 10) |> 
+  ggplot(aes(x = Count, y = reorder(Name, Count))) +
+  geom_count() +
+  geom_text(aes(label = Count), hjust = -0.25) +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  labs(
+    x = "Number of babies born in 2023",
+    y = "Name"
+  ) +
+  scale_x_discrete(expand = expansion(mult = c(0.05, 0.15)))
+```
+## What are the top 20 most popular baby names overall from all babies born between 1960-2023?
+
+```{r}
+all_names_plot <- baby_names |>
+  group_by(Name) |> 
+  summarise(total_count = sum(Count)) |> 
+  arrange(desc(total_count)) |> 
+  slice(1:20) |> 
+  ggplot(aes(x = total_count, y = reorder(Name, total_count))) +
+  geom_count() +
+  geom_text(aes(label = total_count), hjust = -0.25) +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  labs(
+    x = "Number of babies born from 1960-2023",
+    y = "Name"
+  ) +
+  scale_x_discrete(expand = expansion(mult = c(0.05, 0.15)))
+
+all_names_plot
+```
+
+## Is your name in the list of the most popular baby names?
+
+```{r}
+sort(unique(baby_names$Name))
+```
+
+
+
+## Are the top 20 most popular baby names overall the same when we correct for truncation?
+
+If you look into the **data dictionary** it says:
+*Names in records from data years 1960 through 1977 are truncated to 8 characters, and 1978 through 2017 are truncated to 12 characters.* 
+*For example, the names CHRISTINA, CHRISTINE, and CHRISTIN would all be included in CHRISTIN*.*
+
+When we look at names across the entire time period we may get different results if we truncated all names to 8 characters.
+This truncation is accounted for in the plot below.
+
+```{r}
+corrected_all_names_plot <- baby_names |> 
+  mutate(name_fixed = case_when(
+    str_length(Name) > 8 ~ (str_trunc(Name, width = 9, ellipsis = "*")),
+    str_length(Name) <= 8 ~ Name
+  )) |> 
+  group_by(name_fixed) |> 
+  summarise(total_count = sum(Count)) |> 
+  arrange(desc(total_count)) |> 
+  slice(1:20) |> 
+  ggplot(aes(x = total_count, y = reorder(name_fixed, total_count))) +
+  geom_count() +
+  geom_text(aes(label = total_count), hjust = -0.25) +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  labs(
+    x = "Number of babies born from 1960-2023",
+    y = "Corrected names"
+  )  +
+  scale_x_discrete(expand = expansion(mult = c(0.05, 0.15)))
+
+gridExtra::grid.arrange(all_names_plot, corrected_all_names_plot, ncol = 2)
+```
+
+Do you notice any difference?
