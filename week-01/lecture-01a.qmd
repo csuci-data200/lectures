@@ -17,22 +17,21 @@ My name is Dr. (or Professor) Catalina Medina
 
 ![](lecture-images/reno.jpg){fig-alt="Image of a city with some tall building surrounded by hills covered in snow."}
 
-![](lecture-images/orange-county.webp){fig-alt="Image of a coastline with beaches and houses."}
+![](lecture-images/orange-county.jpg){fig-alt="Image of a coastline with beaches and houses."}
 :::
 
 ## Introductions: you all
 
 1. On the paper I hand out please write 
 
-    - something about yourself (such as "I have two cats named Kiki and Thor"). 
-*Do not write something visually apparent like I have long hair, and do not your name or your major*
+    - something about yourself (*Do not write something visually apparent like "I have long hair" and do not your name or your major*)
     - how many students you know on campus
 
 2. Pass your paper back to me
 
-3. Once I pass you a random paper you have 5 minutes to find the person whose paper you have. Write their name and major on the paper.
+3. Once I pass you a random paper you have 5 minutes to find the person whose paper you have. Write their name and major on the paper
 
-4. Keep the paper I passed out to you because we will introduce each other using the information on the paper.
+4. We will introduce each other using the paper
 
 ## Class information
 
