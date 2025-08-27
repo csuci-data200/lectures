@@ -1,5 +1,6 @@
 ---
-title: "Introduction to toolkit"
+title: "Data 200: Lecture 01a"
+subtitle: "Introduction to our toolkit"
 author: "Dr. Catalina Medina"
 execute:
   echo: true
@@ -91,6 +92,8 @@ apple_data <- data.frame(
   apple_colors = c("green", "yellow", "red"), 
   apple_count = c(3, 17, 8)
 )
+
+apple_data
 ```
 
 ## Vocabulary

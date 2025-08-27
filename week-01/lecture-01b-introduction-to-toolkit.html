@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.4.555">
 
   <meta name="author" content="Dr.&nbsp;Catalina Medina">
-  <title>Introduction to toolkit</title>
+  <title>Data 200: Lecture 01a</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -391,7 +391,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Introduction to toolkit</h1>
+  <h1 class="title">Data 200: Lecture 01a</h1>
+  <p class="subtitle">Introduction to our toolkit</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -507,19 +508,27 @@ Dr.&nbsp;Catalina Medina
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>apple_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb17-2"><a href=""></a>  <span class="at">apple_colors =</span> <span class="fu">c</span>(<span class="st">"green"</span>, <span class="st">"yellow"</span>, <span class="st">"red"</span>), </span>
 <span id="cb17-3"><a href=""></a>  <span class="at">apple_count =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">17</span>, <span class="dv">8</span>)</span>
-<span id="cb17-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-4"><a href=""></a>)</span>
+<span id="cb17-5"><a href=""></a></span>
+<span id="cb17-6"><a href=""></a>apple_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  apple_colors apple_count
+1        green           3
+2       yellow          17
+3          red           8</code></pre>
+</div>
 </div>
 </section>
 <section id="vocabulary" class="slide level2">
 <h2>Vocabulary</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a><span class="fu">do</span>(something)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="fu">do</span>(something)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>do()</code> is a function;<br>
 <code>something</code> is the argument of the function.</p>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="fu">do</span>(something, colorful)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="fu">do</span>(something, colorful)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>do()</code> is a function;<br>
 <code>something</code> is the first argument of the function;<br>
@@ -528,7 +537,7 @@ Dr.&nbsp;Catalina Medina
 <div class="fragment">
 <p>For example</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 </div>
@@ -539,16 +548,16 @@ Dr.&nbsp;Catalina Medina
 <h2>Getting Help</h2>
 <p>In order to get any help we can use <code>?</code> followed by function (or object) name.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a>?seq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a>?seq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <p>Using comments with <code>#</code> in your code for less obvious tasks can be helpful</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a><span class="co"># This is just a comment and is not processed as code</span></span>
-<span id="cb23-2"><a href=""></a><span class="co"># Converted from Celsius to Fahrenheit. F = (C * 9 / 5) + 32</span></span>
-<span id="cb23-3"><a href=""></a>my_temperature <span class="ot">&lt;-</span> <span class="fl">36.7</span></span>
-<span id="cb23-4"><a href=""></a>my_temperature <span class="ot">&lt;-</span> (my_temperature <span class="sc">*</span> <span class="dv">9</span> <span class="sc">/</span> <span class="dv">5</span>) <span class="sc">+</span> <span class="dv">32</span></span>
-<span id="cb23-5"><a href=""></a>my_temperature</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a><span class="co"># This is just a comment and is not processed as code</span></span>
+<span id="cb24-2"><a href=""></a><span class="co"># Converted from Celsius to Fahrenheit. F = (C * 9 / 5) + 32</span></span>
+<span id="cb24-3"><a href=""></a>my_temperature <span class="ot">&lt;-</span> <span class="fl">36.7</span></span>
+<span id="cb24-4"><a href=""></a>my_temperature <span class="ot">&lt;-</span> (my_temperature <span class="sc">*</span> <span class="dv">9</span> <span class="sc">/</span> <span class="dv">5</span>) <span class="sc">+</span> <span class="dv">32</span></span>
+<span id="cb24-5"><a href=""></a>my_temperature</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 98.06</code></pre>
 </div>
@@ -599,10 +608,10 @@ Dr.&nbsp;Catalina Medina
 <section id="tidyverse-style-guide-1" class="slide level2">
 <h2>tidyverse style guide</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a>apple_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb25-2"><a href=""></a>  <span class="at">apple_colors =</span> <span class="fu">c</span>(<span class="st">"green"</span>, <span class="st">"yellow"</span>, <span class="st">"red"</span>), </span>
-<span id="cb25-3"><a href=""></a>  <span class="at">apple_count =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">17</span>, <span class="dv">8</span>)</span>
-<span id="cb25-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a>apple_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb26-2"><a href=""></a>  <span class="at">apple_colors =</span> <span class="fu">c</span>(<span class="st">"green"</span>, <span class="st">"yellow"</span>, <span class="st">"red"</span>), </span>
+<span id="cb26-3"><a href=""></a>  <span class="at">apple_count =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">17</span>, <span class="dv">8</span>)</span>
+<span id="cb26-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><p>After function names do not leave any spaces.</p></li>
@@ -615,12 +624,12 @@ Dr.&nbsp;Catalina Medina
 <h2>tidyverse style guide</h2>
 <p>If writing a long line of code you can break it up across multiple lines (make sure to indent!)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a>apple_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">apple_colors =</span> <span class="fu">c</span>(<span class="st">"green"</span>, <span class="st">"yellow"</span>, <span class="st">"red"</span>), <span class="at">apple_count =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">17</span>, <span class="dv">8</span>))</span>
-<span id="cb26-2"><a href=""></a><span class="co"># versus</span></span>
-<span id="cb26-3"><a href=""></a>apple_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb26-4"><a href=""></a>  <span class="at">apple_colors =</span> <span class="fu">c</span>(<span class="st">"green"</span>, <span class="st">"yellow"</span>, <span class="st">"red"</span>), </span>
-<span id="cb26-5"><a href=""></a>  <span class="at">apple_count =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">17</span>, <span class="dv">8</span>)</span>
-<span id="cb26-6"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a>apple_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">apple_colors =</span> <span class="fu">c</span>(<span class="st">"green"</span>, <span class="st">"yellow"</span>, <span class="st">"red"</span>), <span class="at">apple_count =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">17</span>, <span class="dv">8</span>))</span>
+<span id="cb27-2"><a href=""></a><span class="co"># versus</span></span>
+<span id="cb27-3"><a href=""></a>apple_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb27-4"><a href=""></a>  <span class="at">apple_colors =</span> <span class="fu">c</span>(<span class="st">"green"</span>, <span class="st">"yellow"</span>, <span class="st">"red"</span>), </span>
+<span id="cb27-5"><a href=""></a>  <span class="at">apple_count =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">17</span>, <span class="dv">8</span>)</span>
+<span id="cb27-6"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
@@ -736,7 +745,7 @@ __Hello world__
 <h2>R packages</h2>
 <p>Try running the following code:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a><span class="fu">beep</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a><span class="fu">beep</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in beep(): could not find function "beep"</code></pre>
 </div>
@@ -747,7 +756,7 @@ __Hello world__
 <h2>Using <code>install.packages()</code></h2>
 <p>In your <strong>Console</strong>, install the beepr package</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a><span class="fu">install.packages</span>(<span class="st">"beepr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a><span class="fu">install.packages</span>(<span class="st">"beepr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We do this in the Console because we only need to do it once.</p>
 </section>
@@ -768,8 +777,8 @@ __Hello world__
 <h2>Using beep() from beepr</h2>
 <p>Option 1</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a><span class="fu">library</span>(beepr)</span>
-<span id="cb31-2"><a href=""></a><span class="fu">beep</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a><span class="fu">library</span>(beepr)</span>
+<span id="cb32-2"><a href=""></a><span class="fu">beep</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>More common usage.</p>
 <p>Useful if you are going to use multiple functions from the same package.</p>
@@ -779,7 +788,7 @@ __Hello world__
 <h2>Using beep() from beepr</h2>
 <p>Option 2</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a>beepr<span class="sc">::</span><span class="fu">beep</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a>beepr<span class="sc">::</span><span class="fu">beep</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Useful when you are going to use a function once or few times.</p>
 <p>Also useful if there are any conflicts. For instance if there is some other package in your environment that has a beep() function that prints the word beep, you would want to distinguish the beep function from the beepr package and the beep function from the other imaginary package.</p>
@@ -812,7 +821,7 @@ __Hello world__
 <h2></h2>
 <p>We can also load multiple tidyverse packages all at the same time.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href=""></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.4     ✔ readr     2.1.5
