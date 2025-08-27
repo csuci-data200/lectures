@@ -1,7 +1,7 @@
 ---
 title: "Data 200: Lecture 01a"
 subtitle: "Welcome to Introduction to Data Science!"
-author: "Dr. Catalina Medina"
+author: "Professor Catalina Medina"
 format: 
   revealjs:
     theme: [sky, ../slide-style.scss]

@@ -1,7 +1,7 @@
 ---
 title: "Data 200: Lecture 01a"
 subtitle: "Introduction to our toolkit"
-author: "Dr. Catalina Medina"
+author: "Professor Catalina Medina"
 execute:
   echo: true
 format: 
