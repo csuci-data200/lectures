@@ -87,7 +87,7 @@ x - y
 
 The most common object type we will use are data frames
 ```{r}
-data.frame(
+apple_data <- data.frame(
   apple_colors = c("green", "yellow", "red"), 
   apple_count = c(3, 17, 8)
 )
@@ -172,7 +172,7 @@ If the code example is very long or does not use functions we discussed in class
 ## tidyverse style guide
 
 ```{r eval = FALSE}
-data.frame(
+apple_data <- data.frame(
   apple_colors = c("green", "yellow", "red"), 
   apple_count = c(3, 17, 8)
 )
@@ -187,7 +187,18 @@ data.frame(
 - Object names are all lower case, with words separated by an underscore.
 
 
-##
+## tidyverse style guide
+
+If writing a long line of code you can break it up across multiple lines (make sure to indent!)
+
+```{r eval = FALSE}
+apple_data <- data.frame(apple_colors = c("green", "yellow", "red"), apple_count = c(3, 17, 8))
+# versus
+apple_data <- data.frame(
+  apple_colors = c("green", "yellow", "red"), 
+  apple_count = c(3, 17, 8)
+)
+```
 
 ::: callout-tip
 

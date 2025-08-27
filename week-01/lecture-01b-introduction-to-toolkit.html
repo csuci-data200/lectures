@@ -504,28 +504,22 @@ Dr.&nbsp;Catalina Medina
 <h2>Data frames</h2>
 <p>The most common object type we will use are data frames</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="fu">data.frame</span>(</span>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>apple_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb17-2"><a href=""></a>  <span class="at">apple_colors =</span> <span class="fu">c</span>(<span class="st">"green"</span>, <span class="st">"yellow"</span>, <span class="st">"red"</span>), </span>
 <span id="cb17-3"><a href=""></a>  <span class="at">apple_count =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">17</span>, <span class="dv">8</span>)</span>
 <span id="cb17-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  apple_colors apple_count
-1        green           3
-2       yellow          17
-3          red           8</code></pre>
-</div>
 </div>
 </section>
 <section id="vocabulary" class="slide level2">
 <h2>Vocabulary</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="fu">do</span>(something)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a><span class="fu">do</span>(something)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>do()</code> is a function;<br>
 <code>something</code> is the argument of the function.</p>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="fu">do</span>(something, colorful)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="fu">do</span>(something, colorful)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>do()</code> is a function;<br>
 <code>something</code> is the first argument of the function;<br>
@@ -534,7 +528,7 @@ Dr.&nbsp;Catalina Medina
 <div class="fragment">
 <p>For example</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 </div>
@@ -545,16 +539,16 @@ Dr.&nbsp;Catalina Medina
 <h2>Getting Help</h2>
 <p>In order to get any help we can use <code>?</code> followed by function (or object) name.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a>?seq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a>?seq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <p>Using comments with <code>#</code> in your code for less obvious tasks can be helpful</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a><span class="co"># This is just a comment and is not processed as code</span></span>
-<span id="cb24-2"><a href=""></a><span class="co"># Converted from Celsius to Fahrenheit. F = (C * 9 / 5) + 32</span></span>
-<span id="cb24-3"><a href=""></a>my_temperature <span class="ot">&lt;-</span> <span class="fl">36.7</span></span>
-<span id="cb24-4"><a href=""></a>my_temperature <span class="ot">&lt;-</span> (my_temperature <span class="sc">*</span> <span class="dv">9</span> <span class="sc">/</span> <span class="dv">5</span>) <span class="sc">+</span> <span class="dv">32</span></span>
-<span id="cb24-5"><a href=""></a>my_temperature</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a><span class="co"># This is just a comment and is not processed as code</span></span>
+<span id="cb23-2"><a href=""></a><span class="co"># Converted from Celsius to Fahrenheit. F = (C * 9 / 5) + 32</span></span>
+<span id="cb23-3"><a href=""></a>my_temperature <span class="ot">&lt;-</span> <span class="fl">36.7</span></span>
+<span id="cb23-4"><a href=""></a>my_temperature <span class="ot">&lt;-</span> (my_temperature <span class="sc">*</span> <span class="dv">9</span> <span class="sc">/</span> <span class="dv">5</span>) <span class="sc">+</span> <span class="dv">32</span></span>
+<span id="cb23-5"><a href=""></a>my_temperature</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 98.06</code></pre>
 </div>
@@ -605,10 +599,10 @@ Dr.&nbsp;Catalina Medina
 <section id="tidyverse-style-guide-1" class="slide level2">
 <h2>tidyverse style guide</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a><span class="fu">data.frame</span>(</span>
-<span id="cb26-2"><a href=""></a>  <span class="at">apple_colors =</span> <span class="fu">c</span>(<span class="st">"green"</span>, <span class="st">"yellow"</span>, <span class="st">"red"</span>), </span>
-<span id="cb26-3"><a href=""></a>  <span class="at">apple_count =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">17</span>, <span class="dv">8</span>)</span>
-<span id="cb26-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a>apple_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb25-2"><a href=""></a>  <span class="at">apple_colors =</span> <span class="fu">c</span>(<span class="st">"green"</span>, <span class="st">"yellow"</span>, <span class="st">"red"</span>), </span>
+<span id="cb25-3"><a href=""></a>  <span class="at">apple_count =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">17</span>, <span class="dv">8</span>)</span>
+<span id="cb25-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><p>After function names do not leave any spaces.</p></li>
@@ -617,8 +611,17 @@ Dr.&nbsp;Catalina Medina
 <li><p>Object names are all lower case, with words separated by an underscore.</p></li>
 </ul>
 </section>
-<section id="section-2" class="slide level2">
-<h2></h2>
+<section id="tidyverse-style-guide-2" class="slide level2">
+<h2>tidyverse style guide</h2>
+<p>If writing a long line of code you can break it up across multiple lines (make sure to indent!)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a>apple_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">apple_colors =</span> <span class="fu">c</span>(<span class="st">"green"</span>, <span class="st">"yellow"</span>, <span class="st">"red"</span>), <span class="at">apple_count =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">17</span>, <span class="dv">8</span>))</span>
+<span id="cb26-2"><a href=""></a><span class="co"># versus</span></span>
+<span id="cb26-3"><a href=""></a>apple_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb26-4"><a href=""></a>  <span class="at">apple_colors =</span> <span class="fu">c</span>(<span class="st">"green"</span>, <span class="st">"yellow"</span>, <span class="st">"red"</span>), </span>
+<span id="cb26-5"><a href=""></a>  <span class="at">apple_count =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">17</span>, <span class="dv">8</span>)</span>
+<span id="cb26-6"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -781,7 +784,7 @@ __Hello world__
 <p>Useful when you are going to use a function once or few times.</p>
 <p>Also useful if there are any conflicts. For instance if there is some other package in your environment that has a beep() function that prints the word beep, you would want to distinguish the beep function from the beepr package and the beep function from the other imaginary package.</p>
 </section>
-<section id="section-3" class="slide level2">
+<section id="section-2" class="slide level2">
 <h2></h2>
 
 <img data-src="img/beep-help.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
@@ -805,7 +808,7 @@ __Hello world__
 <h2>Tidyverse</h2>
 <p>In short, tidyverse is a family of packages. From practical stand point, you can install many tidyverse packages at once (and you did this).</p>
 </section>
-<section id="section-4" class="slide level2">
+<section id="section-3" class="slide level2">
 <h2></h2>
 <p>We can also load multiple tidyverse packages all at the same time.</p>
 <div class="cell">
