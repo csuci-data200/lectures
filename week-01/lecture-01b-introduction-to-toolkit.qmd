@@ -1,0 +1,426 @@
+---
+title: "Introduction to toolkit"
+author: "Dr. Catalina Medina"
+execute:
+  echo: true
+format: 
+  revealjs:
+    theme: [sky, ../slide-style.scss]
+    slide-number: true
+---
+
+# Coding foundations with R
+
+## R as a calculator
+
+```{r}
+2 + 2
+```
+
+```{r}
+sqrt(6 *(18 / 5)^2 * exp(13))
+```
+
+What you see is a line of code followed by a line of output (starting with "[1]")
+
+## Creating an object
+
+We can save it into an object using the assignment operator `<-`
+
+```{r}
+my_calculation <- 2 * 4
+```
+
+I can name it almost whatever I wish
+
+```{r}
+magical_purple_dragon <- 2 * 4
+```
+
+Names of objects:
+
+- must begin with a letter
+- contain letters &/or numbers
+- separate with "_" (underscore)
+
+## Naming an object
+
+You can view what is in an object
+```{r}
+favorite_color <- "olive green"
+
+favorite_color
+```
+
+R is case sensitive
+```{r}
+#| error: true
+Favorite_color
+```
+
+::: callout-tip
+Let R autocomplete for you to avoid spelling mistakes
+:::
+
+## Vectors
+
+Objects can store vectors also
+
+```{r}
+apple_colors <- c("green", "yellow", "red")
+apple_colors
+```
+
+We can also do elementwise math with vectors
+```{r}
+x <- c(3, 6, 9, 12)
+y <- x / 3
+y
+```
+
+```{r}
+x - y
+```
+
+
+## Data frames
+
+The most common object type we will use are data frames
+```{r}
+data.frame(
+  apple_colors = c("green", "yellow", "red"), 
+  apple_count = c(3, 17, 8)
+)
+```
+
+## Vocabulary
+
+```{r eval=FALSE}
+do(something)
+```
+
+`do()` is a function;   
+`something` is the argument of the function.
+
+. . .
+
+```{r eval=FALSE}
+do(something, colorful)
+```
+
+`do()` is a function;   
+`something` is the first argument of the function;   
+`colorful` is the second argument of the function.
+
+. . .
+
+For example 
+```{r}
+seq(from = 1, to = 10)
+```
+
+## Getting Help
+
+In order to get any help we can use `?` followed by function (or object) name. 
+
+```{r eval=FALSE}
+?seq
+```
+
+. . . 
+
+Using comments with `#` in your code for less obvious tasks can be helpful
+
+```{r}
+# This is just a comment and is not processed as code
+# 8 * 4 This is also just a comment
+2 * 3
+```
+
+##
+
+::: callout-tip
+You should not copy paste code from my slides or from the internet. 
+Part of learning to code is building up your muscle memory. 
+:::
+
+
+## tidyverse style guide
+
+>canyoureadthissentence?
+
+## tidyverse style guide
+
+```{r eval = FALSE}
+data.frame(
+  apple_colors = c("green", "yellow", "red"), 
+  apple_count = c(3, 17, 8)
+)
+```
+
+- After function names do not leave any spaces.
+
+- Before and after operators (e.g. <-, =) leave spaces. 
+
+- Put a space after a comma, **not** before. 
+
+- Object names are all lower case, with words separated by an underscore.
+
+
+##
+
+::: callout-tip
+
+You can let RStudio do the indentation for your code.
+
+:::
+
+# Literate programming with Quarto documents in RStudio
+
+## Quarto
+
+<center>
+
+<video width="80%" height="45%%" align = "center" controls>
+  <source src="screencast/01c-intro-quarto.mov" type="video/mp4">
+</video>
+
+</center>
+
+
+## markdown `r fontawesome::fa(name = "markdown")`
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+```
+
+_Hello world_ 
+
+__Hello world__
+
+~~Hello world~~ 
+```
+:::
+
+::: {.column width="60%"}
+_Hello world_ 
+
+__Hello world__
+
+~~Hello world~~ 
+:::
+
+::::
+
+## Quarto parts
+
+```{r}
+#| echo: false
+knitr::include_graphics("img/quarto.001.png")
+```
+
+## Quarto parts
+
+```{r}
+#| echo: false
+knitr::include_graphics("img/quarto.002.png")
+```
+
+## Quarto parts
+
+```{r}
+#| echo: false
+knitr::include_graphics("img/quarto.003.png")
+```
+
+## Quarto parts
+
+```{r}
+#| echo: false
+knitr::include_graphics("img/quarto.004.png")
+```
+
+## Quarto parts
+
+```{r}
+#| echo: false
+knitr::include_graphics("img/quarto.005.png")
+```
+
+## Quarto parts
+
+```{r}
+#| echo: false
+knitr::include_graphics("img/quarto.007.png")
+```
+
+## Quarto parts
+
+```{r}
+#| echo: false
+knitr::include_graphics("img/quarto.006.png")
+```
+
+## Slides for this course
+
+Slides that you are currently looking at are also written in Quarto. You can take a look at them on in the [GitHub repository](https://github.com/csuci-data200/lectures) I use to make the slides.
+
+# R packages
+
+## Phone apps vs. R packages
+
+:::: {.columns}
+
+::: {.column width="50%"}
+When you buy a new phone it comes with some apps pre-installed.
+
+- Calendar
+- Email
+- Messages
+:::
+
+::: {.column width="50%"}
+If you want to use a different app you can install it.
+
+- Instagram
+- GMail
+- BlueSky
+:::
+
+::::
+
+When you download R for the first time to your computer. It comes with some packages already installed. You can also install many other R packages.
+
+## R packages
+
+What do R packages have? All sorts of things but mainly
+
+- functions 
+
+- datasets
+
+## R packages
+
+Try running the following code:
+
+```{r error = TRUE}
+beep()
+```
+
+Why are we seeing this error? 
+
+
+## Using `install.packages()`
+
+In your **Console**, install the beepr package
+
+```{r eval = FALSE}
+install.packages("beepr")
+```
+
+We do this in the Console because we only need to do it once.
+
+
+
+## Using Packages pane
+
+```{r echo = FALSE, out.width="40%", fig.align='center'}
+knitr::include_graphics("img/packages-pane.png")
+```
+
+Packages Pane > Install 
+
+
+
+## Letting RStudio Install
+
+```{r echo = FALSE, out.width="80%", fig.align='center'}
+knitr::include_graphics("img/rstudio-install.png")
+```
+
+If you save your file and using a package RStudio will tell you that you have not installed the package.
+
+
+
+
+:::{.font75}
+
+Using packages
+
+:::
+
+
+
+## Using beep() from beepr
+
+
+Option 1
+```{r warning = FALSE, eval = FALSE}
+library(beepr)
+beep()
+```
+
+More common usage. 
+
+Useful if you are going to use multiple functions from the same package.
+
+E.g. we have used many functions (ggplot, aes, geom_...) from the ggplot2 package. In such cases, usual practice is to put the library name in the first R chunk in the .qmd file.
+
+
+
+## Using beep() from beepr
+
+Option 2
+
+```{r eval = FALSE}
+beepr::beep()
+```
+Useful when you are going to use a function once or few times. 
+
+Also useful if there are any conflicts. For instance if there is some other package in your environment that has a beep() function that prints the word beep, you would want to distinguish the beep function from the beepr package and the beep function from the other imaginary package. 
+
+##
+
+```{r echo=FALSE, fig.align='center', out.width="80%"}
+knitr::include_graphics("img/beep-help.png")
+```
+
+
+## Open Source
+
+- Any one around the world can create R packages. 
+
+
+
+- Good part: We are able to do pretty much anything R because someone from around the world has developed the package and shared it. 
+
+
+- Bad part: The language can be inconsistent. 
+
+
+- Good news: We have tidyverse. 
+
+
+
+## Tidyverse
+
+
+>The tidyverse is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures. 
+
+[tidyverse.org](https://tidyverse.org)
+
+
+## Tidyverse
+
+In short, tidyverse is a family of packages. From practical stand point, you can install many tidyverse packages at once (and you did this). 
+
+
+##
+
+We can also load multiple tidyverse packages all at the same time.
+
+```{r message = TRUE}
+library(tidyverse)
+```
