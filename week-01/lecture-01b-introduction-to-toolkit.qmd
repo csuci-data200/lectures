@@ -15,17 +15,17 @@ format:
 
 ```{r}
 2 + 2
-```
-
-```{r}
 sqrt(6 *(18 / 5)^2 * exp(13))
 ```
 
-What you see is a line of code followed by a line of output (starting with "[1]")
+What you see is
+
+- a line of code (starting with the code line number "1")
+- a line of output (starting with "[1]")
 
 ## Creating an object
 
-We can save it into an object using the assignment operator `<-`
+We can save things into an object using the assignment operator `<-`
 
 ```{r}
 my_calculation <- 2 * 4
@@ -41,7 +41,7 @@ Names of objects:
 
 - must begin with a letter
 - contain letters &/or numbers
-- separate with "_" (underscore)
+- separate with "_" (underscore) *or a "." (period)*
 
 ## Naming an object
 
@@ -133,15 +133,35 @@ Using comments with `#` in your code for less obvious tasks can be helpful
 
 ```{r}
 # This is just a comment and is not processed as code
-# 8 * 4 This is also just a comment
-2 * 3
+# Converted from Celsius to Fahrenheit. F = (C * 9 / 5) + 32
+my_temperature <- 36.7
+my_temperature <- (my_temperature * 9 / 5) + 32
+my_temperature
 ```
 
 ##
 
+```{r}
+#| echo: false
+#| fig-align: center
+#| fig-out: 80%
+knitr::include_graphics("img/chatgpt_sort_help.png")
+```
+
 ::: callout-tip
+[AI tools](https://openai.com/index/introducing-chatgpt-edu/) can be helpful for finding functions and providing examples.
+:::
+
+## 
+
+::: callout-warning
 You should not copy paste code from my slides or from the internet. 
 Part of learning to code is building up your muscle memory. 
+
+Do not assume that AI tools will be correct. 
+Even if the code runs it may not be the proper way of doing something.
+
+If the code example is very long or does not use functions we discussed in class, refine your question.
 :::
 
 

@@ -414,18 +414,20 @@ Dr.&nbsp;Catalina Medina
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4</code></pre>
 </div>
-</div>
-<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="fu">sqrt</span>(<span class="dv">6</span> <span class="sc">*</span>(<span class="dv">18</span> <span class="sc">/</span> <span class="dv">5</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> <span class="fu">exp</span>(<span class="dv">13</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5865.327</code></pre>
 </div>
 </div>
-<p>What you see is a line of code followed by a line of output (starting with “[1]”)</p>
+<p>What you see is</p>
+<ul>
+<li>a line of code (starting with the code line number “1”)</li>
+<li>a line of output (starting with “[1]”)</li>
+</ul>
 </section>
 <section id="creating-an-object" class="slide level2">
 <h2>Creating an object</h2>
-<p>We can save it into an object using the assignment operator <code>&lt;-</code></p>
+<p>We can save things into an object using the assignment operator <code>&lt;-</code></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>my_calculation <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -437,7 +439,7 @@ Dr.&nbsp;Catalina Medina
 <ul>
 <li>must begin with a letter</li>
 <li>contain letters &amp;/or numbers</li>
-<li>separate with “_” (underscore)</li>
+<li>separate with “_” (underscore) <em>or a “.” (period)</em></li>
 </ul>
 </section>
 <section id="naming-an-object" class="slide level2">
@@ -546,20 +548,23 @@ Dr.&nbsp;Catalina Medina
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a>?seq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
-<p>Using comments, <code>#</code> in your code for less obvious tasks can be helpful</p>
+<p>Using comments with <code>#</code> in your code for less obvious tasks can be helpful</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a><span class="co"># This is just a comment and is not processed as code</span></span>
-<span id="cb24-2"><a href=""></a><span class="co"># 8 * 4 This is also just a comment</span></span>
-<span id="cb24-3"><a href=""></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-2"><a href=""></a><span class="co"># Converted from Celsius to Fahrenheit. F = (C * 9 / 5) + 32</span></span>
+<span id="cb24-3"><a href=""></a>my_temperature <span class="ot">&lt;-</span> <span class="fl">36.7</span></span>
+<span id="cb24-4"><a href=""></a>my_temperature <span class="ot">&lt;-</span> (my_temperature <span class="sc">*</span> <span class="dv">9</span> <span class="sc">/</span> <span class="dv">5</span>) <span class="sc">+</span> <span class="dv">32</span></span>
+<span id="cb24-5"><a href=""></a>my_temperature</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 6</code></pre>
+<pre><code>[1] 98.06</code></pre>
 </div>
 </div>
 </div>
 </section>
 <section id="section" class="slide level2">
 <h2></h2>
-<div class="callout callout-tip callout-titled callout-style-default">
+
+<img data-src="img/chatgpt_sort_help.png" class="quarto-figure quarto-figure-center r-stretch" width="1704"><div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
@@ -568,7 +573,25 @@ Dr.&nbsp;Catalina Medina
 <p><strong>Tip</strong></p>
 </div>
 <div class="callout-content">
+<p><a href="https://openai.com/index/introducing-chatgpt-edu/">AI tools</a> can be helpful for finding functions and providing examples.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Warning</strong></p>
+</div>
+<div class="callout-content">
 <p>You should not copy paste code from my slides or from the internet. Part of learning to code is building up your muscle memory.</p>
+<p>Do not assume that AI tools will be correct. Even if the code runs it may not be the proper way of doing something.</p>
+<p>If the code example is very long or does not use functions we discussed in class, refine your question.</p>
 </div>
 </div>
 </div>
@@ -594,7 +617,7 @@ Dr.&nbsp;Catalina Medina
 <li><p>Object names are all lower case, with words separated by an underscore.</p></li>
 </ul>
 </section>
-<section id="section-1" class="slide level2">
+<section id="section-2" class="slide level2">
 <h2></h2>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
@@ -758,7 +781,7 @@ __Hello world__
 <p>Useful when you are going to use a function once or few times.</p>
 <p>Also useful if there are any conflicts. For instance if there is some other package in your environment that has a beep() function that prints the word beep, you would want to distinguish the beep function from the beepr package and the beep function from the other imaginary package.</p>
 </section>
-<section id="section-2" class="slide level2">
+<section id="section-3" class="slide level2">
 <h2></h2>
 
 <img data-src="img/beep-help.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
@@ -782,7 +805,7 @@ __Hello world__
 <h2>Tidyverse</h2>
 <p>In short, tidyverse is a family of packages. From practical stand point, you can install many tidyverse packages at once (and you did this).</p>
 </section>
-<section id="section-3" class="slide level2">
+<section id="section-4" class="slide level2">
 <h2></h2>
 <p>We can also load multiple tidyverse packages all at the same time.</p>
 <div class="cell">
