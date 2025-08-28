@@ -335,6 +335,20 @@ What do R packages have? All sorts of things but mainly
 
 - datasets
 
+In order to use a package you have to:
+
+1. install it (once per device)
+```{r}
+#| eval: false
+install.packages("tidyverse")
+```
+
+2. load it (in each Quarto document)
+```{r}
+#| eval: false
+library(tidyverse)
+```
+
 ## R packages
 
 Try running the following code:
