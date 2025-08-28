@@ -1,0 +1,12 @@
+---
+title: "Data 200: Lecture 02b"
+subtitle: "Describing data with numbers"
+author: "Professor Catalina Medina"
+execute:
+  echo: true
+format: 
+  revealjs:
+    theme: [sky, ../slide-style.scss]
+    slide-number: true
+---
+
