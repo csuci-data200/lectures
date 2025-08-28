@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.4.555">
 
   <meta name="author" content="Professor Catalina Medina">
-  <title>Data 200: Lecture 02b</title>
+  <title>Data 200: Lecture 2b</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -29,6 +29,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="lec-02b-describing-data-with-numbers_files/libs/revealjs/dist/theme/quarto.css">
   <link href="lec-02b-describing-data-with-numbers_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -326,7 +391,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Data 200: Lecture 02b</h1>
+  <h1 class="title">Data 200: Lecture 2b</h1>
   <p class="subtitle">Describing data with numbers</p>
 
 <div class="quarto-title-authors">
@@ -338,14 +403,880 @@ Professor Catalina Medina
 </div>
 
 </section>
-<section class="slide level2">
+<section>
+<section id="getting-to-know-data" class="title-slide slide level1 center">
+<h1>Getting to Know Data</h1>
+<p><a href="https://fivethirtyeight.com/features/which-state-has-the-worst-drivers/">Dear Mona, Which State Has the Worst Drivers?</a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">library</span>(fivethirtyeight)</span>
+<span id="cb1-2"><a href=""></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href=""></a><span class="fu">data</span>(<span class="st">"bad_drivers"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>When you are given some code like this one in your lecture notes or assignments, you should run it first before beginning to code. As we progress in the course, you’ll have a deeper understanding of what the starter codes do.</p>
+</section>
+<section id="data-frames" class="slide level2">
+<h2>Data Frames</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="img/data-matrix.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="img/data-matrix-tail.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="data-frame" class="slide level2">
+<h2>Data Frame</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="fu">ncol</span>(bad_drivers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">nrow</span>(bad_drivers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 51</code></pre>
+</div>
+</div>
+<ul>
+<li><p>The data frame has 8 <strong>variables</strong> (state, num_drivers, perc_speeding, perc_not_distracted, perc_no_previous, insurance_premiums, losses).</p></li>
+<li><p>The data frame has 51 <strong>cases</strong> or <strong>observations</strong>. Each case represents a US state (or District of Columbia).</p></li>
+</ul>
+</section>
+<section id="data-documentation" class="slide level2">
+<h2>Data documentation</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a>?bad_drivers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>state</code> State</p>
+<p><code>num_drivers</code> Number of drivers involved in fatal collisions per billion miles</p>
+<p><code>perc_speeding</code> Percentage of drivers involved in fatal collisions who were speeding</p>
+<p><code>perc_alcohol</code> Percentage of drivers involved in fatal collisions who were alcohol-impaired</p>
+<p><code>perc_not_distracted</code> Percentage of drivers involved in fatal collisions who were not distracted</p>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+<p><code>perc_no_previous</code> Percentage of drivers involved in fatal collisions who had not been involved in any previous accidents</p>
+<p><code>insurance_premiums</code> Car insurance premiums ($)</p>
+<p><code>losses</code> Losses incurred by insurance companies for collisions per insured driver ($)</p>
+<p><code>Source</code> National Highway Traffic Safety Administration 2012, National Highway Traffic Safety Administration 2009 &amp; 2012, National Association of Insurance Commissioners 2010 &amp; 2011.</p>
+</section></section>
+<section>
+<section id="functions-for-viewing-data-frames" class="title-slide slide level1 center">
+<h1>Functions for viewing data frames</h1>
 
+</section>
+<section id="view-top-of-data-frame" class="slide level2">
+<h2>View top of data frame</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="fu">head</span>(bad_drivers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 8
+  state      num_drivers perc_speeding perc_alcohol perc_not_distracted
+  &lt;chr&gt;            &lt;dbl&gt;         &lt;int&gt;        &lt;int&gt;               &lt;int&gt;
+1 Alabama           18.8            39           30                  96
+2 Alaska            18.1            41           25                  90
+3 Arizona           18.6            35           28                  84
+4 Arkansas          22.4            18           26                  94
+5 California        12              35           28                  91
+6 Colorado          13.6            37           28                  79
+# ℹ 3 more variables: perc_no_previous &lt;int&gt;, insurance_premiums &lt;dbl&gt;,
+#   losses &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="view-bottom-of-data-frame" class="slide level2">
+<h2>View bottom of data frame</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="fu">tail</span>(bad_drivers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 8
+  state         num_drivers perc_speeding perc_alcohol perc_not_distracted
+  &lt;chr&gt;               &lt;dbl&gt;         &lt;int&gt;        &lt;int&gt;               &lt;int&gt;
+1 Vermont              13.6            30           30                  96
+2 Virginia             12.7            19           27                  87
+3 Washington           10.6            42           33                  82
+4 West Virginia        23.8            34           28                  97
+5 Wisconsin            13.8            36           33                  39
+6 Wyoming              17.4            42           32                  81
+# ℹ 3 more variables: perc_no_previous &lt;int&gt;, insurance_premiums &lt;dbl&gt;,
+#   losses &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="view-structure-of-data-frame" class="slide level2">
+<h2>View structure of data frame</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="fu">glimpse</span>(bad_drivers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 51
+Columns: 8
+$ state               &lt;chr&gt; "Alabama", "Alaska", "Arizona", "Arkansas", "Calif…
+$ num_drivers         &lt;dbl&gt; 18.8, 18.1, 18.6, 22.4, 12.0, 13.6, 10.8, 16.2, 5.…
+$ perc_speeding       &lt;int&gt; 39, 41, 35, 18, 35, 37, 46, 38, 34, 21, 19, 54, 36…
+$ perc_alcohol        &lt;int&gt; 30, 25, 28, 26, 28, 28, 36, 30, 27, 29, 25, 41, 29…
+$ perc_not_distracted &lt;int&gt; 96, 90, 84, 94, 91, 79, 87, 87, 100, 92, 95, 82, 8…
+$ perc_no_previous    &lt;int&gt; 80, 94, 96, 95, 89, 95, 82, 99, 100, 94, 93, 87, 9…
+$ insurance_premiums  &lt;dbl&gt; 784.55, 1053.48, 899.47, 827.34, 878.41, 835.50, 1…
+$ losses              &lt;dbl&gt; 145.08, 133.93, 110.35, 142.39, 165.63, 139.91, 16…</code></pre>
+</div>
+</div>
+</section>
+<section id="getting-to-know-the-data-frame" class="slide level2">
+<h2>Getting to know the data frame</h2>
+
+<img data-src="img/data-environment.png" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="fu">glimpse</span>(candy_rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 85
+Columns: 6
+$ competitorname &lt;chr&gt; "100 Grand", "3 Musketeers", "One dime", "One quarter",…
+$ chocolate      &lt;lgl&gt; TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FAL…
+$ fruity         &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, …
+$ sugarpercent   &lt;dbl&gt; 0.732, 0.604, 0.011, 0.011, 0.906, 0.465, 0.604, 0.313,…
+$ pricepercent   &lt;dbl&gt; 0.860, 0.511, 0.116, 0.511, 0.511, 0.767, 0.767, 0.511,…
+$ winpercent     &lt;dbl&gt; 66.97173, 67.60294, 32.26109, 46.11650, 52.34146, 50.34…</code></pre>
+</div>
+</div>
+</section>
+<section id="section-2" class="slide level2">
+<h2></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="fu">glimpse</span>(bob_ross)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 403
+Columns: 71
+$ episode            &lt;chr&gt; "S01E01", "S01E02", "S01E03", "S01E04", "S01E05", "…
+$ season             &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, …
+$ episode_num        &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 1, 2, 3,…
+$ title              &lt;chr&gt; "A WALK IN THE WOODS", "MT. MCKINLEY", "EBONY SUNSE…
+$ apple_frame        &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ aurora_borealis    &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ barn               &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ beach              &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ boat               &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ bridge             &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ building           &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ bushes             &lt;int&gt; 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, …
+$ cabin              &lt;int&gt; 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, …
+$ cactus             &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ circle_frame       &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ cirrus             &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, …
+$ cliff              &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ clouds             &lt;int&gt; 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, …
+$ conifer            &lt;int&gt; 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, …
+$ cumulus            &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, …
+$ deciduous          &lt;int&gt; 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, …
+$ diane_andre        &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ dock               &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ double_oval_frame  &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ farm               &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ fence              &lt;int&gt; 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ fire               &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ florida_frame      &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ flowers            &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ fog                &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ framed             &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ grass              &lt;int&gt; 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, …
+$ guest              &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ half_circle_frame  &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ half_oval_frame    &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ hills              &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ lake               &lt;int&gt; 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, …
+$ lakes              &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ lighthouse         &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ mill               &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ moon               &lt;int&gt; 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ mountain           &lt;int&gt; 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, …
+$ mountains          &lt;int&gt; 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, …
+$ night              &lt;int&gt; 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ ocean              &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, …
+$ oval_frame         &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ palm_trees         &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ path               &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ person             &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ portrait           &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ rectangle_3d_frame &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ rectangular_frame  &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ river              &lt;int&gt; 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ rocks              &lt;int&gt; 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ seashell_frame     &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ snow               &lt;int&gt; 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, …
+$ snowy_mountain     &lt;int&gt; 0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, …
+$ split_frame        &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ steve_ross         &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ structure          &lt;int&gt; 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, …
+$ sun                &lt;int&gt; 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, …
+$ tomb_frame         &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ tree               &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, …
+$ trees              &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, …
+$ triple_frame       &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ waterfall          &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ waves              &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, …
+$ windmill           &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ window_frame       &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ winter             &lt;int&gt; 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ wood_framed        &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …</code></pre>
+</div>
+</div>
+</section>
+<section id="variables" class="slide level2">
+<h2>Variables</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="img/data-candy.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="img/data-candy-tail.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="variables-1" class="slide level2">
+<h2>Variables</h2>
+<p>Variables <code>sugarpercent</code>, <code>pricepercent</code>, and <code>winpercent</code> are <strong>numerical variables</strong>.</p>
+<p>We can do certain analyses on these variables such as finding an average <code>winpercent</code> or the maximum or minimum <code>winpercent</code>.</p>
+<p>Note: Not everything represented by numbers is a numeric variable. e.g.&nbsp;Student ID number is not a numeric variable.</p>
+</section>
+<section id="variables-2" class="slide level2">
+<h2>Variables</h2>
+<p>Variables such as <code>competitorname</code>, <code>chocolate</code>, and <code>fruity</code> are <strong>categorical variables</strong>.</p>
+<p>We cannot take averages or find maximum or minimum of these variables.</p>
+<p>Categorical variables have <strong>levels</strong>. For instance <code>chocolate</code> and <code>fruity</code> both have two levels as <code>TRUE</code> and <code>FALSE</code>.</p>
+
+<img data-src="img/diagram_small.png" class="quarto-figure quarto-figure-center r-stretch" width="113"></section>
+<section id="categorical-variables" class="slide level2">
+<h2>Categorical Variables</h2>
+<p>If the levels of the categorical variable has a comparable ordering then it is called an <strong>ordinal variable</strong>.</p>
+<p>e.g.&nbsp;variable scholarship_status might have three levels as no scholarship, partial scholarship and full scholarship. We can order these levels from less to more or vice versa.</p>
+<p>If there is no ordering then a categorical variable would be called a <strong>nominal variable</strong>. e.g.&nbsp;state names.</p>
+</section>
+<section id="numeric-variables" class="slide level2">
+<h2>Numeric Variables</h2>
+<p>Consider a variable <code>n_kids</code> which represents number of kids somebody has. Then this variable can take values (0, 1, 2, …). Notice that this variable can take only integer values. This variable is said to be <strong>discrete</strong> since it does not take on infinitely many numbers that we are not able to count.</p>
+<p>Numeric variables that can take infinitely many numbers are said to be <strong>continuous</strong>. Consider somebody’s height in cm. This is a continuous variable. Even though we might say somebody is 173 cm, in reality the height could be 170.612476314631 cm. So height can take infinitely many values.</p>
+</section>
+<section id="in-statistics" class="slide level2">
+<h2>In Statistics</h2>
+
+<img data-src="img/diagram.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
+<section id="some-variable-types-in-r" class="slide level2">
+<h2>(Some) Variable Types in R</h2>
+<p><code>character</code>: takes string values (e.g.&nbsp;a person’s name, address)</p>
+<div class="fragment">
+<p><code>integer</code>: integer (single precision)</p>
+</div>
+<div class="fragment">
+<p><code>double</code>: floating decimal (double precision)</p>
+</div>
+<div class="fragment">
+<p><code>numeric</code>: integer or double</p>
+</div>
+<div class="fragment">
+<p><code>factor</code>: categorical variables with different levels</p>
+</div>
+<div class="fragment">
+<p><code>logical</code>: TRUE (1), FALSE (0)</p>
+</div>
+</section>
+<section id="section-3" class="slide level2">
+<h2></h2>
+<p>As a data scientist it is your job to check the type(s) of data that you are working with. Do not assume you will work with clean data frames, with clean names, labels, and types.</p>
+</section></section>
+<section id="lab-2b-part-1" class="title-slide slide level1 center">
+<h1>Lab 2b part 1</h1>
+
+</section>
+
+<section>
+<section id="describing-data-with-numbers" class="title-slide slide level1 center">
+<h1>Describing Data with Numbers</h1>
+
+</section>
+<section id="data" class="slide level2">
+<h2>Data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="fu">glimpse</span>(hotel_bookings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1,000
+Columns: 32
+$ hotel                          &lt;fct&gt; City Hotel, Resort Hotel, Resort Hotel,…
+$ is_canceled                    &lt;fct&gt; 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, …
+$ lead_time                      &lt;dbl&gt; 1, 19, 9, 110, 329, 212, 14, 58, 88, 37…
+$ arrival_date_year              &lt;dbl&gt; 2015, 2016, 2017, 2016, 2017, 2017, 201…
+$ arrival_date_month             &lt;fct&gt; September, March, August, November, Jul…
+$ arrival_date_week_number       &lt;dbl&gt; 40, 12, 31, 46, 30, 35, 5, 41, 20, 14, …
+$ arrival_date_day_of_month      &lt;dbl&gt; 30, 19, 1, 11, 27, 31, 29, 3, 17, 5, 22…
+$ stays_in_weekend_nights        &lt;dbl&gt; 0, 2, 0, 0, 0, 2, 2, 2, 0, 0, 0, 0, 1, …
+$ stays_in_week_nights           &lt;dbl&gt; 2, 4, 4, 1, 2, 8, 0, 5, 3, 3, 1, 1, 1, …
+$ adults                         &lt;dbl&gt; 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 1, 2, 1, …
+$ children                       &lt;dbl&gt; 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, …
+$ babies                         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ meal                           &lt;fct&gt; BB, BB, HB, BB, SC, BB, BB, BB, SC, BB,…
+$ country                        &lt;fct&gt; PRT, PRT, ESP, BRA, GBR, GBR, PRT, DEU,…
+$ market_segment                 &lt;fct&gt; Offline TA/TO, Online TA, Online TA, On…
+$ distribution_channel           &lt;fct&gt; TA/TO, TA/TO, TA/TO, TA/TO, TA/TO, TA/T…
+$ is_repeated_guest              &lt;dbl&gt; 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, …
+$ previous_cancellations         &lt;dbl&gt; 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ previous_bookings_not_canceled &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, …
+$ reserved_room_type             &lt;fct&gt; A, D, A, A, A, A, A, A, A, A, A, A, A, …
+$ assigned_room_type             &lt;fct&gt; A, D, A, A, A, A, D, A, A, A, A, A, A, …
+$ booking_changes                &lt;dbl&gt; 0, 0, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 1, …
+$ deposit_type                   &lt;fct&gt; Non Refund, No Deposit, No Deposit, No …
+$ agent                          &lt;fct&gt; 50, 240, 241, 314, 9, 143, 240, 240, 9,…
+$ company                        &lt;fct&gt; NULL, NULL, NULL, NULL, NULL, NULL, NUL…
+$ days_in_waiting_list           &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ customer_type                  &lt;fct&gt; Transient, Transient, Transient, Transi…
+$ average_daily_rate             &lt;dbl&gt; 98.10, 70.17, 193.40, 36.24, 89.10, 89.…
+$ required_car_parking_spaces    &lt;dbl&gt; 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, …
+$ total_of_special_requests      &lt;dbl&gt; 0, 1, 1, 0, 1, 0, 2, 1, 0, 0, 1, 0, 1, …
+$ reservation_status             &lt;fct&gt; Canceled, Canceled, Check-Out, Check-Ou…
+$ reservation_status_date        &lt;date&gt; 2015-09-29, 2016-03-02, 2017-08-05, 20…</code></pre>
+</div>
+</div>
+</section>
+<section id="data-1" class="slide level2">
+<h2>Data</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1,000
+Columns: 2
+$ lead_time          &lt;dbl&gt; 1, 19, 9, 110, 329, 212, 14, 58, 88, 373, 36, 60, 5…
+$ reservation_status &lt;fct&gt; Canceled, Canceled, Check-Out, Check-Out, Check-Out…</code></pre>
+</div>
+</div>
+<p>What kind of variables are these two?</p>
+</section>
+<section id="section-4" class="slide level2">
+<h2></h2>
+<p>Categorical data are summarized with <strong>counts</strong> or <strong>proportions</strong></p>
+</section>
+<section id="section-5" class="slide level2">
+<h2></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="fu">count</span>(hotel_bookings, reservation_status)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  reservation_status     n
+  &lt;fct&gt;              &lt;int&gt;
+1 Canceled             357
+2 Check-Out            634
+3 No-Show                9</code></pre>
+</div>
+</div>
+</section>
+<section id="section-6" class="slide level2">
+<h2></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a><span class="fu">count</span>(hotel_bookings, reservation_status, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  reservation_status     n
+  &lt;fct&gt;              &lt;int&gt;
+1 Check-Out            634
+2 Canceled             357
+3 No-Show                9</code></pre>
+</div>
+</div>
+</section>
+<section id="section-7" class="slide level2">
+<h2></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a><span class="fu">tabyl</span>(hotel_bookings, reservation_status)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> reservation_status   n percent
+           Canceled 357   0.357
+          Check-Out 634   0.634
+            No-Show   9   0.009</code></pre>
+</div>
+</div>
+</section>
+<section id="summarizing-numerical-data" class="slide level2">
+<h2>Summarizing Numerical Data</h2>
+<p>Consider the following data which represents the number of hours slept for 10 people who were surveyed.</p>
+<table>
+<tbody><tr>
+<td>
+7
+</td>
+<td>
+7.5
+</td>
+<td>
+8
+</td>
+<td>
+5.5
+</td>
+<td>
+10
+</td>
+<td>
+7.2
+</td>
+<td>
+7
+</td>
+<td>
+8
+</td>
+<td>
+9
+</td>
+<td>
+8
+</td>
+</tr>
+</tbody></table>
+</section>
+<section id="mean" class="slide level2">
+<h2>Mean</h2>
+<p><span class="math display">\[\bar x = \frac{7+7.5+8+5.5+10+7.2+7+8+9+8}{10} = 7.72\]</span></p>
+<p>The mean is calculated by summing the observed values and then dividing by the number of observations.</p>
+<p><span class="math display">\[\bar x = \frac{x_1 + x_2+.... x_n}{n}\]</span></p>
+<p>where <span class="math inline">\(\bar x\)</span> represents the mean of observed values, <span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_2\)</span>, … <span class="math inline">\(x_n\)</span> represent the n observed values.</p>
+</section>
+<section id="median" class="slide level2">
+<h2>Median</h2>
+<p>If all the observations are listed from smallest to largest (or vice versa), the median is the observation that falls in the middle.</p>
+<table>
+<tbody><tr>
+<td>
+5.5
+</td>
+<td>
+7
+</td>
+<td>
+7
+</td>
+<td>
+7.2
+</td>
+<td>
+7.5
+</td>
+<td>
+8
+</td>
+<td>
+8
+</td>
+<td>
+8
+</td>
+<td>
+9
+</td>
+<td>
+10
+</td>
+</tr>
+</tbody></table>
+<p>In this case, we have two numbers in the middle 7.5 and 8. The average of these numbers would be the median. In this case, the median is 7.75.</p>
+<p><span class="math display">\[\frac{7.5 + 8}{2} = 7.75\]</span></p>
+</section>
+<section id="section-8" class="slide level2">
+<h2></h2>
+<p>Median is also the 50th percentile indicating that 50% of the data fall below this value.</p>
+</section>
+<section id="q1-q3-and-interquartile-range" class="slide level2">
+<h2>Q1, Q3, and Interquartile Range</h2>
+<p>First quartile (Q1) is the point at which 25% of the data fall below of.</p>
+<p>Third quartile (Q3) is the point at which 75% of the data fall below of.</p>
+<p>Q1 and Q3 can be considered 25th and 75th percentiles respectively.</p>
+<p>Interquartile Range (IQR) = Q3 - Q1] which represents the middle 50% of the data.</p>
+</section>
+<section id="in-pairs-discuss" class="slide level2">
+<h2>In Pairs: Discuss</h2>
+<p>Consider Dr.&nbsp;Medina teaching three classes. Pretend all of these classes have 5 students. Below are exam results from these classes.</p>
+<p>Class 1: 80 80 80 80 80<br>
+Class 2: 76 78 80 82 84<br>
+Class 3: 60 70 80 90 100</p>
+<p>All of these classes have a mean of 80 points. Do you think the mean describes these classes well? Can you think of any other way to describe (in words not in numbers) how these classes differ?</p>
+</section>
+<section id="standard-deviation-and-variance" class="slide level2 smaller">
+<h2>Standard deviation and Variance</h2>
+<table align="center">
+<thead>
+<tr><th>
+x<sub>i</sub>
+</th>
+<th>
+<span class="math inline">\(x_i - \bar{x}\)</span>
+</th>
+<th>
+<span class="math inline">\((x_i - \bar{x})^2\)</span>
+</th>
+</tr></thead>
+<tbody><tr>
+<td>
+5.5
+</td>
+<td>
+5.5-7.72 = -2.22 hr
+</td>
+<td>
+(-2.2 hr)<sup>2</sup> = 4.9284 hr <sup>2</sup>
+</td>
+</tr>
+<tr>
+<td>
+7
+</td>
+<td>
+7-7.72 = -0.72 hr
+</td>
+<td>
+(-0.72 hr)<sup>2</sup> = 0.5184 hr <sup>2</sup>
+</td>
+</tr>
+<tr>
+<td>
+7
+</td>
+<td>
+7-7.72 = -0.72 hr
+</td>
+<td>
+(-0.72 hr)<sup>2</sup> = 0.5184 hr <sup>2</sup>
+</td>
+</tr>
+<tr>
+<td>
+7.2
+</td>
+<td>
+7.2-7.72 = -0.52 hr
+</td>
+<td>
+(-0.52 hr)<sup>2</sup> = 0.2704 hr <sup>2</sup>
+</td>
+</tr>
+<tr>
+<td>
+7.5
+</td>
+<td>
+7.5-7.72 = -0.22 hr
+</td>
+<td>
+(-0.22 hr)<sup>2</sup> = 0.0484 hr <sup>2</sup>
+</td>
+</tr>
+<tr>
+<td>
+8
+</td>
+<td>
+8-7.72 = 0.28 hr
+</td>
+<td>
+(0.28 hr)<sup>2</sup> = 0.0784 hr <sup>2</sup>
+</td>
+</tr>
+<tr>
+<td>
+8
+</td>
+<td>
+8-7.72 = 0.28 hr
+</td>
+<td>
+(0.28 hr)<sup>2</sup> = 0.0784 hr <sup>2</sup>
+</td>
+</tr>
+<tr>
+<td>
+8
+</td>
+<td>
+8-7.72 = 0.28 hr
+</td>
+<td>
+(0.28 hr)<sup>2</sup> = 0.0784 hr <sup>2</sup>
+</td>
+</tr>
+<tr>
+<td>
+9
+</td>
+<td>
+9-7.72 = 1.28 hr
+</td>
+<td>
+(1.28 hr)<sup>2</sup> = 1.6384 hr <sup>2</sup>
+</td>
+</tr>
+<tr>
+<td>
+10
+</td>
+<td>
+10-7.72 = 2.28 hr
+</td>
+<td>
+(2.28 hr)<sup>2</sup> = 5.1984 hr <sup>2</sup>
+</td>
+</tr>
+</tbody></table>
+</section>
+<section id="total-squared-distance-from-the-mean" class="slide level2">
+<h2>Total squared distance from the mean</h2>
+<p><span class="math inline">\(\Sigma_{i = 1}^{n} (x_i - \bar x )^2 =\)</span></p>
+<p><span class="math inline">\(4.9284 + 0.5184 + 0.5184 + 0.2704 + 0.0484 +\)</span> <span class="math inline">\(0.0784 + 0.0784 + 0.0784+ 1.6384 + 5.1984 = 13.356 \text{ hr}^2\)</span></p>
+<p>Note that <span class="math inline">\(n\)</span> represents the number of observations which means <span class="math inline">\(n = 10\)</span>.</p>
+</section>
+<section id="sample-variance" class="slide level2">
+<h2>Sample variance</h2>
+<p><br></p>
+<p><span class="math display">\[s^2 = \frac{\Sigma_{i = 1}^{n} (x_i - \bar x )^2}{n-1}\]</span></p>
+<p><br></p>
+<p><span class="math display">\[s^2= \frac{13.356}{10-1} = 1.484\text{ hr}^2\]</span></p>
+</section>
+<section id="sample-standard-deviation" class="slide level2">
+<h2>Sample standard deviation</h2>
+<p><br></p>
+<p><span class="math display">\[s = \sqrt{\frac{\Sigma_{i = 1}^{n} (x_i - \bar x )^2}{n-1}}\]</span></p>
+<p><br> <span class="math display">\[s= \sqrt{1.484} = 1.218195 \text{ hr}\]</span></p>
+</section>
+<section id="mean-1" class="slide level2">
+<h2>Mean</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a><span class="fu">summarize</span>(hotel_bookings, <span class="fu">mean</span>(lead_time))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  `mean(lead_time)`
+              &lt;dbl&gt;
+1              105.</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a><span class="fu">mean</span>(hotel_bookings<span class="sc">$</span>lead_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 105.065</code></pre>
+</div>
+</div>
+</section>
+<section id="median-1" class="slide level2">
+<h2>Median</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a><span class="fu">summarize</span>(hotel_bookings, <span class="fu">median</span>(lead_time))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  `median(lead_time)`
+                &lt;dbl&gt;
+1                69.5</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a><span class="fu">median</span>(hotel_bookings<span class="sc">$</span>lead_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 69.5</code></pre>
+</div>
+</div>
+</section>
+<section id="minimum" class="slide level2">
+<h2>Minimum</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href=""></a><span class="fu">summarize</span>(hotel_bookings, <span class="fu">min</span>(lead_time))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  `min(lead_time)`
+             &lt;dbl&gt;
+1                0</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a><span class="fu">min</span>(hotel_bookings<span class="sc">$</span>lead_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+</div>
+<p>In a similar fashion maxiumum can be found by using the <code>max()</code> function.</p>
+</section>
+<section id="standard-deviation" class="slide level2">
+<h2>Standard deviation</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href=""></a><span class="fu">summarize</span>(hotel_bookings, <span class="fu">sd</span>(lead_time))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  `sd(lead_time)`
+            &lt;dbl&gt;
+1            106.</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href=""></a><span class="fu">sd</span>(hotel_bookings<span class="sc">$</span>lead_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 106.4455</code></pre>
+</div>
+</div>
+</section>
+<section id="variance" class="slide level2">
+<h2>Variance</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href=""></a><span class="fu">summarize</span>(hotel_bookings, <span class="fu">var</span>(lead_time))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  `var(lead_time)`
+             &lt;dbl&gt;
+1           11331.</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href=""></a><span class="fu">var</span>(hotel_bookings<span class="sc">$</span>lead_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11330.64</code></pre>
+</div>
+</div>
+</section>
+<section id="quantiles-percentiles-quartiles" class="slide level2">
+<h2>Quantiles / Percentiles / Quartiles</h2>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-7rfc{border-color:inherit;font-family:Arial, Helvetica, sans-serif !important;;font-size:28px;text-align:left;
+  vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+<tr>
+<th class="tg-7rfc">
+Quantile
+</th>
+<th class="tg-7rfc">
+Percentile
+</th>
+<th class="tg-7rfc">
+Special Name
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tg-7rfc">
+0.25
+</td>
+<td class="tg-7rfc">
+25th
+</td>
+<td class="tg-7rfc">
+First quartile
+</td>
+</tr>
+<tr>
+<td class="tg-7rfc">
+0.5
+</td>
+<td class="tg-7rfc">
+50th
+</td>
+<td class="tg-7rfc">
+Median
+</td>
+</tr>
+<tr>
+<td class="tg-7rfc">
+0.75
+</td>
+<td class="tg-7rfc">
+75th
+</td>
+<td class="tg-7rfc">
+Third quartile
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="quantiles" class="slide level2">
+<h2>Quantiles</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href=""></a><span class="fu">summarize</span>(</span>
+<span id="cb46-2"><a href=""></a>  hotel_bookings, </span>
+<span id="cb46-3"><a href=""></a>  <span class="fu">quantile</span>(lead_time, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.50</span>, <span class="fl">0.75</span>))</span>
+<span id="cb46-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 1
+  `quantile(lead_time, c(0.25, 0.5, 0.75))`
+                                      &lt;dbl&gt;
+1                                      19  
+2                                      69.5
+3                                     157  </code></pre>
+</div>
+</div>
+<p>We would expect 25% of the data to be less than 19.</p>
+</section>
+<section id="advantages-of-summarize" class="slide level2">
+<h2>Advantages of <code>summarize()</code></h2>
+<p>We can get multiple summaries with one <code>summarize()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href=""></a><span class="fu">summarize</span>(</span>
+<span id="cb48-2"><a href=""></a>  hotel_bookings,</span>
+<span id="cb48-3"><a href=""></a>  <span class="fu">mean</span>(lead_time),</span>
+<span id="cb48-4"><a href=""></a>  <span class="fu">median</span>(lead_time)</span>
+<span id="cb48-5"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  `mean(lead_time)` `median(lead_time)`
+              &lt;dbl&gt;               &lt;dbl&gt;
+1              105.                69.5</code></pre>
+</div>
+</div>
+<p>Note how the variables names in this table is not easy to read.</p>
+</section>
+<section id="renaming-variables-with-summarize" class="slide level2">
+<h2>Renaming variables with <code>summarize()</code></h2>
+<p>In order to display the variable names more legibly in the output, we can assign variable names to numerical summaries (e.g.&nbsp;<code>mean_lead_time</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href=""></a><span class="fu">summarize</span>(</span>
+<span id="cb50-2"><a href=""></a>  hotel_bookings,</span>
+<span id="cb50-3"><a href=""></a>  <span class="at">mean_lead_time =</span> <span class="fu">mean</span>(lead_time),</span>
+<span id="cb50-4"><a href=""></a>  <span class="at">med_lead_time =</span> <span class="fu">median</span>(lead_time)</span>
+<span id="cb50-5"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  mean_lead_time med_lead_time
+           &lt;dbl&gt;         &lt;dbl&gt;
+1           105.          69.5</code></pre>
+</div>
+</div>
+</section></section>
+<section>
+<section id="lab-2b-part-2" class="title-slide slide level1 center">
+<h1>Lab 2b part 2</h1>
+
+</section>
+<section id="learning-tip-of-the-day" class="slide level2">
+<h2>Learning Tip of the Day</h2>
+<p><a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0245066">Does time management work? A meta-analysis</a></p>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
 </div>
-</section>
+</section></section>
     </div>
   </div>
 
@@ -556,6 +1487,82 @@ Professor Catalina Medina
         ]
       });
     </script>
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

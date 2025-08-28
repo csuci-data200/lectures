@@ -1,0 +1,62 @@
+---
+title: "Data 200: Lab 2b"
+subtitle: "Describing data with numbers"
+author: "Professor Catalina Medina"
+format: html
+---
+
+# Part 1: Introduction to the data
+
+In this lab we will be working with Wii Mario Kart Ebay auction data.
+
+```{r}
+library(tidyverse)
+library(openintro)
+
+data("mariokart")
+```
+
+The `mariokart` data is in the `openintro` package.
+
+### Question 1. 
+
+Please look at the data documentation.
+For each variable below please specify what type of variable it is, either numeric or categorical.
+
+**Solution:**
+
+- `id`: 
+- `duraton`: 
+- `n_bids`: 
+- `cond`: 
+- `total_pr`: 
+- `ship_sp`: 
+- `stock_photo`: 
+- `title`: 
+
+
+### Question 2. 
+
+Please view the data and make sure the R types for each column match the variable types. For example the variable `start_pr` is numeric and the column type in the data is "dbl" meaning double. A double is just a numeric that can take decimals, so it is appropriate.
+
+Note any variables that have an inappropriate R type.
+
+
+# Part 2: Summarizing our data numerically
+
+I'm curious how much people ended up selling the game for.
+
+### Question 3. 
+
+Which variable contains this information?
+
+
+### Question 4. 
+
+Please calculate a value that tells me how much the game typically sold for. Use inline code to answer. 
+
+
+### Question 5. 
+
+Please calculate a value that describes the variability in final sale price. Use inline code to answer. 
+
