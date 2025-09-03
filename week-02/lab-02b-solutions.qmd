@@ -1,0 +1,112 @@
+---
+title: "Data 200: Lab 2b Solutions"
+subtitle: "Describing data with numbers"
+author: "Professor Catalina Medina"
+format: html
+---
+
+*Please always start labs and homework by changing the author to your name. Please answer questions using complete sentences where appropriate.*
+
+# Part 1: Introduction to the data
+
+In this lab we will be working with Wii Mario Kart Ebay auction data.
+
+```{r}
+library(tidyverse)
+library(openintro)
+
+data("mariokart")
+```
+
+The `mariokart` data is in the `openintro` package.
+
+### Question 1. 
+
+Please look at the data documentation using `?mariokart` in the console.
+For each variable below please specify what type of variable it is and an appropriate R variable type. The first one is done for you as an example.
+
+**Solution:**
+
+- `duration`: Numeric discrete (numeric or integer)
+- `id`: Categorical nominal (character or factor)
+- `n_bids`: Numeric discrete (numeric or integer)
+- `cond`: Categorical nominal (character or factor)
+- `total_pr`: Numeric continuous (numeric or double)
+- `title`: Categorical nominal (character or factor)
+
+
+### Question 2. 
+
+Please view the data and make sure the R variable types for each column are appropriate for the variable types. For example the variable `start_pr` is numeric and the R variable column type in the data is "dbl" meaning `double`. A `double` is just a numeric that can take decimals, so it is appropriate.
+
+Note any variables that have an inappropriate R type.
+
+**Solution:**
+
+```{r}
+glimpse(mariokart)
+```
+
+The `id` variable is actually categorical, but the column type is "double". 
+
+
+# Part 2: Summarizing our data numerically
+
+I'm curious how much people ended up selling the game for.
+
+### Question 3. 
+
+Which variable contains this information?
+
+
+**Solution:**
+
+The variable `total_pr`.
+
+### Question 4. 
+
+Please calculate a value that tells me how much the game typically sold for. Use inline code to answer. 
+
+**Solution:**
+
+Two options we discussed for demonstrating "typical" game sales are mean and median, since they are both measures of centrality.
+
+*When you render inline code you may see a lot of decimals printed. When talking about price it makes sense to only display two decimal places. If you save you calculation into an object called `typical_price` then you can use `round(typical_price, digits = 2)`*
+
+```{r}
+total_price_mean <- summarize(mariokart, mean(total_pr))
+total_price_mean <- round(total_price_mean, digits = 2)
+```
+
+The mean total price was $`r total_price_mean`.
+
+
+### Question 5. 
+
+Please calculate a value that describes the variability in final sale price.
+
+**Solution:**
+
+Two options we discussed for demonstrating "variability" in game sales are variance and standard deviation. 
+Standard deviation is easier to understand because it is in the same units as the original data.
+
+```{r}
+total_price_sd <- summarize(mariokart, sd(total_pr))
+total_price_sd <- round(total_price_sd, digits = 2)
+```
+
+The standard deviation of total price was $`r total_price_sd`.
+
+
+## Question 6
+
+```{r}
+janitor::tabyl(mariokart, var1 = cond)
+```
+
+What percent of games were sold new?
+
+**Solution:**
+
+41.3% of games were sold new.
+
