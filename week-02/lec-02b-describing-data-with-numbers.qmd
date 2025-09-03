@@ -248,29 +248,19 @@ knitr::include_graphics("img/diagram.png")
 
 ## (Some) Variable Types in R
 
-`character`: takes string values (e.g. a person's name, address)  
+Categorical types:
+
+- `logical`: TRUE (1), FALSE (0)  
+- `character`: takes string values (e.g. a person's name, address)  
+- `factor`: categorical variables with different levels
 
 . . .
 
-`integer`: integer (single precision)  
+Numerical types:
 
-. . .
-
-`double`: floating decimal (double precision)   
-
-. . .
-
-`numeric`: integer or double  
-
-. . .
-
-`factor`: categorical variables with different levels  
-
-. . .
-
-`logical`: TRUE (1), FALSE (0)  
-
-
+- `integer`: integer (for discrete)  
+- `double`: floating decimal (for continuous)
+- `numeric`: integer or double  
 
 ## 
 
