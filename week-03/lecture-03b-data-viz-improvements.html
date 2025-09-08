@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="lecture-03a-data-viz-foundations_files/libs/clipboard/clipboard.min.js"></script>
-<script src="lecture-03a-data-viz-foundations_files/libs/quarto-html/tabby.min.js"></script>
-<script src="lecture-03a-data-viz-foundations_files/libs/quarto-html/popper.min.js"></script>
-<script src="lecture-03a-data-viz-foundations_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="lecture-03a-data-viz-foundations_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="lecture-03a-data-viz-foundations_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="lecture-03a-data-viz-foundations_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="lecture-03a-data-viz-foundations_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="lecture-03b-data-viz-improvements_files/libs/clipboard/clipboard.min.js"></script>
+<script src="lecture-03b-data-viz-improvements_files/libs/quarto-html/tabby.min.js"></script>
+<script src="lecture-03b-data-viz-improvements_files/libs/quarto-html/popper.min.js"></script>
+<script src="lecture-03b-data-viz-improvements_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="lecture-03b-data-viz-improvements_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="lecture-03b-data-viz-improvements_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="lecture-03b-data-viz-improvements_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="lecture-03b-data-viz-improvements_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.4.555">
 
   <meta name="author" content="Professor Catalina Medina">
-  <title>Data 200: Lecture 3a</title>
+  <title>Data 200: Lecture 3b</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="lecture-03a-data-viz-foundations_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="lecture-03a-data-viz-foundations_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="lecture-03b-data-viz-improvements_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="lecture-03b-data-viz-improvements_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -95,11 +95,11 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="lecture-03a-data-viz-foundations_files/libs/revealjs/dist/theme/quarto.css">
-  <link href="lecture-03a-data-viz-foundations_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="lecture-03a-data-viz-foundations_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="lecture-03a-data-viz-foundations_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="lecture-03a-data-viz-foundations_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="lecture-03b-data-viz-improvements_files/libs/revealjs/dist/theme/quarto.css">
+  <link href="lecture-03b-data-viz-improvements_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="lecture-03b-data-viz-improvements_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="lecture-03b-data-viz-improvements_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="lecture-03b-data-viz-improvements_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -391,8 +391,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Data 200: Lecture 3a</h1>
-  <p class="subtitle">Data visualization foundations</p>
+  <h1 class="title">Data 200: Lecture 3b</h1>
+  <p class="subtitle">Data visualization improvements and other data representations</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -403,232 +403,215 @@ Professor Catalina Medina
 </div>
 
 </section>
-<section id="different-representations-of-data" class="slide level2">
-<h2>Different Representations of Data</h2>
-<p>We can represent data using some of the following formats</p>
-<ul>
-<li>visual</li>
-<li>text</li>
-<li>sound</li>
-<li>tactile</li>
-</ul>
-<div class="fragment">
-<p>Today we will cover data represented in visuals but throughout the week we will cover different data representations.</p>
-</div>
-</section>
-<section id="accessibility" class="slide level2">
-<h2>Accessibility</h2>
-<p>Data visualization is perhaps the most commonly used format for representing data.</p>
-<div class="fragment">
-<p>Data visualization can convey a lot about data, however visualizations are not accessible to everyone. For instance, they are not accessible to those who are blind and visually impaired.</p>
-</div>
-<div class="fragment">
-<p>Different modes (e.g., sound) of representation are especially important for making the data representation accessible to all.</p>
-</div>
-</section>
 <section>
 <section id="data-visualization" class="title-slide slide level1 center">
 <h1>Data Visualization</h1>
 
 </section>
-<section id="examples" class="slide level2">
-<h2>Examples</h2>
-<p><a href="https://chart-studio.plotly.com/~Dreamshot/354/how-common-is-your-birthday/#plot">How Common Is Your Birthday?</a></p>
-<p><a href="https://flowingdata.com/2017/01/24/one-dataset-visualized-25-ways">One Dataset Visualized 25 Ways</a></p>
-<p><a href="https://www.instagram.com/p/CE1kpM5FhWR/?utm_source=ig_web_copy_link">Mandatory Paid Vacation</a></p>
-<p><a href="https://pudding.cool/2020/10/kpop/">Why are K-pop groups so big?</a></p>
-<div class="fragment">
-<p>We will only touch the surface of data visualization in this class. It is a rich field and some of you may possibly consider a career in data visualization.</p>
-</div>
-</section>
 <section id="section" class="slide level2">
 <h2></h2>
-<p>Data Visualizations</p>
-<ul>
-<li><p>are graphical representations of data</p></li>
-<li><p>use different colors, shapes, and the coordinate system to summarize data</p></li>
-<li><p>can tell a story or can be useful for exploring data</p></li>
-</ul>
-</section>
-<section id="data" class="slide level2">
-<h2>Data</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">glimpse</span>(babies)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 1,236
-Columns: 8
-$ case      &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1…
-$ bwt       &lt;int&gt; 120, 113, 128, 123, 108, 136, 138, 132, 120, 143, 140, 144, …
-$ gestation &lt;int&gt; 284, 282, 279, NA, 282, 286, 244, 245, 289, 299, 351, 282, 2…
-$ parity    &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALS…
-$ age       &lt;int&gt; 27, 33, 28, 36, 23, 25, 33, 23, 25, 30, 27, 32, 23, 36, 30, …
-$ height    &lt;int&gt; 62, 64, 64, 69, 67, 62, 62, 65, 62, 66, 68, 64, 63, 61, 63, …
-$ weight    &lt;int&gt; 100, 135, 115, 190, 125, 93, 178, 140, 125, 136, 120, 124, 1…
-$ smoke     &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE,…</code></pre>
-</div>
-</div>
-</section>
-<section id="section-1" class="slide level2">
-<h2></h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>?babies</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><code>case</code> id number</p>
-<p><code>bwt</code> birthweight, in ounces</p>
-<p><code>gestation</code> length of gestation, in days</p>
-<p><code>parity</code> binary indicator for a first pregnancy (0 = first pregnancy)</p>
-<p><code>age</code> mother’s age in years</p>
-<p><code>height</code> mother’s height in inches</p>
-<p><code>weight</code> mother’s weight in pounds</p>
-<p><code>smoke</code> binary indicator for whether the mother smokes</p>
-</section>
-<section id="bar-plot" class="slide level2">
-<h2>Bar plot</h2>
-
-<img data-src="lecture-03a-data-viz-foundations_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><ul>
-<li>When can we use a bar plot?</li>
-<li>What does this bar plot convey?</li>
-</ul>
-</section>
-<section id="bar-plot-1" class="slide level2">
-<h2>Bar plot</h2>
+<p>In the last lecture we have made basic data visualizations. In this lecture we will improve them to make them more accessible.</p>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">ggplot</span>(babies)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">ggplot</span>(</span>
+<span id="cb1-2"><a href=""></a>  penguins,</span>
+<span id="cb1-3"><a href=""></a>  <span class="fu">aes</span>(</span>
+<span id="cb1-4"><a href=""></a>    <span class="at">x =</span> bill_depth_mm, </span>
+<span id="cb1-5"><a href=""></a>    <span class="at">y =</span> bill_length_mm, </span>
+<span id="cb1-6"><a href=""></a>    <span class="at">color =</span> species</span>
+<span id="cb1-7"><a href=""></a>  )</span>
+<span id="cb1-8"><a href=""></a>) <span class="sc">+</span></span>
+<span id="cb1-9"><a href=""></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="lecture-03a-data-viz-foundations_files/figure-revealjs/unnamed-chunk-5-1.png" width="960"></p>
+<p><img data-src="lecture-03b-data-viz-improvements_files/figure-revealjs/unnamed-chunk-2-1.png" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="bar-plot-2" class="slide level2">
-<h2>Bar plot</h2>
+<section id="labeling-axes" class="slide level2">
+<h2>Labeling Axes</h2>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">ggplot</span>(babies, <span class="fu">aes</span>(<span class="at">x =</span> smoke)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="fu">ggplot</span>(</span>
+<span id="cb2-2"><a href=""></a>  penguins,</span>
+<span id="cb2-3"><a href=""></a>  <span class="fu">aes</span>(</span>
+<span id="cb2-4"><a href=""></a>    <span class="at">x =</span> bill_depth_mm, </span>
+<span id="cb2-5"><a href=""></a>    <span class="at">y =</span> bill_length_mm, </span>
+<span id="cb2-6"><a href=""></a>    <span class="at">color =</span> species</span>
+<span id="cb2-7"><a href=""></a>  )</span>
+<span id="cb2-8"><a href=""></a>) <span class="sc">+</span></span>
+<span id="cb2-9"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb2-10"><a href=""></a>  <span class="fu">labs</span>(</span>
+<span id="cb2-11"><a href=""></a>    <span class="at">x =</span> <span class="st">"Bill Depth (mm)"</span>, </span>
+<span id="cb2-12"><a href=""></a>    <span class="at">y =</span> <span class="st">"Bill Length (mm)"</span>,</span>
+<span id="cb2-13"><a href=""></a>    <span class="at">color =</span> <span class="st">"Species"</span>,</span>
+<span id="cb2-14"><a href=""></a>    <span class="at">title =</span> <span class="st">"Palmer Penguins"</span></span>
+<span id="cb2-15"><a href=""></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="lecture-03a-data-viz-foundations_files/figure-revealjs/unnamed-chunk-6-1.png" width="960"></p>
+<p><img data-src="lecture-03b-data-viz-improvements_files/figure-revealjs/unnamed-chunk-3-1.png" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
-</section>
-<section id="bar-plot-3" class="slide level2">
-<h2>Bar plot</h2>
-<div class="cell columns column-output-location">
-<div class="column">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">ggplot</span>(babies, <span class="fu">aes</span>(<span class="at">x =</span> smoke)) <span class="sc">+</span></span>
-<span id="cb6-2"><a href=""></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="lecture-03a-data-viz-foundations_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
+<p>We can change axes and plot labels using the <code>labs()</code> function.</p>
+<div class="fragment">
+<p><em>We should never be using the default axes plot labels!</em></p>
 </div>
 </section>
-<section id="histogram" class="slide level2">
-<h2>Histogram</h2>
-
-<img data-src="lecture-03a-data-viz-foundations_files/figure-revealjs/unnamed-chunk-8-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><ul>
-<li>When can we use an histogram?</li>
-<li>What does this histogram convey?</li>
-</ul>
-</section>
-<section id="histogram-1" class="slide level2">
-<h2>Histogram</h2>
-<div class="cell columns column-output-location">
-<div class="column">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="fu">ggplot</span>(babies)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="lecture-03a-data-viz-foundations_files/figure-revealjs/unnamed-chunk-9-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="histogram-2" class="slide level2">
-<h2>Histogram</h2>
-<div class="cell columns column-output-location">
-<div class="column">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="fu">ggplot</span>(babies, <span class="fu">aes</span>(<span class="at">x =</span> bwt))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="lecture-03a-data-viz-foundations_files/figure-revealjs/unnamed-chunk-10-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="histogram-3" class="slide level2">
-<h2>Histogram</h2>
-<div class="cell columns column-output-location">
-<div class="column">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="fu">ggplot</span>(babies, <span class="fu">aes</span>(<span class="at">x =</span> bwt)) <span class="sc">+</span></span>
-<span id="cb9-2"><a href=""></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="lecture-03a-data-viz-foundations_files/figure-revealjs/unnamed-chunk-11-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="section-2" class="slide level2">
-<h2></h2>
-<div class="panel-tabset" data-group="binwidth">
-<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Binwidth = 0.5</a></li><li><a href="#tabset-1-2">Binwidth = 3</a></li><li><a href="#tabset-1-3">Binwidth = 10</a></li></ul>
-<div class="tab-content" data-group="binwidth">
+<section id="themes" class="slide level2">
+<h2>Themes</h2>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1"><code>theme_gray()</code></a></li><li><a href="#tabset-1-2"><code>theme_bw()</code></a></li><li><a href="#tabset-1-3"><code>theme_dark()</code></a></li><li><a href="#tabset-1-4"><code>theme_classic()</code></a></li><li><a href="#tabset-1-5"><code>theme_minimal()</code></a></li></ul>
+<div class="tab-content">
 <div id="tabset-1-1">
-<div class="cell">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb3" data-code-line-numbers="15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="fu">ggplot</span>(</span>
+<span id="cb3-2"><a href=""></a>  penguins,</span>
+<span id="cb3-3"><a href=""></a>  <span class="fu">aes</span>(</span>
+<span id="cb3-4"><a href=""></a>    <span class="at">x =</span> bill_depth_mm,</span>
+<span id="cb3-5"><a href=""></a>    <span class="at">y =</span> bill_length_mm,</span>
+<span id="cb3-6"><a href=""></a>    <span class="at">color =</span> species</span>
+<span id="cb3-7"><a href=""></a>  )</span>
+<span id="cb3-8"><a href=""></a>) <span class="sc">+</span></span>
+<span id="cb3-9"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb3-10"><a href=""></a>  <span class="fu">labs</span>(</span>
+<span id="cb3-11"><a href=""></a>    <span class="at">x =</span> <span class="st">"Bill Depth (mm)"</span>, </span>
+<span id="cb3-12"><a href=""></a>    <span class="at">y =</span> <span class="st">"Bill Length (mm)"</span>, </span>
+<span id="cb3-13"><a href=""></a>    <span class="at">title =</span> <span class="st">"Palmer Penguins"</span></span>
+<span id="cb3-14"><a href=""></a>) <span class="sc">+</span></span>
+<span id="cb3-15"><a href=""></a>  <span class="fu">theme_gray</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="lecture-03a-data-viz-foundations_files/figure-revealjs/unnamed-chunk-12-1.png" width="960"></p>
+<p><img data-src="lecture-03b-data-viz-improvements_files/figure-revealjs/unnamed-chunk-4-1.png" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
+</div>
+<p>Theme gray is the default theme in ggplot.</p>
 </div>
 <div id="tabset-1-2">
-<div class="cell">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb4" data-code-line-numbers="15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">ggplot</span>(</span>
+<span id="cb4-2"><a href=""></a>  penguins,</span>
+<span id="cb4-3"><a href=""></a>  <span class="fu">aes</span>(</span>
+<span id="cb4-4"><a href=""></a>    <span class="at">x =</span> bill_depth_mm,</span>
+<span id="cb4-5"><a href=""></a>    <span class="at">y =</span> bill_length_mm,</span>
+<span id="cb4-6"><a href=""></a>    <span class="at">color =</span> species</span>
+<span id="cb4-7"><a href=""></a>  )</span>
+<span id="cb4-8"><a href=""></a>) <span class="sc">+</span></span>
+<span id="cb4-9"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb4-10"><a href=""></a>  <span class="fu">labs</span>(</span>
+<span id="cb4-11"><a href=""></a>    <span class="at">x =</span> <span class="st">"Bill Depth (mm)"</span>, </span>
+<span id="cb4-12"><a href=""></a>    <span class="at">y =</span> <span class="st">"Bill Length (mm)"</span>, </span>
+<span id="cb4-13"><a href=""></a>    <span class="at">title =</span> <span class="st">"Palmer Penguins"</span></span>
+<span id="cb4-14"><a href=""></a>) <span class="sc">+</span></span>
+<span id="cb4-15"><a href=""></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="lecture-03a-data-viz-foundations_files/figure-revealjs/unnamed-chunk-13-1.png" width="960"></p>
+<p><img data-src="lecture-03b-data-viz-improvements_files/figure-revealjs/unnamed-chunk-5-1.png" width="576"></p>
 </figure>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div id="tabset-1-3">
-<div class="cell">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb5" data-code-line-numbers="15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">ggplot</span>(</span>
+<span id="cb5-2"><a href=""></a>  penguins,</span>
+<span id="cb5-3"><a href=""></a>  <span class="fu">aes</span>(</span>
+<span id="cb5-4"><a href=""></a>    <span class="at">x =</span> bill_depth_mm,</span>
+<span id="cb5-5"><a href=""></a>    <span class="at">y =</span> bill_length_mm,</span>
+<span id="cb5-6"><a href=""></a>    <span class="at">color =</span> species</span>
+<span id="cb5-7"><a href=""></a>  )</span>
+<span id="cb5-8"><a href=""></a>) <span class="sc">+</span></span>
+<span id="cb5-9"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb5-10"><a href=""></a>  <span class="fu">labs</span>(</span>
+<span id="cb5-11"><a href=""></a>    <span class="at">x =</span> <span class="st">"Bill Depth (mm)"</span>, </span>
+<span id="cb5-12"><a href=""></a>    <span class="at">y =</span> <span class="st">"Bill Length (mm)"</span>, </span>
+<span id="cb5-13"><a href=""></a>    <span class="at">title =</span> <span class="st">"Palmer Penguins"</span></span>
+<span id="cb5-14"><a href=""></a>) <span class="sc">+</span></span>
+<span id="cb5-15"><a href=""></a>  <span class="fu">theme_dark</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="lecture-03a-data-viz-foundations_files/figure-revealjs/unnamed-chunk-14-1.png" width="960"></p>
+<p><img data-src="lecture-03b-data-viz-improvements_files/figure-revealjs/unnamed-chunk-6-1.png" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-4">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb6" data-code-line-numbers="15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">ggplot</span>(</span>
+<span id="cb6-2"><a href=""></a>  penguins,</span>
+<span id="cb6-3"><a href=""></a>  <span class="fu">aes</span>(</span>
+<span id="cb6-4"><a href=""></a>    <span class="at">x =</span> bill_depth_mm,</span>
+<span id="cb6-5"><a href=""></a>    <span class="at">y =</span> bill_length_mm,</span>
+<span id="cb6-6"><a href=""></a>    <span class="at">color =</span> species</span>
+<span id="cb6-7"><a href=""></a>  )</span>
+<span id="cb6-8"><a href=""></a>) <span class="sc">+</span></span>
+<span id="cb6-9"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb6-10"><a href=""></a>  <span class="fu">labs</span>(</span>
+<span id="cb6-11"><a href=""></a>    <span class="at">x =</span> <span class="st">"Bill Depth (mm)"</span>, </span>
+<span id="cb6-12"><a href=""></a>    <span class="at">y =</span> <span class="st">"Bill Length (mm)"</span>, </span>
+<span id="cb6-13"><a href=""></a>    <span class="at">title =</span> <span class="st">"Palmer Penguins"</span></span>
+<span id="cb6-14"><a href=""></a>) <span class="sc">+</span></span>
+<span id="cb6-15"><a href=""></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture-03b-data-viz-improvements_files/figure-revealjs/unnamed-chunk-7-1.png" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-5">
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb7" data-code-line-numbers="15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="fu">ggplot</span>(</span>
+<span id="cb7-2"><a href=""></a>  penguins,</span>
+<span id="cb7-3"><a href=""></a>  <span class="fu">aes</span>(</span>
+<span id="cb7-4"><a href=""></a>    <span class="at">x =</span> bill_depth_mm,</span>
+<span id="cb7-5"><a href=""></a>    <span class="at">y =</span> bill_length_mm,</span>
+<span id="cb7-6"><a href=""></a>    <span class="at">color =</span> species</span>
+<span id="cb7-7"><a href=""></a>  )</span>
+<span id="cb7-8"><a href=""></a>) <span class="sc">+</span></span>
+<span id="cb7-9"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb7-10"><a href=""></a>  <span class="fu">labs</span>(</span>
+<span id="cb7-11"><a href=""></a>    <span class="at">x =</span> <span class="st">"Bill Depth (mm)"</span>, </span>
+<span id="cb7-12"><a href=""></a>    <span class="at">y =</span> <span class="st">"Bill Length (mm)"</span>, </span>
+<span id="cb7-13"><a href=""></a>    <span class="at">title =</span> <span class="st">"Palmer Penguins"</span></span>
+<span id="cb7-14"><a href=""></a>) <span class="sc">+</span></span>
+<span id="cb7-15"><a href=""></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture-03b-data-viz-improvements_files/figure-revealjs/unnamed-chunk-8-1.png" width="576"></p>
 </figure>
 </div>
 </div>
@@ -636,293 +619,319 @@ $ smoke     &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
 </div>
 </div>
 </div>
+</div>
 </section>
-<section id="binwidth" class="slide level2">
-<h2>Binwidth</h2>
+<section id="font-size" class="slide level2">
+<h2>Font Size</h2>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb8" data-code-line-numbers="15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="fu">ggplot</span>(</span>
+<span id="cb8-2"><a href=""></a>  penguins,</span>
+<span id="cb8-3"><a href=""></a>  <span class="fu">aes</span>(</span>
+<span id="cb8-4"><a href=""></a>    <span class="at">x =</span> bill_depth_mm,</span>
+<span id="cb8-5"><a href=""></a>    <span class="at">y =</span> bill_length_mm,</span>
+<span id="cb8-6"><a href=""></a>    <span class="at">color =</span> species</span>
+<span id="cb8-7"><a href=""></a>  )</span>
+<span id="cb8-8"><a href=""></a>) <span class="sc">+</span></span>
+<span id="cb8-9"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb8-10"><a href=""></a>  <span class="fu">labs</span>(</span>
+<span id="cb8-11"><a href=""></a>    <span class="at">x =</span> <span class="st">"Bill Depth (mm)"</span>, </span>
+<span id="cb8-12"><a href=""></a>    <span class="at">y =</span> <span class="st">"Bill Length (mm)"</span>, </span>
+<span id="cb8-13"><a href=""></a>    <span class="at">title =</span> <span class="st">"Palmer Penguins"</span></span>
+<span id="cb8-14"><a href=""></a>) <span class="sc">+</span></span>
+<span id="cb8-15"><a href=""></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture-03b-data-viz-improvements_files/figure-revealjs/unnamed-chunk-9-1.png" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The <code>theme()</code> function allows for many components of a theme. By typing <code>?theme</code> in the Console, you can read the documentation of the function to see what components can be modified.</p>
+</section>
+<section id="font-size-1" class="slide level2">
+<h2>Font Size</h2>
+<p>One can also set the default font size of theme. For instance, if you utilize the following code at the first chunk of a Quarto document, all plots will be in gray theme and will have a font size of 22.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="fu">ggplot</span>(babies, <span class="fu">aes</span>(<span class="at">x =</span> bwt)) <span class="sc">+</span></span>
-<span id="cb10-2"><a href=""></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="fu">theme_set</span>(<span class="fu">theme_gray</span>(<span class="at">base_size =</span> <span class="dv">22</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="using-shapes-in-addition-to-colors" class="slide level2">
+<h2>Using Shapes in Addition to Colors</h2>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="fu">ggplot</span>(</span>
+<span id="cb10-2"><a href=""></a>  penguins,</span>
+<span id="cb10-3"><a href=""></a>  <span class="fu">aes</span>(</span>
+<span id="cb10-4"><a href=""></a>    <span class="at">x =</span> bill_depth_mm,</span>
+<span id="cb10-5"><a href=""></a>    <span class="at">y =</span> bill_length_mm,</span>
+<span id="cb10-6"><a href=""></a>    <span class="at">shape =</span> species,</span>
+<span id="cb10-7"><a href=""></a>    <span class="at">color =</span> species</span>
+<span id="cb10-8"><a href=""></a>  )</span>
+<span id="cb10-9"><a href=""></a>) <span class="sc">+</span></span>
+<span id="cb10-10"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture-03b-data-viz-improvements_files/figure-revealjs/unnamed-chunk-11-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Previously species were only distinguishable to someone who could distinguish these colors. By using shapes, color-blind viewers can also distinguish the species.</p>
+</section>
+<section id="color-blindness-simulation" class="slide level2">
+<h2>Color-Blindness Simulation</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a>species_bills <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb11-2"><a href=""></a>  penguins,</span>
+<span id="cb11-3"><a href=""></a>  <span class="fu">aes</span>(<span class="at">x =</span> bill_depth_mm, <span class="at">y =</span> bill_length_mm, <span class="at">color =</span> species)</span>
+<span id="cb11-4"><a href=""></a>) <span class="sc">+</span></span>
+<span id="cb11-5"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>By storing the plot as an object named <code>species_bills</code>, we will be able to use it in other functions.</p>
+</section>
+<section id="color-blindness-simulation-1" class="slide level2">
+<h2>Color-Blindness Simulation</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>colorblindr<span class="sc">::</span><span class="fu">cvd_grid</span>(species_bills) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
-</div>
-<img data-src="lecture-03a-data-viz-foundations_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch"></section>
-<section id="section-3" class="slide level2">
-<h2></h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="cell">
+<p>The <code>cvd_grid()</code> function from the <code>colorblindr()</code> package creates a grid of different color-deficiency simulations.</p>
+<p><code>Deuteranomaly</code> is reduced sensitivity to green light <code>Protanomaly</code>, is reduced sensitivity to red light <code>Tritanomaly</code> is reduced sensitivity to blue light <code>Desaturated</code> is no color difference</p>
+</section>
+<section id="color-blindness-simulation-1-output" class="slide level2 output-location-slide"><h2>Color-Blindness Simulation</h2><div class="cell output-location-slide">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="lecture-03a-data-viz-foundations_files/figure-revealjs/unnamed-chunk-17-1.png" width="960"></p>
+<p><img data-src="lecture-03b-data-viz-improvements_files/figure-revealjs/unnamed-chunk-13-1.png" width="960"></p>
 </figure>
 </div>
 </div>
-</div>
-</div><div class="column" style="width:50%;">
+</div></section><section id="okabe-ito-color-palette" class="slide level2">
+<h2>Okabe-Ito Color Palette</h2>
+<p>In 2008, <a href="https://jfly.uni-koeln.de/color/">Masataka Okabe and Kei Ito</a> proposed a color palette that is accessible to people with various color deficiencies. We use their last names referring to the color palette.</p>
 <div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="lecture-03a-data-viz-foundations_files/figure-revealjs/unnamed-chunk-18-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="lecture-03a-data-viz-foundations_files/figure-revealjs/unnamed-chunk-19-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="histogram-4" class="slide level2">
-<h2>Histogram</h2>
-<p>Consider the height distribution in our class.</p>
-<ul>
-<li><p>How would the distribution change if Michael Jordan (198.1 cm, 6’ 6’’) were to join our class?</p></li>
-<li><p>How would the distribution change if Tyrion Lannister (Peter Dinklage) (135 cm, 4’ 5’’) were to join our class?</p></li>
-</ul>
-</section>
-<section id="section-4" class="slide level2">
-<h2></h2>
-<p>Think 💭 - Pair 👫🏽 - Share 💬</p>
-<ul>
-<li><p>In right-skewed distributions mean &gt; median, true or false?</p></li>
-<li><p>In left-skewed distributions mean &gt; median, true or false?</p></li>
-</ul>
-<div class="fragment">
-<p>When data display a skewed distribution we rely on median rather than the mean to understand the center of the distribution.</p>
-</div>
-</section>
-<section id="more-on-histograms" class="slide level2">
-<h2>More on Histograms</h2>
-<p><a href="https://en.wikipedia.org/wiki/Histogram#Number_of_bins_and_width">There is no “best” number of bins</a></p>
-<p><a href="https://tinlizzie.org/histograms/">Exploring Histograms Visually</a></p>
-<p>Take a look at these for fun.</p>
-</section>
-<section id="looking-at-relationships" class="slide level2">
-<h2>Looking at Relationships</h2>
-<p>So far we seen barplots and histograms both of which are useful for visualizing a single categorical and numerical variables respectively.</p>
-<div class="fragment">
-<p>We are often interested in looking at relationships between two variables. We have statistical tests to examine such relationships. However, visualizations can often help us explore if such relationships are worth looking into.</p>
-</div>
-</section>
-<section id="standardized-bar-plots" class="slide level2">
-<h2>Standardized Bar Plots</h2>
-<div class="cell columns column-output-location" data-layout-align="center">
-<div class="column">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="fu">ggplot</span>(</span>
-<span id="cb11-2"><a href=""></a>  <span class="at">data =</span> babies,</span>
-<span id="cb11-3"><a href=""></a>  <span class="fu">aes</span>(<span class="at">x =</span> smoke, <span class="at">fill =</span> parity)</span>
-<span id="cb11-4"><a href=""></a>) <span class="sc">+</span> </span>
-<span id="cb11-5"><a href=""></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="lecture-03a-data-viz-foundations_files/figure-revealjs/unnamed-chunk-20-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<p>Note that the y axis still shows as a count. We will learn how to change the axis labels in the next lecture.</p>
-<p><em>What type of variables can we display with a standardized bar plot?</em></p>
-</section>
-<section id="dodged-bar-plot" class="slide level2">
-<h2>Dodged Bar Plot</h2>
-<div class="cell columns column-output-location" data-layout-align="center">
-<div class="column">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="fu">ggplot</span>(</span>
-<span id="cb12-2"><a href=""></a>  <span class="at">data =</span> babies,</span>
-<span id="cb12-3"><a href=""></a>  <span class="fu">aes</span>(<span class="at">x =</span> smoke, <span class="at">fill =</span> parity)</span>
-<span id="cb12-4"><a href=""></a>) <span class="sc">+</span> </span>
-<span id="cb12-5"><a href=""></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"dodge"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="lecture-03a-data-viz-foundations_files/figure-revealjs/unnamed-chunk-21-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="side-by-side-boxplots" class="slide level2">
-<h2>Side-by-Side Boxplots</h2>
-<div class="cell columns column-output-location" data-layout-align="center">
-<div class="column">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="fu">ggplot</span>(</span>
-<span id="cb13-2"><a href=""></a>  babies,</span>
-<span id="cb13-3"><a href=""></a>  <span class="fu">aes</span>(<span class="at">x =</span> smoke, <span class="at">y =</span> bwt))  <span class="sc">+</span></span>
-<span id="cb13-4"><a href=""></a>  <span class="fu">geom_boxplot</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="lecture-03a-data-viz-foundations_files/figure-revealjs/unnamed-chunk-22-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="understanding-each-box" class="slide level2">
-<h2>Understanding Each Box</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="lecture-03a-data-viz-foundations_files/figure-revealjs/unnamed-chunk-23-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column" style="width:50%;">
-<ul>
-<li>The horizontal line in the box represents the median.</li>
-<li>The box represents the middle 50% of the data with Q3 on the upper end and Q1 on the lower end.</li>
-</ul>
-</div>
-</div>
-</section>
-<section id="understanding-each-box-1" class="slide level2">
-<h2>Understanding Each Box</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="lecture-03a-data-viz-foundations_files/figure-revealjs/unnamed-chunk-24-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column" style="width:50%;">
-<ul>
-<li>Whiskers extend from the box. They can extend up to 1.5 IQR away from the box (i.e.&nbsp;away from Q1 and Q3).</li>
-<li>The points are potential outliers that represent babies with really low or high birth weight.</li>
-</ul>
-</div>
-</div>
-</section>
-<section id="scatter-plots" class="slide level2">
-<h2>Scatter plots</h2>
-<div class="cell columns column-output-location" data-layout-align="center">
-<div class="column">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a><span class="fu">ggplot</span>(</span>
-<span id="cb14-2"><a href=""></a>  babies,</span>
-<span id="cb14-3"><a href=""></a>  <span class="fu">aes</span>(<span class="at">x =</span> gestation, <span class="at">y =</span> bwt)</span>
-<span id="cb14-4"><a href=""></a>)  <span class="sc">+</span></span>
-<span id="cb14-5"><a href=""></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="lecture-03a-data-viz-foundations_files/figure-revealjs/unnamed-chunk-25-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<p>Length of gestation can <strong>possibly</strong> eXplain a baby’s birth weight. Gestation is the eXplanatory variable and is shown on the x-axis. Birth weight is the response variable and is shown on the y-axis.</p>
-</section>
-<section id="linear-relationship" class="slide level2">
-<h2>Linear Relationship</h2>
-
-<img data-src="lecture-03a-data-viz-foundations_files/figure-revealjs/unnamed-chunk-26-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p>Later on we will start statistical modeling during which we will numerically define the relationship between gestation and birth weight. For now we can say that this relationship looks positive and moderate.</p>
-</section>
-<section id="meet-palmer-penguins1" class="slide level2">
-<h2>Meet Palmer Penguins<sup>1</sup></h2>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/penguins.png" class="quarto-figure quarto-figure-center" width="900"></p>
-</figure>
-</div>
-</div>
-</div>
-<aside><ol class="aside-footnotes"><li id="fn1"><p>Penguin artworks by <span class="citation" data-cites="allison_horst">@allison_horst</span>.</p></li></ol></aside></section>
-<section id="section-5" class="slide level2">
-<h2></h2>
-
-<img data-src="img/penguin_bill.png" class="quarto-figure quarto-figure-center r-stretch" width="388"></section>
-<section id="data-1" class="slide level2">
-<h2>Data</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="fu">glimpse</span>(penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="fu">palette.colors</span>(<span class="at">palette =</span> <span class="st">"Okabe-Ito"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Rows: 344
-Columns: 8
-$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…
-$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…
-$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …
-$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …
-$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…
-$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …
-$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…
-$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…</code></pre>
+<pre><code>[1] "#000000" "#E69F00" "#56B4E9" "#009E73" "#F0E442" "#0072B2" "#D55E00"
+[8] "#CC79A7" "#999999"</code></pre>
 </div>
 </div>
 </section>
-<section id="visualizing-three-variables" class="slide level2">
-<h2>Visualizing Three Variables</h2>
+<section id="okabe-ito-color-palette-1" class="slide level2">
+<h2>Okabe-Ito Color Palette</h2>
+
+<img data-src="lecture-03b-data-viz-improvements_files/figure-revealjs/unnamed-chunk-16-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p>The codes displayed with a hashtag are called hex color code. You can use hex codes in R (and in HTML) to specify colors.</p>
+</section>
+<section id="okabe-ito-color-palette-2" class="slide level2">
+<h2>Okabe-Ito Color Palette</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g,<span class="at">y =</span> bill_length_mm,<span class="at">color =</span> species)) <span class="sc">+</span></span>
-<span id="cb17-2"><a href=""></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>species_bills <span class="sc">+</span> </span>
+<span id="cb15-2"><a href=""></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#E69F00"</span>, <span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#56B4E9"</span>, <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#009E73"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="lecture-03a-data-viz-foundations_files/figure-revealjs/unnamed-chunk-30-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p>We can use color to consider a third variable</p>
-</section>
-<section id="code-style" class="slide level2">
-<h2>code style</h2>
-<p><a href="https://style.tidyverse.org/ggplot2.html">The tidyverse style guide</a> has the following convention for writing ggplot2 code.</p>
-<p>The plus sign for adding layers <code>+</code> always has a space before it and is followed by a new line.</p>
-<p>The new line is indented by two spaces. RStudio does this automatically for you.</p>
+<img data-src="lecture-03b-data-viz-improvements_files/figure-revealjs/unnamed-chunk-17-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="okabe-ito-color-palette-3" class="slide level2">
+<h2>Okabe-Ito Color Palette</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a>species_bills <span class="sc">+</span> </span>
+<span id="cb16-2"><a href=""></a>  colorblindr<span class="sc">::</span><span class="fu">scale_color_OkabeIto</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="lecture-03b-data-viz-improvements_files/figure-revealjs/unnamed-chunk-18-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="improving-data-visualizations" class="slide level2">
+<h2>Improving Data Visualizations</h2>
+<p><a href="https://guides.lib.uci.edu/datavis/do">Top Ten Dos and Don’t for Charts and Graphs</a></p>
+<div class="fragment">
+<p>We cannot learn every single ggplot feature in a single week but a little but an internet search and a few examples can go a long way in improving your visualizations.</p>
+</div>
+<div class="fragment">
+<p>Examples:</p>
+<ul>
+<li><p><a href="https://www.cararthompson.com/talks/nhsr2023-level-up-workshop/">Level Up Your Plots: Using colour, annotations, text hiearchy and other tricks to make your data story stand out</a></p></li>
+<li><p><a href="https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html#1">the ggplot flipbook</a></p></li>
+</ul>
+</div>
 </section></section>
 <section>
-<section id="lab-3a" class="title-slide slide level1 center">
-<h1>Lab 3a</h1>
+<section id="data-verbalization" class="title-slide slide level1 center">
+<h1>Data Verbalization</h1>
 
 </section>
-<section id="learning-tip-of-the-day" class="slide level2">
-<h2>Learning Tip of the Day</h2>
-<p><a href="https://link.springer.com/article/10.1186/s41235-020-00218-5">Why does peer instruction benefit student learning?</a></p>
+<section id="assistive-technology" class="slide level2">
+<h2>Assistive Technology</h2>
+<p>Assistive Technology is any form of technology (software, device) that helps people with disabilities perform certain activities.</p>
+<p>Examples:</p>
+<ul>
+<li>walking sticks</li>
+<li>wheel chairs</li>
+<li>screen readers</li>
+</ul>
+</section>
+<section id="screen-reader" class="slide level2">
+<h2>Screen reader</h2>
+<p>A screen reader is an assistive technology that supports blind or visually impaired people in using their computer.</p>
+<div class="fragment">
+<center>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/l-G4kKTuDHI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+</iframe>
+<p>The video shows use of a screen reader briefly.</p>
+</center>
+</div>
+</section>
+<section id="alternate-text" class="slide level2">
+<h2>Alternate Text</h2>
+<ul>
+<li>“Alt text” describes contents of an image.</li>
+<li>It is used in HTML pages.</li>
+<li>Screen-readers cannot read images but can read alt text.</li>
+<li>Alt text has to be provided.</li>
+</ul>
+</section>
+<section id="manual-alternate-text-guidelines" class="slide level2">
+<h2>Manual Alternate Text Guidelines</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li><p>Chart type</p></li>
+<li><p>Type of data</p></li>
+<li><p>Reason for including the chart</p></li>
+<li><p>Link to data or source (not in alt text but in main text)</p></li>
+</ul>
+<p><a href="https://medium.com/nightingale/writing-alt-text-for-data-visualization-2a218ef43f81">Cesal, 2020</a></p>
+</div><div class="column" style="width:50%;">
+<ul>
+<li><p>Description conveys meaning in the data</p></li>
+<li><p>Variables included on the axes</p></li>
+<li><p>Scale described within the description</p></li>
+<li><p>Type of plot is described</p></li>
+</ul>
+<p><a href="https://www.youtube.com/watch?v=DxLkv2iRdf8&amp;ab_channel=csvconf">Canelón &amp; Hare, 2021</a></p>
+</div>
+</div>
+</section>
+<section id="data-verbalization---automated" class="slide level2">
+<h2>Data Verbalization - Automated</h2>
+
+<img data-src="lecture-03b-data-viz-improvements_files/figure-revealjs/unnamed-chunk-20-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p>The automated alternate text for this plot is on the next slide.</p>
+</section>
+<section id="data-verbalization---automated-1" class="slide level2">
+<h2>Data Verbalization - Automated</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>BrailleR<span class="sc">::</span><span class="fu">VI</span>(example_barplot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>This is an untitled chart with no subtitle or caption.
+It has x-axis 'transmission' with labels automatic and manual.
+It has y-axis 'count' with labels 0, 5, 10 and 15.
+The chart is a bar chart with 2 vertical bars.
+Bar 1 is centered at 1, and length is from 0 to 19.
+Bar 2 is centered at 2, and length is from 0 to 13.</code></pre>
+</div>
+</div>
+<hr>
+<p>Drawback of using <code>VI()</code> is that not every type of plot can be verbalized yet.</p>
+</section>
+<section id="alt-text-in-quarto" class="slide level2">
+<h2>Alt Text in Quarto</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href=""></a><span class="in">```{r}</span></span>
+<span id="cb19-2"><a href=""></a><span class="in">#| fig-align: center</span></span>
+<span id="cb19-3"><a href=""></a><span class="in">#| fig-cap: Relationship between bill depth (mm) and length (mm) for different species of penguins</span></span>
+<span id="cb19-4"><a href=""></a><span class="in">#| fig-alt: The scatterplot shows bill depth in mm on the x-axis and bill length in mm on the y-axis with points differently colored for different species as Adelie, Chinstrap, and Gentoo. The x axis ranges from about 12.5 mm to 22.5 mm. The y-axis ranges from about 30 to 60 mm. For all species the relationship seems moderately positive. When comparing the three species, Adelie penguins seem to have longer bill depth but shorter bill length. Chinstraps have longer bill depth and longer bill length. Gentoo penguins have shorter bill depth and longer bill length.  </span></span>
+<span id="cb19-5"><a href=""></a><span class="in">ggplot(penguins, aes(x = bill_depth_mm,y = bill_length_mm, color = species)) +</span></span>
+<span id="cb19-6"><a href=""></a><span class="in">  geom_point(size = 4) </span></span>
+<span id="cb19-7"><a href=""></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="lecture-03b-data-viz-improvements_files/figure-revealjs/unnamed-chunk-22-1.png" alt="The scatterplot shows bill depth in mm on the x-axis and bill length in mm on the y-axis with points differently colored for different species as Adelie, Chinstrap, and Gentoo. The x axis ranges from about 12.5 mm to 22.5 mm. The y-axis ranges from about 30 to 60 mm. For all species the relationship seems moderately positive. When comparing the three species, Adelie penguins seem to have longer bill depth but shorter bill length. Chinstraps have longer bill depth and longer bill length. Gentoo penguins have shorter bill depth and longer bill length." width="960" class="r-stretch quarto-figure-center"><p class="caption">Relationship between bill depth (mm) and length (mm) for different species of penguins</p></section>
+<section id="caption-vs.-alt-text" class="slide level2">
+<h2>Caption vs.&nbsp;Alt Text</h2>
+<p>Figure captions (<code>fig-cap</code>) appear on the front-end of a document and is accessible to all whether they are reading it directly or via screen readers.</p>
+<p>Figure alternate text (<code>fig-alt</code>) only appears on the back-end of a document and is accessible to screen readers and those who know how to investigate the source code of a (HTML) document.</p>
+<p>Even though, we are using captions and alternate text in Quarto, these are available features in many other software (e.g., Google doc, PowerPoint etc.)</p>
+</section></section>
+<section>
+<section id="data-sonification" class="title-slide slide level1 center">
+<h1>Data Sonification</h1>
+
+</section>
+<section id="data-sonification-1" class="slide level2">
+<h2>Data Sonification</h2>
+<p>Data sonification is the presentation of data as sound.</p>
+
+<img data-src="lecture-03b-data-viz-improvements_files/figure-revealjs/unnamed-chunk-23-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb20-2"><a href=""></a>y <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb20-3"><a href=""></a><span class="fu">plot</span>(x, y)</span>
+<span id="cb20-4"><a href=""></a>sonify<span class="sc">::</span><span class="fu">sonify</span>(x,y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<audio controls="">
+<source src="audio/sonify.mp3" type="audio/mpeg">
+<p>Your browser does not support the audio element. </p>
+</audio></section>
+<section id="data-tactualization" class="slide level2">
+<h2>Data Tactualization</h2>
+<p>Data tactulization refers to making data visualization in a form so that it can be touchable. The video shows printing of a tactile boxplot.</p>
+<center>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ClI555l4Z1M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+</iframe>
+</center>
+</section></section>
+<section id="data-tactualization-1" class="title-slide slide level1 center">
+<h1>Data Tactualization</h1>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="fu">library</span>(tactileR)</span>
+<span id="cb21-2"><a href=""></a><span class="fu">brl_begin</span>(</span>
+<span id="cb21-3"><a href=""></a>  <span class="at">file =</span> <span class="st">'tactile.pdf'</span>, </span>
+<span id="cb21-4"><a href=""></a>  <span class="at">paper =</span> <span class="st">'special'</span>, </span>
+<span id="cb21-5"><a href=""></a>  <span class="at">font=</span><span class="st">'BRL'</span></span>
+<span id="cb21-6"><a href=""></a>)</span>
+<span id="cb21-7"><a href=""></a><span class="fu">hist</span>(penguins<span class="sc">$</span>bill_length_mm)</span>
+<span id="cb21-8"><a href=""></a><span class="fu">brl_end</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><!--the swell touch paper through swell form heating machine--><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/hist-braille.png" class="quarto-figure quarto-figure-center" style="width:80.0%" alt="A histogram with x and y labels, title displayed in Braille."></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
 </div>
-</section></section>
-
+</section>
     </div>
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="lecture-03a-data-viz-foundations_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="lecture-03b-data-viz-improvements_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="lecture-03a-data-viz-foundations_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="lecture-03a-data-viz-foundations_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="lecture-03a-data-viz-foundations_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="lecture-03a-data-viz-foundations_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="lecture-03a-data-viz-foundations_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="lecture-03b-data-viz-improvements_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="lecture-03b-data-viz-improvements_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="lecture-03b-data-viz-improvements_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="lecture-03b-data-viz-improvements_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="lecture-03b-data-viz-improvements_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="lecture-03a-data-viz-foundations_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="lecture-03a-data-viz-foundations_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="lecture-03a-data-viz-foundations_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="lecture-03a-data-viz-foundations_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="lecture-03b-data-viz-improvements_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="lecture-03b-data-viz-improvements_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="lecture-03b-data-viz-improvements_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="lecture-03b-data-viz-improvements_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>

@@ -1,6 +1,6 @@
 ---
 title: "Data 200: Lecture 3a"
-subtitle: "Data vizualization foundations"
+subtitle: "Data visualization foundations"
 author: "Professor Catalina Medina"
 execute:
   echo: true
@@ -496,16 +496,11 @@ glimpse(penguins)
 
 ```{r}
 #| fig-align: center
-#| output-location: column
-ggplot(
-  penguins, 
-  aes(
-    x = body_mass_g,
-    y = bill_length_mm,
-    color = species
-  )) +
+ggplot(penguins, aes(x = body_mass_g,y = bill_length_mm,color = species)) +
   geom_point()
 ```
+
+We can use color to consider a third variable
 
 ## code style
 
@@ -516,9 +511,8 @@ The plus sign for adding layers `+` always has a space before it and is followed
 The new line is indented by two spaces. RStudio does this automatically for you. 
 
 
-## Practice
+# Lab 3a
 
-Using the `penguins` data frame ask a question that you are interested in answering. Visualize data to get a visual answer to the question. What is the visual telling you? Note all of this down in your lecture notes.
 
 ## Learning Tip of the Day
 

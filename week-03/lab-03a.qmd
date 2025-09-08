@@ -1,0 +1,77 @@
+---
+title: "Data 200: Lab 3a"
+subtitle: "Plotting foundations"
+author: "Professor Medina"
+format: html
+---
+
+*Please always start labs and homework by changing the author to your name. Please answer questions using complete sentences where appropriate.*
+
+## Organizing our knowledge: Appropriate plot by variable type
+
+### Question 1
+
+Below are some plot types we discussed in class.
+When you want to plot data you first have to think about what types of plot are appropriate.
+
+Below are the plot types we discussed in class. 
+Write each under the data scenario they are appropriate for.
+The first is done for you as an example.
+
+#### Plots discussed
+
+1. bar plot
+2. stacked bar plot
+3. dodged bar plot
+4. histogram
+5. side-by-side histograms
+6. box plot
+7. side-by-side box plots
+8. scatter plot
+9. scatter plot with points differentially colored
+
+#### Data scenarios
+
+Single categorical variable:
+
+- bar plot
+
+Single numeric variable:
+
+Two categorical variables:
+
+Two numeric variables:
+
+One numeric variable for different levels of a categorical variable:
+
+Two numeric variables for different levels of a categorical variable:
+
+
+## Question 2
+
+```{r}
+library(openintro)
+library(tidyverse)
+
+## We will use the `movies` data from the `openintro` package
+glimpse(movies)
+```
+
+Look at the help documentation for the `movies` data. What year were these movies released in?
+
+
+## Question 3
+
+Produce a plot to visualize the relationship between critic score and box office earning.
+
+
+## Question 4
+
+Do you see any relationship between critic score and box office earning? Another way to think about this is "If I had information about what the critic score for a movie is, does that give me some information about what the `box_office` value could be?
+
+
+## Question 5
+
+Pose your own question about this data. Produce an appropriate plot to help answer your question.
+
+

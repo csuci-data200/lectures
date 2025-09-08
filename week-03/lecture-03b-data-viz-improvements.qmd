@@ -1,20 +1,13 @@
 ---
-title: "Data Representations <br> Part II"
-author: "Dr. Mine Dogucu"
+title: "Data 200: Lecture 3b"
+subtitle: "Data visualization improvements and other data representations"
+author: "Professor Catalina Medina"
 execute:
   echo: true
 format: 
   revealjs:
-    footer: "[introdata.science](https://introdata.science)"
+    theme: [sky, ../slide-style.scss]
     slide-number: true
-    incremental: true
-    theme: ["../templates/slide-style.scss"]
-    logo: "https://www.introdata.science/img/logo.png"
-    title-slide-attributes: 
-      data-background-image: "https://www.introdata.science/img/logo.png"
-      data-background-size: 5%
-      data-background-position: 50% 85%
-    include-after-body: "../templates/clean_title_page.html"
 ---
 
 ```{r}
@@ -31,23 +24,50 @@ library(palmerpenguins)
 In the last lecture we have made basic data visualizations. 
 In this lecture we will improve them to make them more accessible. 
 
+```{r}
+#| output-location: column
+#| fig-width: 6
+#| fig-height: 4
+ggplot(
+  penguins,
+  aes(
+    x = bill_depth_mm, 
+    y = bill_length_mm, 
+    color = species
+  )
+) +
+  geom_point()
+```
+
+
 ## Labeling Axes
 
 ```{r}
 #| output-location: column
-#| code-line-numbers: "6|7|8"
-ggplot(penguins,
-       aes(x = bill_depth_mm,
-           y = bill_length_mm,
-           color = species)) +
+#| fig-width: 6
+#| fig-height: 4
+ggplot(
+  penguins,
+  aes(
+    x = bill_depth_mm, 
+    y = bill_length_mm, 
+    color = species
+  )
+) +
   geom_point() +
-  labs(x = "Bill Depth (mm)", 
-       y = "Bill Length (mm)",
-       color = "Species",
-       title = "Palmer Penguins") 
+  labs(
+    x = "Bill Depth (mm)", 
+    y = "Bill Length (mm)",
+    color = "Species",
+    title = "Palmer Penguins"
+  ) 
 ```
 
 We can change axes and plot labels using the `labs()` function. 
+
+. . .
+
+*We should never be using the default axes plot labels!*
 
 
 ## Themes
@@ -56,16 +76,24 @@ We can change axes and plot labels using the `labs()` function.
 ## `theme_gray()`
 
 ```{r}
-#| code-line-numbers: "9"
+#| code-line-numbers: "15"
 #| output-location: column
-ggplot(penguins,
-       aes(x = bill_depth_mm,
-           y = bill_length_mm,
-           color = species)) +
+#| fig-width: 6
+#| fig-height: 4
+ggplot(
+  penguins,
+  aes(
+    x = bill_depth_mm,
+    y = bill_length_mm,
+    color = species
+  )
+) +
   geom_point() +
-  labs(x = "Bill Depth (mm)", 
-       y = "Bill Length (mm)", 
-       title = "Palmer Penguins") +
+  labs(
+    x = "Bill Depth (mm)", 
+    y = "Bill Length (mm)", 
+    title = "Palmer Penguins"
+) +
   theme_gray()
 ```
 
@@ -74,32 +102,48 @@ Theme gray is the default theme in ggplot.
 ## `theme_bw()`
 
 ```{r}
+#| code-line-numbers: "15"
 #| output-location: column
-#| code-line-numbers: "9"
-ggplot(penguins,
-       aes(x = bill_depth_mm,
-           y = bill_length_mm,
-           color = species)) +
+#| fig-width: 6
+#| fig-height: 4
+ggplot(
+  penguins,
+  aes(
+    x = bill_depth_mm,
+    y = bill_length_mm,
+    color = species
+  )
+) +
   geom_point() +
-  labs(x = "Bill Depth (mm)", 
-       y = "Bill Length (mm)", 
-       title = "Palmer Penguins") +
+  labs(
+    x = "Bill Depth (mm)", 
+    y = "Bill Length (mm)", 
+    title = "Palmer Penguins"
+) +
   theme_bw()
 ```
 
 ## `theme_dark()`
 
 ```{r}
+#| code-line-numbers: "15"
 #| output-location: column
-#| code-line-numbers: "9"
-ggplot(penguins,
-       aes(x = bill_depth_mm,
-           y = bill_length_mm,
-           color = species)) +
+#| fig-width: 6
+#| fig-height: 4
+ggplot(
+  penguins,
+  aes(
+    x = bill_depth_mm,
+    y = bill_length_mm,
+    color = species
+  )
+) +
   geom_point() +
-  labs(x = "Bill Depth (mm)", 
-       y = "Bill Length (mm)", 
-       title = "Palmer Penguins") +
+  labs(
+    x = "Bill Depth (mm)", 
+    y = "Bill Length (mm)", 
+    title = "Palmer Penguins"
+) +
   theme_dark()
 ```
 
@@ -107,16 +151,24 @@ ggplot(penguins,
 ## `theme_classic()`
 
 ```{r}
+#| code-line-numbers: "15"
 #| output-location: column
-#| code-line-numbers: "9"
-ggplot(penguins,
-       aes(x = bill_depth_mm,
-           y = bill_length_mm,
-           color = species)) +
+#| fig-width: 6
+#| fig-height: 4
+ggplot(
+  penguins,
+  aes(
+    x = bill_depth_mm,
+    y = bill_length_mm,
+    color = species
+  )
+) +
   geom_point() +
-  labs(x = "Bill Depth (mm)", 
-       y = "Bill Length (mm)", 
-       title = "Palmer Penguins") +
+  labs(
+    x = "Bill Depth (mm)", 
+    y = "Bill Length (mm)", 
+    title = "Palmer Penguins"
+) +
   theme_classic()
 ```
 
@@ -125,16 +177,24 @@ ggplot(penguins,
 
 
 ```{r}
-#| code-line-numbers: "9"
+#| code-line-numbers: "15"
 #| output-location: column
-ggplot(penguins,
-       aes(x = bill_depth_mm,
-           y = bill_length_mm,
-           color = species)) +
+#| fig-width: 6
+#| fig-height: 4
+ggplot(
+  penguins,
+  aes(
+    x = bill_depth_mm,
+    y = bill_length_mm,
+    color = species
+  )
+) +
   geom_point() +
-  labs(x = "Bill Depth (mm)", 
-       y = "Bill Length (mm)", 
-       title = "Palmer Penguins") +
+  labs(
+    x = "Bill Depth (mm)", 
+    y = "Bill Length (mm)", 
+    title = "Palmer Penguins"
+) +
   theme_minimal()
 ```
 
@@ -146,17 +206,25 @@ ggplot(penguins,
 
 
 ```{r}
-#| code-line-numbers: "9"
+#| code-line-numbers: "15"
 #| output-location: column
-ggplot(penguins,
-       aes(x = bill_depth_mm,
-           y = bill_length_mm,
-           color = species)) +
+#| fig-width: 6
+#| fig-height: 4
+ggplot(
+  penguins,
+  aes(
+    x = bill_depth_mm,
+    y = bill_length_mm,
+    color = species
+  )
+) +
   geom_point() +
-  labs(x = "Bill Depth (mm)", 
-       y = "Bill Length (mm)", 
-       title = "Palmer Penguins") +
-  theme(text = element_text(size=20))
+  labs(
+    x = "Bill Depth (mm)", 
+    y = "Bill Length (mm)", 
+    title = "Palmer Penguins"
+) +
+  theme(text = element_text(size = 20))
 ```
 
 The `theme()` function allows for many components of a theme. By typing `?theme` in the Console, you can read the documentation of the function to see what components can be modified.
@@ -166,6 +234,7 @@ The `theme()` function allows for many components of a theme. By typing `?theme`
 One can also set the default font size of theme. For instance, if you utilize the following code at the first chunk of a Quarto document, all plots will be in gray theme and will have a font size of 22.
 
 ```{r}
+#| eval: false
 theme_set(theme_gray(base_size = 22))
 ```
 
@@ -175,12 +244,15 @@ theme_set(theme_gray(base_size = 22))
 
 ```{r}
 #| output-location: column
-#| code-line-numbers: "4"
-ggplot(penguins,
-       aes(x = bill_depth_mm,
-           y = bill_length_mm,
-           shape = species,
-           color = species)) +
+ggplot(
+  penguins,
+  aes(
+    x = bill_depth_mm,
+    y = bill_length_mm,
+    shape = species,
+    color = species
+  )
+) +
   geom_point(size = 4) 
 ```
 
@@ -190,11 +262,10 @@ By using shapes, color-blind viewers can also distinguish the species.
 ## Color-Blindness Simulation
 
 ```{r}
-species_bills <- 
-  ggplot(penguins,
-         aes(x = bill_depth_mm,
-             y = bill_length_mm,
-             color = species)) +
+species_bills <- ggplot(
+  penguins,
+  aes(x = bill_depth_mm, y = bill_length_mm, color = species)
+) +
   geom_point(size = 4) 
 ```
 
@@ -215,6 +286,11 @@ The `cvd_grid()` function from the `colorblindr()` package creates a grid of dif
 `Desaturated` is no color difference
 
 ## Okabe-Ito Color Palette 
+
+```{r}
+#| echo: false
+theme_set(theme_gray(base_size = 22))
+```
 
 In 2008, [Masataka Okabe and Kei Ito](https://jfly.uni-koeln.de/color/) proposed a color palette that is accessible to people with various color deficiencies. 
 We use their last names referring to the color palette. 
@@ -380,9 +456,7 @@ Drawback of using `VI()` is that not every type of plot can be verbalized yet.
 #| fig-align: center
 #| fig-cap: Relationship between bill depth (mm) and length (mm) for different species of penguins
 #| fig-alt: The scatterplot shows bill depth in mm on the x-axis and bill length in mm on the y-axis with points differently colored for different species as Adelie, Chinstrap, and Gentoo. The x axis ranges from about 12.5 mm to 22.5 mm. The y-axis ranges from about 30 to 60 mm. For all species the relationship seems moderately positive. When comparing the three species, Adelie penguins seem to have longer bill depth but shorter bill length. Chinstraps have longer bill depth and longer bill length. Gentoo penguins have shorter bill depth and longer bill length.  
-ggplot(penguins, aes(x = bill_depth_mm,
-                     y = bill_length_mm,
-                     color = species)) +
+ggplot(penguins, aes(x = bill_depth_mm,y = bill_length_mm, color = species)) +
   geom_point(size = 4) 
 ```
 
@@ -449,9 +523,11 @@ The video shows printing of a tactile boxplot.
 #| eval: false
 #| echo: true
 library(tactileR)
-brl_begin(file = 'tactile.pdf', 
-          pt = 11, 
-          paper = 'special', font='BRL')
+brl_begin(
+  file = 'tactile.pdf', 
+  paper = 'special', 
+  font='BRL'
+)
 hist(penguins$bill_length_mm)
 brl_end()
 ```
@@ -476,7 +552,3 @@ knitr::include_graphics("img/hist-braille.png")
 
 
 ::::
-
-# Learning Tip of The Day
-
-[Cell phone usage and academic performance: An experiment](https://www.sciencedirect.com/science/article/abs/pii/S0360131517302324)
