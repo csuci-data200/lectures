@@ -21,7 +21,7 @@ The first is done for you as an example.
 #### Plots discussed
 
 1. bar plot
-2. stacked bar plot
+2. standardized bar plot
 3. dodged bar plot
 4. histogram
 5. side-by-side histograms
