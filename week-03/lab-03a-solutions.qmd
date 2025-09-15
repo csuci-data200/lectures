@@ -1,0 +1,125 @@
+---
+title: "Data 200: Lab 3a Solutions"
+subtitle: "Plotting foundations"
+author: "Professor Medina"
+format: html
+---
+
+*Please always start labs and homework by changing the author to your name. Please answer questions using complete sentences where appropriate.*
+
+## Organizing our knowledge: Appropriate plot by variable type
+
+### Question 1
+
+Below are some plot types we discussed in class.
+When you want to plot data you first have to think about what types of plot are appropriate.
+
+Below are the plot types we discussed in class. 
+Write each under the data scenario they are appropriate for.
+The first is done for you as an example.
+
+#### Plots discussed
+
+1. bar plot
+2. standardized bar plot
+3. dodged bar plot
+4. histogram
+5. side-by-side histograms
+6. box plot
+7. side-by-side box plots
+8. scatter plot
+9. scatter plot with points differentially colored
+
+#### Data scenarios
+
+**Solution:**
+
+Single categorical variable:
+
+- bar plot
+
+Single numeric variable:
+
+- box plot
+- histogram
+
+Two categorical variables:
+
+- standardized bar plot
+- dodged bar plot
+
+Two numeric variables:
+
+- scatter plot
+
+One numeric variable for different levels of a categorical variable:
+
+- side-by-side histograms
+- side-by-side box plots
+
+Two numeric variables for different levels of a categorical variable:
+
+- scatter plot with points differentially colored
+
+
+## Question 2
+
+```{r}
+library(openintro)
+library(tidyverse)
+
+## We will use the `movies` data from the `openintro` package
+glimpse(movies)
+```
+
+Look at the help documentation for the `movies` data. What year were these movies released in?
+
+**Solution:**
+
+```{r}
+#| eval: false
+?movies
+```
+
+## Question 3
+
+Produce a plot to visualize the relationship between critic score and box office earning.
+
+**Solution:**
+
+```{r}
+ggplot(movies, aes(x = score, y = box_office)) +
+  geom_point()
+```
+
+## Question 4
+
+Do you see any relationship between critic score and box office earning? Another way to think about this is "If I had information about what the critic score for a movie is, does that give me some information about what the `box_office` value could be?
+
+**Solution:**
+
+*This question could be answered many different ways.*
+
+I do see some type of relationship because information about one variable does give me some idea about the other variable, so I would say there is a weak relationship/association between box office earnings and critic score.
+
+
+## Question 5
+
+Pose your own question about this data. Produce an appropriate plot to help answer your question.
+
+**Solution:**
+
+How does box office earnings vary by genre?
+
+```{r}
+#| fig-cap: "Box plot of movie box office earnings by genre."
+#| fig-alt: "Box plots of box office earnings in millions of dollars for each movie genre for movies in 2003. The genres are western, suspense, sci-fi, rom-comedy, musical, horror, fantasy, drama, documentary, comedy, animated, adventure, action. Fantasy has the highest median box office around 100 million dollars and both musical and documentary have the lowest median box office earnings under 10 million dollars."
+ggplot(movies, aes(x = box_office, y = genre)) +
+  geom_boxplot(color = "darkgreen") +
+  theme_bw() +
+  labs(
+    x = "Box office earnings (millions $)",
+    y = "Genre"
+  )
+```
+
