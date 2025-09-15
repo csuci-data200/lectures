@@ -2,7 +2,9 @@
 title: "Data 200: Lab 4a"
 subtitle: "Return to the popular baby names data"
 author: "Professor Medina"
-format: html
+format: 
+  html:
+    toc: true
 knitr:
   opts_chunk:
     message: false
@@ -181,55 +183,19 @@ baby_names |>
 
 Let's start by cleaning up the variable names in the `baby_names` data frame to follow tidyverse style guide.
 
-**Solution**
-```{r}
-baby_names <- baby_names |> 
-  janitor::clean_names()
-```
 
-## QUestion 2
+## Question 2
 
 Let's clean up the data by dropping the variable `sex` and converting th variable `year` to an integer R type.
 
-**Solution**
-```{r}
-baby_names <- baby_names |> 
-  select(-sex) |> 
-  mutate(year = as.integer(year))
-```
 
 ## Question 3
 
 What is the average yearly number of babies born between the years 2000-2020 with the name "Daniel"?" Make sure to answer using inline R code.
-
-**Solution**
-
-```{r}
-ave_yearly_daniel <- baby_names |> 
-  filter(year >= 2000, year <= 2020) |> 
-  filter(name_fixed == "DANIEL") |> 
-  summarize(mean(count))
-```
-
-The average yearly number of babies born between the years 2000-2020 with the name "Daniel" was `r ave_yearly_daniel`.
 
 
 ## Question 4
 
 Produce a plot to show how the number of babies named "Ashley" changed over the years. Make sure to provide nice axis labels, alternate text, and caption.
 
-**Solution**
-
-```{r}
-#| fig-cap: "Number of babies born with the name Ashley by year."
-#| fig-alt: "Scatterplot of number of babies born with the name Ashley on the y-axis by year on the x-axis. Years range from approximately 1980-2020 and counts start around 2250, peak at approximately 5000 arpund 1997, and continue to reduce in popularity until 2020."
-baby_names |> 
-  filter(name == "ASHLEY") |> 
-  ggplot(aes(x = year, y = count)) +
-  geom_point() +
-  labs(
-    x = "Year",
-    y = "Number of babies born named Ashley"
-  )
-```
 

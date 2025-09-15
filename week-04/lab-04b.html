@@ -72,10 +72,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="fullcontent">
+<body>
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#lab-1a" id="toc-lab-1a" class="nav-link active" data-scroll-target="#lab-1a">Lab 1a</a>
+  <ul class="collapse">
+  <li><a href="#preface" id="toc-preface" class="nav-link" data-scroll-target="#preface">Preface</a></li>
+  <li><a href="#obtain-and-familiarize-yourself-with-the-data" id="toc-obtain-and-familiarize-yourself-with-the-data" class="nav-link" data-scroll-target="#obtain-and-familiarize-yourself-with-the-data">Obtain and familiarize yourself with the data</a></li>
+  <li><a href="#what-were-the-20-most-popular-baby-names-in-2023" id="toc-what-were-the-20-most-popular-baby-names-in-2023" class="nav-link" data-scroll-target="#what-were-the-20-most-popular-baby-names-in-2023">What were the 20 most popular baby names in 2023?</a></li>
+  <li><a href="#what-were-the-20-most-popular-baby-names-in-the-year-you-were-born" id="toc-what-were-the-20-most-popular-baby-names-in-the-year-you-were-born" class="nav-link" data-scroll-target="#what-were-the-20-most-popular-baby-names-in-the-year-you-were-born">What were the 20 most popular baby names in the year you were born?</a></li>
+  <li><a href="#what-are-the-top-20-most-popular-baby-names-overall-from-all-babies-born-between-1960-2023" id="toc-what-are-the-top-20-most-popular-baby-names-overall-from-all-babies-born-between-1960-2023" class="nav-link" data-scroll-target="#what-are-the-top-20-most-popular-baby-names-overall-from-all-babies-born-between-1960-2023">What are the top 20 most popular baby names overall from all babies born between 1960-2023?</a></li>
+  <li><a href="#is-your-name-in-the-list-of-the-most-popular-baby-names" id="toc-is-your-name-in-the-list-of-the-most-popular-baby-names" class="nav-link" data-scroll-target="#is-your-name-in-the-list-of-the-most-popular-baby-names">Is your name in the list of the most popular baby names?</a></li>
+  <li><a href="#are-the-top-20-most-popular-baby-names-overall-the-same-when-we-correct-for-truncation" id="toc-are-the-top-20-most-popular-baby-names-overall-the-same-when-we-correct-for-truncation" class="nav-link" data-scroll-target="#are-the-top-20-most-popular-baby-names-overall-the-same-when-we-correct-for-truncation">Are the top 20 most popular baby names overall the same when we correct for truncation?</a></li>
+  <li><a href="#how-did-the-5-overall-most-popular-names-change-over-the-years" id="toc-how-did-the-5-overall-most-popular-names-change-over-the-years" class="nav-link" data-scroll-target="#how-did-the-5-overall-most-popular-names-change-over-the-years">How did the 5 overall most popular names change over the years?</a></li>
+  </ul></li>
+  <li><a href="#new-explorations" id="toc-new-explorations" class="nav-link" data-scroll-target="#new-explorations">New explorations</a>
+  <ul class="collapse">
+  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
@@ -353,56 +378,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="question-1" class="level2">
 <h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
 <p>Let’s start by cleaning up the variable names in the <code>baby_names</code> data frame to follow tidyverse style guide.</p>
-<p><strong>Solution</strong></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>baby_names <span class="ot">&lt;-</span> baby_names <span class="sc">|&gt;</span> </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="question-2" class="level2">
-<h2 class="anchored" data-anchor-id="question-2">QUestion 2</h2>
+<h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
 <p>Let’s clean up the data by dropping the variable <code>sex</code> and converting th variable <code>year</code> to an integer R type.</p>
-<p><strong>Solution</strong></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>baby_names <span class="ot">&lt;-</span> baby_names <span class="sc">|&gt;</span> </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>sex) <span class="sc">|&gt;</span> </span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">as.integer</span>(year))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="question-3" class="level2">
 <h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
-<p>What is the average yearly number of babies born between the years 2000-2020 with the name Daniel?</p>
-<p><strong>Solution</strong></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ave_yearly_daniel <span class="ot">&lt;-</span> baby_names <span class="sc">|&gt;</span> </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2000</span>, year <span class="sc">&lt;=</span> <span class="dv">2020</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(name_fixed <span class="sc">==</span> <span class="st">"DANIEL"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">mean</span>(count))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>The average yearly number of babies born between the years 2000-2020 with the name Daniel was 3111.3333333.</p>
+<p>What is the average yearly number of babies born between the years 2000-2020 with the name “Daniel”?” Make sure to answer using inline R code.</p>
 </section>
 <section id="question-4" class="level2">
 <h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
-<p>Produce a plot to show how the number of babies named Emily changed over the years. Make sure to provide nice axis labels, alternate text, and caption.</p>
-<p><strong>Solution</strong></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>baby_names <span class="sc">|&gt;</span> </span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(name <span class="sc">==</span> <span class="st">"ASHLEY"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> count)) <span class="sc">+</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of babies born named Ashley"</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="lab-04b_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" alt="Scatterplot of number of babies born with the name Ashley on the y-axis by year on the x-axis. Years range from approximately 1980-2020 and counts start around 2250, peak at approximately 5000 arpund 1997, and continue to reduce in popularity until 2020." width="672"></p>
-<figcaption>Number of babies born with the name Ashley by year.</figcaption>
-</figure>
-</div>
-</div>
-</div>
+<p>Produce a plot to show how the number of babies named “Ashley” changed over the years. Make sure to provide nice axis labels, alternate text, and caption.</p>
 </section>
 </section>
 
