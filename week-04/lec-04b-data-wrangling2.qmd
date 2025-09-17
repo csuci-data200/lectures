@@ -55,76 +55,76 @@ glimpse(lapd)
 ```
 
 
-# Specifying levels of a factor
+<!-- # Specifying levels of a factor -->
 
-## `base_pay_level` variable
+<!-- ## `base_pay_level` variable -->
 
-Recall last lecture we we created the `base_pay_level` variable.
-```{r}
-lapd <- lapd |> 
-  mutate(
-    base_pay_level = case_when(
-      base_pay < 0 ~ "Less than 0", 
-      base_pay == 0 ~ "No Income",
-      base_pay < 100000 & base_pay > 0 ~ "Between 0 and 100K",
-      base_pay > 100000 ~ "Greater than 100K"
-    )
-  )
+<!-- Recall last lecture we we created the `base_pay_level` variable. -->
+<!-- ```{r} -->
+<!-- lapd <- lapd |>  -->
+<!--   mutate( -->
+<!--     base_pay_level = case_when( -->
+<!--       base_pay < 0 ~ "Less than 0",  -->
+<!--       base_pay == 0 ~ "No Income", -->
+<!--       base_pay < 100000 & base_pay > 0 ~ "Between 0 and 100K", -->
+<!--       base_pay > 100000 ~ "Greater than 100K" -->
+<!--     ) -->
+<!--   ) -->
 
-glimpse(lapd)
-```
-
-
-## Specifying variable as a factor
-
-This is an ordinal variable, so we should specify that ordering by making it a factor variable.
-
-```{r}
-lapd <- lapd |> 
-  mutate(base_pay_level = as.factor(base_pay_level))
-
-glimpse(lapd)
-
-lapd |> 
-  pull(base_pay_level) |> 
-  levels()
-```
-
-By default it will order alphabetically.
-
-## Specifying variable as factor with specified order of levels
-
-We can't specify levels with `as.factor()`. Instead we use `factor()`.
-
-```{r}
-lapd |> 
-  mutate(base_pay_level = factor(
-    base_pay_level,
-    levels = c("Less than 0", "No Income", "Between 0 and 100K", "Greater than 100K")
-  )) |> 
-  pull(base_pay_level) |> 
-  levels()
-```
-
-Now it has the ordering we specified.
+<!-- glimpse(lapd) -->
+<!-- ``` -->
 
 
-## Specifying variable as factor levels and labels
+<!-- ## Specifying variable as a factor -->
 
-We can even rename the factor's `levels` using `labels`.
+<!-- This is an ordinal variable, so we should specify that ordering by making it a factor variable. -->
 
-```{r}
-lapd |> 
-  mutate(base_pay_level = factor(
-    base_pay_level,
-    levels = c("Less than 0", "No Income", "Between 0 and 100K", "Greater than 100K"),
-    labels = c("Negative", "Zero", "Positive Under 100K", "Positive over 100K")
-  )) |> 
-  pull(base_pay_level) |> 
-  levels()
-```
+<!-- ```{r} -->
+<!-- lapd <- lapd |>  -->
+<!--   mutate(base_pay_level = as.factor(base_pay_level)) -->
 
-The order of the `levels` must match the order of the `labels`.
+<!-- glimpse(lapd) -->
+
+<!-- lapd |>  -->
+<!--   pull(base_pay_level) |>  -->
+<!--   levels() -->
+<!-- ``` -->
+
+<!-- By default it will order alphabetically. -->
+
+<!-- ## Specifying variable as factor with specified order of levels -->
+
+<!-- We can't specify levels with `as.factor()`. Instead we use `factor()`. -->
+
+<!-- ```{r} -->
+<!-- lapd |>  -->
+<!--   mutate(base_pay_level = factor( -->
+<!--     base_pay_level, -->
+<!--     levels = c("Less than 0", "No Income", "Between 0 and 100K", "Greater than 100K") -->
+<!--   )) |>  -->
+<!--   pull(base_pay_level) |>  -->
+<!--   levels() -->
+<!-- ``` -->
+
+<!-- Now it has the ordering we specified. -->
+
+
+<!-- ## Specifying variable as factor levels and labels -->
+
+<!-- We can even rename the factor's `levels` using `labels`. -->
+
+<!-- ```{r} -->
+<!-- lapd |>  -->
+<!--   mutate(base_pay_level = factor( -->
+<!--     base_pay_level, -->
+<!--     levels = c("Less than 0", "No Income", "Between 0 and 100K", "Greater than 100K"), -->
+<!--     labels = c("Negative", "Zero", "Positive Under 100K", "Positive over 100K") -->
+<!--   )) |>  -->
+<!--   pull(base_pay_level) |>  -->
+<!--   levels() -->
+<!-- ``` -->
+
+<!-- The order of the `levels` must match the order of the `labels`. -->
 
 # Review of Aggregating Data
 

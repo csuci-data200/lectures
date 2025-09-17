@@ -416,100 +416,58 @@ $ base_pay        &lt;dbl&gt; 119321.60, 113270.70, 148116.00, 78676.87, 109373.
 $ base_pay_level  &lt;chr&gt; "Greater than 100K", "Greater than 100K", "Greater tha…</code></pre>
 </div>
 </div>
+<!-- # Specifying levels of a factor -->
+<!-- ## `base_pay_level` variable -->
+<!-- Recall last lecture we we created the `base_pay_level` variable. -->
+<!-- ```{r} -->
+<!-- lapd <- lapd |>  -->
+<!--   mutate( -->
+<!--     base_pay_level = case_when( -->
+<!--       base_pay < 0 ~ "Less than 0",  -->
+<!--       base_pay == 0 ~ "No Income", -->
+<!--       base_pay < 100000 & base_pay > 0 ~ "Between 0 and 100K", -->
+<!--       base_pay > 100000 ~ "Greater than 100K" -->
+<!--     ) -->
+<!--   ) -->
+<!-- glimpse(lapd) -->
+<!-- ``` -->
+<!-- ## Specifying variable as a factor -->
+<!-- This is an ordinal variable, so we should specify that ordering by making it a factor variable. -->
+<!-- ```{r} -->
+<!-- lapd <- lapd |>  -->
+<!--   mutate(base_pay_level = as.factor(base_pay_level)) -->
+<!-- glimpse(lapd) -->
+<!-- lapd |>  -->
+<!--   pull(base_pay_level) |>  -->
+<!--   levels() -->
+<!-- ``` -->
+<!-- By default it will order alphabetically. -->
+<!-- ## Specifying variable as factor with specified order of levels -->
+<!-- We can't specify levels with `as.factor()`. Instead we use `factor()`. -->
+<!-- ```{r} -->
+<!-- lapd |>  -->
+<!--   mutate(base_pay_level = factor( -->
+<!--     base_pay_level, -->
+<!--     levels = c("Less than 0", "No Income", "Between 0 and 100K", "Greater than 100K") -->
+<!--   )) |>  -->
+<!--   pull(base_pay_level) |>  -->
+<!--   levels() -->
+<!-- ``` -->
+<!-- Now it has the ordering we specified. -->
+<!-- ## Specifying variable as factor levels and labels -->
+<!-- We can even rename the factor's `levels` using `labels`. -->
+<!-- ```{r} -->
+<!-- lapd |>  -->
+<!--   mutate(base_pay_level = factor( -->
+<!--     base_pay_level, -->
+<!--     levels = c("Less than 0", "No Income", "Between 0 and 100K", "Greater than 100K"), -->
+<!--     labels = c("Negative", "Zero", "Positive Under 100K", "Positive over 100K") -->
+<!--   )) |>  -->
+<!--   pull(base_pay_level) |>  -->
+<!--   levels() -->
+<!-- ``` -->
+<!-- The order of the `levels` must match the order of the `labels`. -->
 </section>
-<section>
-<section id="specifying-levels-of-a-factor" class="title-slide slide level1 center">
-<h1>Specifying levels of a factor</h1>
-
-</section>
-<section id="base_pay_level-variable" class="slide level2">
-<h2><code>base_pay_level</code> variable</h2>
-<p>Recall last lecture we we created the <code>base_pay_level</code> variable.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>lapd <span class="ot">&lt;-</span> lapd <span class="sc">|&gt;</span> </span>
-<span id="cb3-2"><a href=""></a>  <span class="fu">mutate</span>(</span>
-<span id="cb3-3"><a href=""></a>    <span class="at">base_pay_level =</span> <span class="fu">case_when</span>(</span>
-<span id="cb3-4"><a href=""></a>      base_pay <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"Less than 0"</span>, </span>
-<span id="cb3-5"><a href=""></a>      base_pay <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"No Income"</span>,</span>
-<span id="cb3-6"><a href=""></a>      base_pay <span class="sc">&lt;</span> <span class="dv">100000</span> <span class="sc">&amp;</span> base_pay <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"Between 0 and 100K"</span>,</span>
-<span id="cb3-7"><a href=""></a>      base_pay <span class="sc">&gt;</span> <span class="dv">100000</span> <span class="sc">~</span> <span class="st">"Greater than 100K"</span></span>
-<span id="cb3-8"><a href=""></a>    )</span>
-<span id="cb3-9"><a href=""></a>  )</span>
-<span id="cb3-10"><a href=""></a></span>
-<span id="cb3-11"><a href=""></a><span class="fu">glimpse</span>(lapd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 14,824
-Columns: 4
-$ job_class_title &lt;fct&gt; Police Detective II, Police Sergeant I, Police Lieuten…
-$ employment_type &lt;fct&gt; Full Time, Full Time, Full Time, Full Time, Full Time,…
-$ base_pay        &lt;dbl&gt; 119321.60, 113270.70, 148116.00, 78676.87, 109373.63, …
-$ base_pay_level  &lt;chr&gt; "Greater than 100K", "Greater than 100K", "Greater tha…</code></pre>
-</div>
-</div>
-</section>
-<section id="specifying-variable-as-a-factor" class="slide level2">
-<h2>Specifying variable as a factor</h2>
-<p>This is an ordinal variable, so we should specify that ordering by making it a factor variable.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>lapd <span class="ot">&lt;-</span> lapd <span class="sc">|&gt;</span> </span>
-<span id="cb5-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">base_pay_level =</span> <span class="fu">as.factor</span>(base_pay_level))</span>
-<span id="cb5-3"><a href=""></a></span>
-<span id="cb5-4"><a href=""></a><span class="fu">glimpse</span>(lapd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 14,824
-Columns: 4
-$ job_class_title &lt;fct&gt; Police Detective II, Police Sergeant I, Police Lieuten…
-$ employment_type &lt;fct&gt; Full Time, Full Time, Full Time, Full Time, Full Time,…
-$ base_pay        &lt;dbl&gt; 119321.60, 113270.70, 148116.00, 78676.87, 109373.63, …
-$ base_pay_level  &lt;fct&gt; Greater than 100K, Greater than 100K, Greater than 100…</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>lapd <span class="sc">|&gt;</span> </span>
-<span id="cb7-2"><a href=""></a>  <span class="fu">pull</span>(base_pay_level) <span class="sc">|&gt;</span> </span>
-<span id="cb7-3"><a href=""></a>  <span class="fu">levels</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "Between 0 and 100K" "Greater than 100K"  "Less than 0"       
-[4] "No Income"         </code></pre>
-</div>
-</div>
-<p>By default it will order alphabetically.</p>
-</section>
-<section id="specifying-variable-as-factor-with-specified-order-of-levels" class="slide level2">
-<h2>Specifying variable as factor with specified order of levels</h2>
-<p>We can’t specify levels with <code>as.factor()</code>. Instead we use <code>factor()</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>lapd <span class="sc">|&gt;</span> </span>
-<span id="cb9-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">base_pay_level =</span> <span class="fu">factor</span>(</span>
-<span id="cb9-3"><a href=""></a>    base_pay_level,</span>
-<span id="cb9-4"><a href=""></a>    <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Less than 0"</span>, <span class="st">"No Income"</span>, <span class="st">"Between 0 and 100K"</span>, <span class="st">"Greater than 100K"</span>)</span>
-<span id="cb9-5"><a href=""></a>  )) <span class="sc">|&gt;</span> </span>
-<span id="cb9-6"><a href=""></a>  <span class="fu">pull</span>(base_pay_level) <span class="sc">|&gt;</span> </span>
-<span id="cb9-7"><a href=""></a>  <span class="fu">levels</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "Less than 0"        "No Income"          "Between 0 and 100K"
-[4] "Greater than 100K" </code></pre>
-</div>
-</div>
-<p>Now it has the ordering we specified.</p>
-</section>
-<section id="specifying-variable-as-factor-levels-and-labels" class="slide level2">
-<h2>Specifying variable as factor levels and labels</h2>
-<p>We can even rename the factor’s <code>levels</code> using <code>labels</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a>lapd <span class="sc">|&gt;</span> </span>
-<span id="cb11-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">base_pay_level =</span> <span class="fu">factor</span>(</span>
-<span id="cb11-3"><a href=""></a>    base_pay_level,</span>
-<span id="cb11-4"><a href=""></a>    <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Less than 0"</span>, <span class="st">"No Income"</span>, <span class="st">"Between 0 and 100K"</span>, <span class="st">"Greater than 100K"</span>),</span>
-<span id="cb11-5"><a href=""></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Negative"</span>, <span class="st">"Zero"</span>, <span class="st">"Positive Under 100K"</span>, <span class="st">"Positive over 100K"</span>)</span>
-<span id="cb11-6"><a href=""></a>  )) <span class="sc">|&gt;</span> </span>
-<span id="cb11-7"><a href=""></a>  <span class="fu">pull</span>(base_pay_level) <span class="sc">|&gt;</span> </span>
-<span id="cb11-8"><a href=""></a>  <span class="fu">levels</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "Negative"            "Zero"                "Positive Under 100K"
-[4] "Positive over 100K" </code></pre>
-</div>
-</div>
-<p>The order of the <code>levels</code> must match the order of the <code>labels</code>.</p>
-</section></section>
 <section>
 <section id="review-of-aggregating-data" class="title-slide slide level1 center">
 <h1>Review of Aggregating Data</h1>
@@ -534,8 +492,8 @@ $ base_pay_level  &lt;fct&gt; Greater than 100K, Greater than 100K, Greater than
 <section id="section-1" class="slide level2">
 <h2></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>lapd <span class="sc">|&gt;</span> </span>
-<span id="cb13-2"><a href=""></a>  <span class="fu">count</span>(employment_type)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>lapd <span class="sc">|&gt;</span> </span>
+<span id="cb3-2"><a href=""></a>  <span class="fu">count</span>(employment_type)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
   employment_type     n
@@ -547,9 +505,9 @@ $ base_pay_level  &lt;fct&gt; Greater than 100K, Greater than 100K, Greater than
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>lapd <span class="sc">|&gt;</span> </span>
-<span id="cb15-2"><a href=""></a>  <span class="fu">count</span>(employment_type) <span class="sc">|&gt;</span> </span>
-<span id="cb15-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>lapd <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a href=""></a>  <span class="fu">count</span>(employment_type) <span class="sc">|&gt;</span> </span>
+<span id="cb5-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
   employment_type     n    prop
@@ -565,11 +523,11 @@ $ base_pay_level  &lt;fct&gt; Greater than 100K, Greater than 100K, Greater than
 <h2>Aggregating Numerical Data</h2>
 <p>Mean, median, standard deviation, variance, and quartiles are some of the numerical summaries of numerical variables. Recall</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="fu">summarize</span>(</span>
-<span id="cb17-2"><a href=""></a>  lapd, </span>
-<span id="cb17-3"><a href=""></a>  <span class="at">mean_base_pay =</span> <span class="fu">mean</span>(base_pay),</span>
-<span id="cb17-4"><a href=""></a>  <span class="at">sd_base_pay =</span> <span class="fu">sd</span>(base_pay)</span>
-<span id="cb17-5"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="fu">summarize</span>(</span>
+<span id="cb7-2"><a href=""></a>  lapd, </span>
+<span id="cb7-3"><a href=""></a>  <span class="at">mean_base_pay =</span> <span class="fu">mean</span>(base_pay),</span>
+<span id="cb7-4"><a href=""></a>  <span class="at">sd_base_pay =</span> <span class="fu">sd</span>(base_pay)</span>
+<span id="cb7-5"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
   mean_base_pay sd_base_pay
@@ -595,13 +553,13 @@ $ base_pay_level  &lt;fct&gt; Greater than 100K, Greater than 100K, Greater than
 <section id="section-3" class="slide level2">
 <h2></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>lapd <span class="sc">|&gt;</span> </span>
-<span id="cb19-2"><a href=""></a>  <span class="fu">group_by</span>(employment_type)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>lapd <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a href=""></a>  <span class="fu">group_by</span>(employment_type)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 14,824 × 4
 # Groups:   employment_type [3]
    job_class_title                  employment_type base_pay base_pay_level    
-   &lt;fct&gt;                            &lt;fct&gt;              &lt;dbl&gt; &lt;fct&gt;             
+   &lt;fct&gt;                            &lt;fct&gt;              &lt;dbl&gt; &lt;chr&gt;             
  1 Police Detective II              Full Time        119322. Greater than 100K 
  2 Police Sergeant I                Full Time        113271. Greater than 100K 
  3 Police Lieutenant II             Full Time        148116  Greater than 100K 
@@ -623,9 +581,9 @@ $ base_pay_level  &lt;fct&gt; Greater than 100K, Greater than 100K, Greater than
 <section id="section-5" class="slide level2">
 <h2></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a>lapd <span class="sc">|&gt;</span> </span>
-<span id="cb21-2"><a href=""></a>  <span class="fu">group_by</span>(employment_type) <span class="sc">|&gt;</span> </span>
-<span id="cb21-3"><a href=""></a>  <span class="fu">summarize</span>(<span class="at">med_base_pay =</span> <span class="fu">median</span>(base_pay))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a>lapd <span class="sc">|&gt;</span> </span>
+<span id="cb11-2"><a href=""></a>  <span class="fu">group_by</span>(employment_type) <span class="sc">|&gt;</span> </span>
+<span id="cb11-3"><a href=""></a>  <span class="fu">summarize</span>(<span class="at">med_base_pay =</span> <span class="fu">median</span>(base_pay))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
   employment_type med_base_pay
@@ -640,12 +598,12 @@ $ base_pay_level  &lt;fct&gt; Greater than 100K, Greater than 100K, Greater than
 <h2></h2>
 <p>We can also remind ourselves how many staff members there were in each group.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a>lapd <span class="sc">|&gt;</span> </span>
-<span id="cb23-2"><a href=""></a>  <span class="fu">group_by</span>(employment_type) <span class="sc">|&gt;</span> </span>
-<span id="cb23-3"><a href=""></a>  <span class="fu">summarize</span>(</span>
-<span id="cb23-4"><a href=""></a>    <span class="at">med_base_pay =</span> <span class="fu">median</span>(base_pay),</span>
-<span id="cb23-5"><a href=""></a>    <span class="at">count =</span> <span class="fu">n</span>()</span>
-<span id="cb23-6"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>lapd <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href=""></a>  <span class="fu">group_by</span>(employment_type) <span class="sc">|&gt;</span> </span>
+<span id="cb13-3"><a href=""></a>  <span class="fu">summarize</span>(</span>
+<span id="cb13-4"><a href=""></a>    <span class="at">med_base_pay =</span> <span class="fu">median</span>(base_pay),</span>
+<span id="cb13-5"><a href=""></a>    <span class="at">count =</span> <span class="fu">n</span>()</span>
+<span id="cb13-6"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
   employment_type med_base_pay count
@@ -826,7 +784,7 @@ none
 <div class="tab-content">
 <div id="tabset-1-1">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a>artists</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>artists</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
   name          followers
@@ -839,7 +797,7 @@ none
 </div>
 <div id="tabset-1-2">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a>songs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>songs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 4
   name          song_name                            album_name  song_popularity
@@ -854,7 +812,7 @@ none
 </div>
 <div id="tabset-1-3">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a>albums</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>albums</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 2
   album_name                           album_release_date
@@ -876,7 +834,7 @@ none
 <section id="section-9" class="slide level2">
 <h2></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a><span class="fu">left_join</span>(songs, artists)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="fu">left_join</span>(songs, artists)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 5
   name          song_name                   album_name song_popularity followers
@@ -892,7 +850,7 @@ none
 <section id="section-10" class="slide level2">
 <h2></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a><span class="fu">right_join</span>(songs, artists)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a><span class="fu">right_join</span>(songs, artists)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 5
   name          song_name                   album_name song_popularity followers
@@ -907,7 +865,7 @@ none
 <section id="section-11" class="slide level2">
 <h2></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href=""></a><span class="fu">full_join</span>(songs, artists, <span class="at">by =</span> <span class="st">"name"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a><span class="fu">full_join</span>(songs, artists, <span class="at">by =</span> <span class="st">"name"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 5
   name          song_name                   album_name song_popularity followers
@@ -923,8 +881,8 @@ none
 <section id="section-12" class="slide level2">
 <h2></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a><span class="fu">full_join</span>(songs, artists, <span class="at">by =</span> <span class="st">"name"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb37-2"><a href=""></a>  <span class="fu">full_join</span>(albums, <span class="at">by =</span> <span class="st">"album_name"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a><span class="fu">full_join</span>(songs, artists, <span class="at">by =</span> <span class="st">"name"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb27-2"><a href=""></a>  <span class="fu">full_join</span>(albums, <span class="at">by =</span> <span class="st">"album_name"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 6
   name         song_name album_name song_popularity followers album_release_date
