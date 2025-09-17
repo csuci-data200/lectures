@@ -1,6 +1,6 @@
 ---
-title: "Data 200: Lab 4a"
-subtitle: "Return to the popular baby names data"
+title: "Data 200: Lab 4b"
+subtitle: "Extra data wrangling practice including data joins"
 author: "Professor Medina"
 format: 
   html:
@@ -11,191 +11,126 @@ knitr:
     warning: false
 ---
 
-# Lab 1a
-
-Now we have the knowledge to understand the code from lab 1a!
-
-## Preface 
-
-In this lab we explored popular baby names for the state of California.
-This data comes from California birth certificates and is available on the [California Open Data Portal](https://data.ca.gov/dataset/most-popular-baby-names).
-
-## Obtain and familiarize yourself with the data
-
 ```{r}
+#| echo: false
+#| message: false
 library(tidyverse)
+library(janitor)
+library(titanic)
+library(nycflights13)
+options(scipen = 999)
 ```
 
-This data is read in from a file called `california-popular-baby-names.csv` available online.
-We will save this data into an **object** called `baby-names`.
-```{r}
-baby_names <- read_csv("http://csuci-data200.github.io/lectures/week-01/data/california-popular-baby-names.csv")
-```
-
-Let's look at what is in our `baby_names` object.
-```{r}
-baby_names
-```
-
-This dataset has 5 columns and 3,203 rows in total, which would be a lot to print, so only the first 10 are displayed.
-
-
-For each year and specified sex at birth this data contains the 25 most popular baby first names and counts.
-We have data for each year from 1960 to 2023.
-
-Let's use this data to explore some questions.
-
-## What were the 20 most popular baby names in 2023?
 
 ```{r}
-baby_names |> 
-  filter(Year == 2023) |>
-  arrange(desc(Count)) |> 
-  slice(1:20) |> 
-  ggplot(aes(x = Count, y = reorder(Name, Count))) +
-  geom_count() +
-  geom_text(aes(label = Count), hjust = -0.25) +
-  theme_minimal() +
-  theme(legend.position = "none") +
-  labs(
-    x = "Number of babies born in 2023",
-    y = "Name"
-  ) +
-  scale_x_discrete(expand = expansion(mult = c(0.05, 0.15)))
-```
+#| echo: false
+#| message: false
+lapd <- 
+  read_csv("https://csuci-data200.github.io/lectures/data/Police_Payroll.csv") |> 
+  clean_names() |> 
+  filter(year == 2018) |> 
+  select(
+    job_class_title,
+    employment_type, 
+    base_pay
+  ) |> 
+  mutate(
+    employment_type = as.factor(employment_type),
+    job_class_title = as.factor(job_class_title),
+    base_pay_level = case_when(
+      base_pay < 0 ~ "Less than 0", 
+      base_pay == 0 ~ "No Income",
+      base_pay < 100000 & base_pay > 0 ~ "Between 0 and 100K",
+      base_pay > 100000 ~ "Greater than 100K"
+    )
+  ) 
 
-## What were the 20 most popular baby names in the year you were born?
+titanic <- titanic_train
 
-In the Quarto document change the "2023" below to the year you were born and render the html again.
-```{r}
-baby_names |> 
-  filter(Year == 2023) |>
-  arrange(desc(Count)) |> 
-  slice(1:20) |> 
-  ggplot(aes(x = Count, y = reorder(Name, Count))) +
-  geom_count() +
-  geom_text(aes(label = Count), hjust = -0.25) +
-  theme_minimal() +
-  theme(legend.position = "none") +
-  labs(
-    x = "Number of babies born in 2023",
-    y = "Name"
-  ) +
-  scale_x_discrete(expand = expansion(mult = c(0.05, 0.15)))
-```
-## What are the top 20 most popular baby names overall from all babies born between 1960-2023?
-
-```{r}
-all_names_plot <- baby_names |>
-  group_by(Name) |> 
-  summarise(total_count = sum(Count)) |> 
-  arrange(desc(total_count)) |> 
-  slice(1:20) |> 
-  ggplot(aes(x = total_count, y = reorder(Name, total_count))) +
-  geom_count() +
-  geom_text(aes(label = total_count), hjust = -0.25) +
-  theme_minimal() +
-  theme(legend.position = "none") +
-  labs(
-    x = "Number of babies born from 1960-2023",
-    y = "Name"
-  ) +
-  scale_x_discrete(expand = expansion(mult = c(0.05, 0.15)))
-
-all_names_plot
-```
-
-## Is your name in the list of the most popular baby names?
-
-```{r}
-baby_names |> 
-  pull(Name) |> 
-  unique() |> 
-  sort()
+artists <- readxl::read_xlsx("../data/spotify.xlsx", sheet = "artist")
+songs <- readxl::read_xlsx("../data/spotify.xlsx", sheet = "top_song")
+albums <- readxl::read_xlsx("../data/spotify.xlsx", sheet = "album") |> 
+  mutate(album_release_date = lubridate::ymd(album_release_date))
 ```
 
 
+# Part 1 - Titanic survival
 
-## Are the top 20 most popular baby names overall the same when we correct for truncation?
-
-If you look into the **data dictionary** it says:
-*Names in records from data years 1960 through 1977 are truncated to 8 characters, and 1978 through 2017 are truncated to 12 characters.* 
-*For example, the names CHRISTINA, CHRISTINE, and CHRISTIN would all be included in CHRISTIN*.*
-
-When we look at names across the entire time period we may get different results if we truncated all names to 8 characters.
-This truncation is accounted for in the plot below.
-
-```{r}
-baby_names <- baby_names |> 
-  mutate(name_fixed = case_when(
-    str_length(Name) > 8 ~ (str_trunc(Name, width = 9, ellipsis = "*")),
-    str_length(Name) <= 8 ~ Name
-  )) 
-
-corrected_all_names_plot <-  baby_names |> 
-  group_by(name_fixed) |> 
-  summarise(total_count = sum(Count)) |> 
-  arrange(desc(total_count)) |> 
-  slice(1:20) |> 
-  ggplot(aes(x = total_count, y = reorder(name_fixed, total_count))) +
-  geom_count() +
-  geom_text(aes(label = total_count), hjust = -0.25) +
-  theme_minimal() +
-  theme(legend.position = "none") +
-  labs(
-    x = "Number of babies born from 1960-2023",
-    y = "Corrected names"
-  )  +
-  scale_x_discrete(expand = expansion(mult = c(0.05, 0.15)))
-
-gridExtra::grid.arrange(all_names_plot, corrected_all_names_plot, ncol = 2)
-```
+Answer these questions using the `titanic` data frame. To see documentation of the data try running `?titanic_train` after running the above code chunks.
 
 
-## How did the 5 overall most popular names change over the years?
+## Question 1 - Variable Names
+
+Make sure variable names adhere to tidyverse style. 
+Do not forget to save the changes to the `titanic` data frame so that you can use cleaner names moving forward.
+
+
+## Question 2 - Fixing a variable type
+
+The variable `Survived` is the passenger survival indicator, but it is stored as 0's and 1's. Convert the variable R type from integer to logical.
+
+
+## Question 3 - Subsetting Data
+
+What are the names of passengers who have survived, were male, older than 18 years, embarked Titanic in Cherbourg and were traveling in the first class?
+
+
+## Question 4 - Visualization
+
+Are there any differences in the amount of fare paid depending on ticket's class? First, second, third? Answer this question with a visual. Are you running into an obstacle? Why do you think it is happening?
+
+
+## Question 7 - Creating a New Variable
+
+Create a new variable called `child`. If a person is less than 18 years the variable `child` should have a value of `TRUE`, if a person is 18 years old or older than the variable `child` should have a value of `FALSE`. Make sure not to use quotations around TRUE or FALSE. These are values known to R. If you use quotes R would make child be a character variable. If you do not use quotes then it would be a logical variable as it should be.
+Count how many children were on board after creating the `child variable`?
+
+
+## Question 8 - Aggregating Data
+
+Calculate the mean and median `fare` paid? Calculate the mean and median `fare` paid for each passenger class?  
+
+
+## Question 9
+
+The `nycflights13` package has multiple data frames including `flights` and `weather`. You can put the data into your Environment using the `data()` function e.g. `data(flights)`. Since these data come from a package there is documentation so you can get to know the variables in the documentation (e.g. `?flights`)
+
+
+## Question 10
+
+Join the two data frames. Try doing this without providing a `by` argument. Make sure to "save" the new data frame that is created by joining two data frames.
+
+
+## Question 11
+
+How many flights were delayed at the departure point when the temperature was less than 32 degrees?
+
+
+## Question 12
+
+Before this question, a quick detour. The `temp`  variable has missing values, you will have to ask R to ignore (remove) these missing values if you are to summarize this variable. You can do that by setting `na.rm` argument **inside** the `mean()` function.
+
+e.g.
 
 ```{r}
-most_popular_names <- baby_names |> 
-  group_by(name_fixed) |> 
-  summarise(total_count = sum(Count)) |> 
-  arrange(desc(total_count)) |> 
-  slice(1:5) |> 
-  pull(name_fixed)
-
-baby_names |> 
-  filter(name_fixed %in% most_popular_names) |> 
-  ggplot(aes(x = Year, y = Count, color = name_fixed, linetype = name_fixed)) +
-  geom_line(linewidth = 1) +
-  theme_minimal() +
-  labs(
-    x = "Year",
-    y = "Number of babies born",
-    color = "Name",
-    linetype = "Name"
-  ) +
-  ylim(0, 9000)
+mean(weather$temp)
 ```
 
+```{r}
+summarize(weather, mean(temp))
+```
 
-# New explorations
+```{r}
+mean(weather$temp, na.rm = TRUE)
+```
 
-## Question 1
+```{r}
+summarize(weather, mean(temp, na.rm = TRUE))
+```
 
-Let's start by cleaning up the variable names in the `baby_names` data frame to follow tidyverse style guide.
-
-
-## Question 2
-
-Let's clean up the data by dropping the variable `sex` and converting th variable `year` to an integer R type.
-
-
-## Question 3
-
-What is the average yearly number of babies born between the years 2000-2020 with the name "Daniel"?" Make sure to answer using inline R code.
+When a flight was delayed at the departure point, what was the average temperature?  
 
 
-## Question 4
+## Question 13
 
-Produce a plot to show how the number of babies named "Ashley" changed over the years. Make sure to provide nice axis labels, alternate text, and caption.
-
-
+Which airline had the highest median of `dep_delay`? You will need to also join the `airlines` data frame in order to answer this question. Do not just look airline codes and write down the answer. I want to see it in your data frame at the top of your data frame as the highest median `dep_delay`.
