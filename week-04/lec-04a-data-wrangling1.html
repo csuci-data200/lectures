@@ -590,8 +590,9 @@ $ `Job Class Link`               &lt;chr&gt; "http://per.lacity.org/perspecs/222
 <section id="section-6" class="slide level2">
 <h2></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>lapd <span class="ot">&lt;-</span> janitor<span class="sc">::</span><span class="fu">clean_names</span>(lapd)</span>
-<span id="cb19-2"><a href=""></a><span class="fu">glimpse</span>(lapd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="fu">library</span>(janitor)</span>
+<span id="cb19-2"><a href=""></a>lapd <span class="ot">&lt;-</span> <span class="fu">clean_names</span>(lapd)</span>
+<span id="cb19-3"><a href=""></a><span class="fu">glimpse</span>(lapd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 68,564
 Columns: 35
@@ -1109,14 +1110,13 @@ $ job_class_link             &lt;chr&gt; "http://per.lacity.org/perspecs/2223.pd
 <section id="section-23" class="slide level2">
 <h2></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href=""></a>lapd <span class="ot">&lt;-</span> </span>
-<span id="cb51-2"><a href=""></a>  lapd <span class="sc">|&gt;</span> </span>
-<span id="cb51-3"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2018</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb51-4"><a href=""></a>  <span class="fu">select</span>(</span>
-<span id="cb51-5"><a href=""></a>    job_class_title, </span>
-<span id="cb51-6"><a href=""></a>    employment_type, </span>
-<span id="cb51-7"><a href=""></a>    base_pay</span>
-<span id="cb51-8"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href=""></a>lapd <span class="ot">&lt;-</span> lapd <span class="sc">|&gt;</span> </span>
+<span id="cb51-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2018</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb51-3"><a href=""></a>  <span class="fu">select</span>(</span>
+<span id="cb51-4"><a href=""></a>    job_class_title, </span>
+<span id="cb51-5"><a href=""></a>    employment_type, </span>
+<span id="cb51-6"><a href=""></a>    base_pay</span>
+<span id="cb51-7"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="section-24" class="slide level2">

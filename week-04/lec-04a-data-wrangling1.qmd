@@ -198,7 +198,8 @@ Note that this data does not have documentation in R but the [documentation](htt
 
 
 ```{r}
-lapd <- janitor::clean_names(lapd)
+library(janitor)
+lapd <- clean_names(lapd)
 glimpse(lapd)
 ```
 
@@ -423,8 +424,7 @@ lapd |>
 ##
 
 ```{r}
-lapd <- 
-  lapd |> 
+lapd <- lapd |> 
   filter(year == 2018) |> 
   select(
     job_class_title, 
