@@ -837,19 +837,32 @@ Bar 2 is centered at 2, and length is from 0 to 13.</code></pre>
 <hr>
 <p>Drawback of using <code>VI()</code> is that not every type of plot can be verbalized yet.</p>
 </section>
-<section id="alt-text-in-quarto" class="slide level2">
-<h2>Alt Text in Quarto</h2>
-<div class="cell" data-layout-align="center">
+<section id="alt-text-in-quarto---option-1" class="slide level2">
+<h2>Alt Text in Quarto - Option 1</h2>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href=""></a><span class="in">```{r}</span></span>
-<span id="cb19-2"><a href=""></a><span class="in">#| fig-align: center</span></span>
-<span id="cb19-3"><a href=""></a><span class="in">#| fig-cap: Relationship between bill depth (mm) and length (mm) for different species of penguins</span></span>
-<span id="cb19-4"><a href=""></a><span class="in">#| fig-alt: The scatterplot shows bill depth in mm on the x-axis and bill length in mm on the y-axis with points differently colored for different species as Adelie, Chinstrap, and Gentoo. The x axis ranges from about 12.5 mm to 22.5 mm. The y-axis ranges from about 30 to 60 mm. For all species the relationship seems moderately positive. When comparing the three species, Adelie penguins seem to have longer bill depth but shorter bill length. Chinstraps have longer bill depth and longer bill length. Gentoo penguins have shorter bill depth and longer bill length.  </span></span>
-<span id="cb19-5"><a href=""></a><span class="in">ggplot(penguins, aes(x = bill_depth_mm,y = bill_length_mm, color = species)) +</span></span>
-<span id="cb19-6"><a href=""></a><span class="in">  geom_point(size = 4) </span></span>
-<span id="cb19-7"><a href=""></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-2"><a href=""></a><span class="in">#| fig-cap: "Relationship between bill depth (mm) and length (mm) for different species of penguins"</span></span>
+<span id="cb19-3"><a href=""></a><span class="in">#| fig-alt: "The scatterplot shows bill depth in mm on the x-axis and bill length in mm on the y-axis with points differently colored for different species as Adelie, Chinstrap, and Gentoo. The x axis ranges from about 12.5 mm to 22.5 mm. The y-axis ranges from about 30 to 60 mm. For all species the relationship seems moderately positive. When comparing the three species, Adelie penguins seem to have longer bill depth but shorter bill length. Chinstraps have longer bill depth and longer bill length. Gentoo penguins have shorter bill depth and longer bill length."  </span></span>
+<span id="cb19-4"><a href=""></a><span class="in">ggplot(penguins, aes(x = bill_depth_mm,y = bill_length_mm, color = species)) +</span></span>
+<span id="cb19-5"><a href=""></a><span class="in">  geom_point(size = 4) </span></span>
+<span id="cb19-6"><a href=""></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="lec-03b-data-viz-improvements_files/figure-revealjs/unnamed-chunk-22-1.png" alt="The scatterplot shows bill depth in mm on the x-axis and bill length in mm on the y-axis with points differently colored for different species as Adelie, Chinstrap, and Gentoo. The x axis ranges from about 12.5 mm to 22.5 mm. The y-axis ranges from about 30 to 60 mm. For all species the relationship seems moderately positive. When comparing the three species, Adelie penguins seem to have longer bill depth but shorter bill length. Chinstraps have longer bill depth and longer bill length. Gentoo penguins have shorter bill depth and longer bill length." width="960" class="r-stretch quarto-figure-center"><p class="caption">Relationship between bill depth (mm) and length (mm) for different species of penguins</p></section>
+<section id="alt-text---option-2" class="slide level2">
+<h2>Alt Text - Option 2</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href=""></a><span class="in">```{r}</span></span>
+<span id="cb20-2"><a href=""></a><span class="in">ggplot(penguins, aes(x = bill_depth_mm,y = bill_length_mm, color = species)) +</span></span>
+<span id="cb20-3"><a href=""></a><span class="in">  geom_point(size = 4) +</span></span>
+<span id="cb20-4"><a href=""></a><span class="in">  labs(</span></span>
+<span id="cb20-5"><a href=""></a><span class="in">    alt = "The scatterplot shows bill depth in mm on the x-axis and bill length in mm on the y-axis with points differently colored for different species as Adelie, Chinstrap, and Gentoo. The x axis ranges from about 12.5 mm to 22.5 mm. The y-axis ranges from about 30 to 60 mm. For all species the relationship seems moderately positive. When comparing the three species, Adelie penguins seem to have longer bill depth but shorter bill length. Chinstraps have longer bill depth and longer bill length. Gentoo penguins have shorter bill depth and longer bill length.",</span></span>
+<span id="cb20-6"><a href=""></a><span class="in">    caption = "Relationship between bill depth (mm) and length (mm) for different species of penguins"</span></span>
+<span id="cb20-7"><a href=""></a><span class="in">  )</span></span>
+<span id="cb20-8"><a href=""></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="lec-03b-data-viz-improvements_files/figure-revealjs/unnamed-chunk-23-1.png" width="960" class="r-stretch"></section>
 <section id="caption-vs.-alt-text" class="slide level2">
 <h2>Caption vs.&nbsp;Alt Text</h2>
 <p>Figure captions (<code>fig-cap</code>) appear on the front-end of a document and is accessible to all whether they are reading it directly or via screen readers.</p>
@@ -865,11 +878,11 @@ Bar 2 is centered at 2, and length is from 0 to 13.</code></pre>
 <h2>Data Sonification</h2>
 <p>Data sonification is the presentation of data as sound.</p>
 
-<img data-src="lec-03b-data-viz-improvements_files/figure-revealjs/unnamed-chunk-23-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb20-2"><a href=""></a>y <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb20-3"><a href=""></a><span class="fu">plot</span>(x, y)</span>
-<span id="cb20-4"><a href=""></a>sonify<span class="sc">::</span><span class="fu">sonify</span>(x,y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<img data-src="lec-03b-data-viz-improvements_files/figure-revealjs/unnamed-chunk-24-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb21-2"><a href=""></a>y <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb21-3"><a href=""></a><span class="fu">plot</span>(x, y)</span>
+<span id="cb21-4"><a href=""></a>sonify<span class="sc">::</span><span class="fu">sonify</span>(x,y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <audio controls="">
 <source src="audio/sonify.mp3" type="audio/mpeg">
@@ -888,14 +901,14 @@ Bar 2 is centered at 2, and length is from 0 to 13.</code></pre>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="fu">library</span>(tactileR)</span>
-<span id="cb21-2"><a href=""></a><span class="fu">brl_begin</span>(</span>
-<span id="cb21-3"><a href=""></a>  <span class="at">file =</span> <span class="st">'tactile.pdf'</span>, </span>
-<span id="cb21-4"><a href=""></a>  <span class="at">paper =</span> <span class="st">'special'</span>, </span>
-<span id="cb21-5"><a href=""></a>  <span class="at">font=</span><span class="st">'BRL'</span></span>
-<span id="cb21-6"><a href=""></a>)</span>
-<span id="cb21-7"><a href=""></a><span class="fu">hist</span>(penguins<span class="sc">$</span>bill_length_mm)</span>
-<span id="cb21-8"><a href=""></a><span class="fu">brl_end</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a><span class="fu">library</span>(tactileR)</span>
+<span id="cb22-2"><a href=""></a><span class="fu">brl_begin</span>(</span>
+<span id="cb22-3"><a href=""></a>  <span class="at">file =</span> <span class="st">'tactile.pdf'</span>, </span>
+<span id="cb22-4"><a href=""></a>  <span class="at">paper =</span> <span class="st">'special'</span>, </span>
+<span id="cb22-5"><a href=""></a>  <span class="at">font=</span><span class="st">'BRL'</span></span>
+<span id="cb22-6"><a href=""></a>)</span>
+<span id="cb22-7"><a href=""></a><span class="fu">hist</span>(penguins<span class="sc">$</span>bill_length_mm)</span>
+<span id="cb22-8"><a href=""></a><span class="fu">brl_end</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><!--the swell touch paper through swell form heating machine--><div class="column" style="width:50%;">
 <div class="cell" data-layout-align="center">

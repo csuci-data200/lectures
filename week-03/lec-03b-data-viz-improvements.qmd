@@ -449,15 +449,27 @@ BrailleR::VI(example_barplot)
 Drawback of using `VI()` is that not every type of plot can be verbalized yet. 
 
 
-## Alt Text in Quarto
+## Alt Text in Quarto - Option 1
 
 ```{r}
 #| echo: fenced
-#| fig-align: center
-#| fig-cap: Relationship between bill depth (mm) and length (mm) for different species of penguins
-#| fig-alt: The scatterplot shows bill depth in mm on the x-axis and bill length in mm on the y-axis with points differently colored for different species as Adelie, Chinstrap, and Gentoo. The x axis ranges from about 12.5 mm to 22.5 mm. The y-axis ranges from about 30 to 60 mm. For all species the relationship seems moderately positive. When comparing the three species, Adelie penguins seem to have longer bill depth but shorter bill length. Chinstraps have longer bill depth and longer bill length. Gentoo penguins have shorter bill depth and longer bill length.  
+#| fig-cap: "Relationship between bill depth (mm) and length (mm) for different species of penguins"
+#| fig-alt: "The scatterplot shows bill depth in mm on the x-axis and bill length in mm on the y-axis with points differently colored for different species as Adelie, Chinstrap, and Gentoo. The x axis ranges from about 12.5 mm to 22.5 mm. The y-axis ranges from about 30 to 60 mm. For all species the relationship seems moderately positive. When comparing the three species, Adelie penguins seem to have longer bill depth but shorter bill length. Chinstraps have longer bill depth and longer bill length. Gentoo penguins have shorter bill depth and longer bill length."  
 ggplot(penguins, aes(x = bill_depth_mm,y = bill_length_mm, color = species)) +
   geom_point(size = 4) 
+```
+
+## Alt Text - Option 2
+
+```{r}
+#| echo: fenced
+
+ggplot(penguins, aes(x = bill_depth_mm,y = bill_length_mm, color = species)) +
+  geom_point(size = 4) +
+  labs(
+    alt = "The scatterplot shows bill depth in mm on the x-axis and bill length in mm on the y-axis with points differently colored for different species as Adelie, Chinstrap, and Gentoo. The x axis ranges from about 12.5 mm to 22.5 mm. The y-axis ranges from about 30 to 60 mm. For all species the relationship seems moderately positive. When comparing the three species, Adelie penguins seem to have longer bill depth but shorter bill length. Chinstraps have longer bill depth and longer bill length. Gentoo penguins have shorter bill depth and longer bill length.",
+    caption = "Relationship between bill depth (mm) and length (mm) for different species of penguins"
+  )
 ```
 
 ## Caption vs. Alt Text
