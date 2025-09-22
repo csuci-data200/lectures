@@ -20,95 +20,14 @@ Three principles of naming files
 - human readable
 - plays well with default ordering (e.g. alphabetical and numerical ordering)
 
-(Jenny Bryan)
+<!-- (Jenny Bryan) -->
 
-for the purposes of this course an additional principle is that file names follow
+For the purposes of this course an additional principle is that file names follow
 
 - tidyverse style (all lower case letters, words separated by HYPHEN)
 
 :::
 
-## README.md
-
-- README file is the first file users read. In our case a user might be our future self, a teammate, or (if open source) anyone.
-
-
-
-- There can be multiple README files within a single directory: e.g. for the general project folder and then for a data subfolder. Data folder README's can possibly contain codebook (data dictionary).
-
-
-
-- It should be brief but detailed enough to help user navigate. 
-
-##
-
-- a README should be up-to-date (can be updated throughout a project's lifecycle as needed).
-
-
-
-- On GitHub we use markdown for README file (`README.md`). Good news: [emojis are supported.](https://gist.github.com/rxaviers/7360908)
-
-
-
-## README examples
-
-- [STATS 6 website](https://github.com/stats6-fa23/website)
-- [Museum of Modern Art Collection](https://github.com/MuseumofModernArt/collection)
-- [R package bayesrules](https://github.com/bayes-rules/bayesrules)
-
-## R Packages
-
-__Default__
-
-```{r echo=FALSE, out.width='60%'}
-knitr::include_graphics('img/office-suite-default.png')
-```
-
-
-
-Microsoft products have Copyright. Images used based on [fair use](https://www.microsoft.com/en-us/legal/copyright/default.aspx) for educational purposes.
-
-## R Packages
-
-__Optional__
-
-```{r echo=FALSE, out.width='60%'}
-knitr::include_graphics('img/office-suite-optional.png')
-```
-
-
-## R packages
-
-
-- When you download R, you actually download base R. 
-
-
-
-- But there are MANY optional packages you can download.
-
-
-- Good part: There is an R package for (almost) everything, from complex statistical modeling packages to baby names.
-
-
-
-- Bad part: At the beginning it can feel overwhelming. 
-
-- All this time we have actually been using R packages. 
-
-
-## R packages
-
-What do R packages have? All sorts of things but mainly
-
-- functions 
-
-- datasets
-
-
-
-## Exercise
-
-Refer back to older slides and identify the packages for each of the functions we commonly use in this class. 
 
 ## Importing .csv Data 
 
