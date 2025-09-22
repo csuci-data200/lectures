@@ -403,144 +403,16 @@ Professor Catalina Medina
 </div>
 
 </section>
-<section id="naming-files" class="slide level2">
-<h2>Naming files</h2>
-<div>
-<p>Three principles of naming files</p>
-<ul>
-<li>machine readable</li>
-<li>human readable</li>
-<li>plays well with default ordering (e.g.&nbsp;alphabetical and numerical ordering)</li>
-</ul>
-<!-- (Jenny Bryan) -->
-<p>For the purposes of this course an additional principle is that file names follow</p>
-<ul>
-<li>tidyverse style (all lower case letters, words separated by HYPHEN)</li>
-</ul>
-</div>
+<section id="loading-packages" class="slide level2">
+<h2>Loading packages</h2>
+<p>In a single Quarto document we may use several packages.</p>
+<p>We should always load our packages in a chunk all together at the top of the document to make it clear what packages the document relies on.</p>
 </section>
-<section id="importing-.csv-data" class="slide level2">
-<h2>Importing .csv Data</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"dataset.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="importing-excel-data" class="slide level2">
-<h2>Importing Excel Data</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a>readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">"dataset.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="importing-excel-data-1" class="slide level2">
-<h2>Importing Excel Data</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">"dataset.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="importing-sas-spss-stata-data" class="slide level2">
-<h2>Importing SAS, SPSS, Stata Data</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">library</span>(haven)</span>
-<span id="cb4-2"><a href=""></a><span class="co"># SAS</span></span>
-<span id="cb4-3"><a href=""></a><span class="fu">read_sas</span>(<span class="st">"dataset.sas7bdat"</span>)</span>
-<span id="cb4-4"><a href=""></a><span class="co"># SPSS</span></span>
-<span id="cb4-5"><a href=""></a><span class="fu">read_sav</span>(<span class="st">"dataset.sav"</span>)</span>
-<span id="cb4-6"><a href=""></a><span class="co"># Stata</span></span>
-<span id="cb4-7"><a href=""></a><span class="fu">read_dta</span>(<span class="st">"dataset.dta"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="where-is-the-dataset-file" class="slide level2">
-<h2>Where is the dataset file?</h2>
-<p>Importing data will depend on where the dataset is on your computer. However we use the help of <code>here::here()</code> function. This function sets the working directory to the project folder (i.e.&nbsp;where the <code>.Rproj</code> file is).</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data/dataset.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="collaboration-on-github" class="slide level2">
-<h2>Collaboration on GitHub</h2>
-
-<img data-src="img/git-collab.002.jpeg" style="width:90.0%" class="r-stretch"></section>
-<section id="collaboration-on-github-1" class="slide level2">
-<h2>Collaboration on GitHub</h2>
-
-<img data-src="img/git-collab.003.jpeg" style="width:90.0%" class="r-stretch"></section>
-<section id="collaboration-on-github-2" class="slide level2">
-<h2>Collaboration on GitHub</h2>
-
-<img data-src="img/git-collab.004.jpeg" style="width:90.0%" class="r-stretch"></section>
-<section id="collaboration-on-github-3" class="slide level2">
-<h2>Collaboration on GitHub</h2>
-
-<img data-src="img/git-collab.005.jpeg" style="width:90.0%" class="r-stretch"></section>
-<section id="collaboration-on-github-4" class="slide level2">
-<h2>Collaboration on GitHub</h2>
-
-<img data-src="img/git-collab.006.jpeg" style="width:90.0%" class="r-stretch"></section>
-<section id="collaboration-on-github-5" class="slide level2">
-<h2>Collaboration on GitHub</h2>
-
-<img data-src="img/git-collab.007.jpeg" style="width:90.0%" class="r-stretch"></section>
-<section id="collaboration-on-github-6" class="slide level2">
-<h2>Collaboration on GitHub</h2>
-
-<img data-src="img/git-collab.008.jpeg" style="width:90.0%" class="r-stretch"></section>
-<section id="collaboration-on-github-7" class="slide level2">
-<h2>Collaboration on GitHub</h2>
-<p>If each change is made by one collaborator at a time, this would not be an efficient workflow.</p>
-</section>
-<section id="collaboration-on-github-8" class="slide level2">
-<h2>Collaboration on GitHub</h2>
-
-<img data-src="img/git-collab.009.jpeg" style="width:90.0%" class="r-stretch"></section>
-<section id="collaboration-on-github-9" class="slide level2">
-<h2>Collaboration on GitHub</h2>
-
-<img data-src="img/git-collab.010.jpeg" style="width:90.0%" class="r-stretch"></section>
-<section id="collaboration-on-github-10" class="slide level2">
-<h2>Collaboration on GitHub</h2>
-
-<img data-src="img/git-collab.011.jpeg" style="width:90.0%" class="r-stretch"></section>
-<section id="collaboration-on-github-11" class="slide level2">
-<h2>Collaboration on GitHub</h2>
-<p>1 - commit</p>
-<p>2 - pull (very important)</p>
-<p>3 - push</p>
-</section>
-<section id="collaboration-on-github-12" class="slide level2">
-<h2>Collaboration on GitHub</h2>
-
-<img data-src="img/git-collab.013.jpeg" style="width:90.0%" class="r-stretch"></section>
-<section id="collaboration-on-github-13" class="slide level2">
-<h2>Collaboration on GitHub</h2>
-
-<img data-src="img/git-collab.014.jpeg" style="width:90.0%" class="r-stretch"></section>
-<section id="collaboration-on-github-14" class="slide level2">
-<h2>Collaboration on GitHub</h2>
-
-<img data-src="img/git-collab.015.jpeg" style="width:90.0%" class="r-stretch"></section>
-<section id="opening-an-issue" class="slide level2">
-<h2>Opening an issue</h2>
-
-<img data-src="img/create-issue.png" style="width:90.0%" class="r-stretch"><p>We can create an <strong>issue</strong> to keep a list of mistakes to be fixed, ideas to check with teammates, or note a to-do task. You can assign tasks to yourself or teammates.</p>
-</section>
-<section id="closing-an-issue" class="slide level2">
-<h2>Closing an issue</h2>
-
-<img data-src="img/issue-number.png" style="width:90.0%" class="r-stretch"><p>If you are working on an issue, it makes sense to refer to issue number in your commit message (e.g.&nbsp;“add first draft of alternate texts for #4”). If your commit resolves the issue then you can use key words such as “fixes #4” or “closes #4” to close the issue. Issues can also be manually closed.</p>
-</section>
-<section id="gitignore" class="slide level2">
-<h2>.gitignore</h2>
-<p>A .gitignore file contains the list of files which Git has been explicitly told to ignore.</p>
-<p>For instance README.html can be git ignored.</p>
-<p>You may consider git ignoring confidential files (e.g.&nbsp;some datasets) so that they would not be pushed by mistake to GitHub.</p>
-<p>A file can be git ignored either by point-and-click using RStudio’s Git pane or by adding the file path to the .gitignore file. For instance weather.csv data file in a data folder need to be added as data/weather.csv</p>
-<p>Files with certain files (e.g.&nbsp;all .log files) can also be ignored. See git ignore patterns.</p>
-</section>
-<section id="section" class="slide level2">
-<h2></h2>
+<section id="session-info" class="slide level2">
+<h2>Session info</h2>
 <p>It is also a good practice to save session information as package versions change, in order to be able to reproduce results from an analysis we need to know under what technical conditions the analysis was conducted.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>R version 4.5.1 (2025-06-13 ucrt)
 Platform: x86_64-w64-mingw32/x64
@@ -562,19 +434,232 @@ tzcode source: internal
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
+other attached packages:
+ [1] here_1.0.1      lubridate_1.9.4 forcats_1.0.0   stringr_1.5.1  
+ [5] dplyr_1.1.4     purrr_1.1.0     readr_2.1.5     tidyr_1.3.1    
+ [9] tibble_3.2.1    ggplot2_3.5.2   tidyverse_2.0.0
+
 loaded via a namespace (and not attached):
- [1] compiler_4.5.1    fastmap_1.2.0     cli_3.6.4         tools_4.5.1      
- [5] htmltools_0.5.8.1 rstudioapi_0.17.1 yaml_2.3.10       rmarkdown_2.29   
- [9] knitr_1.50        jsonlite_2.0.0    xfun_0.52         digest_0.6.37    
-[13] rlang_1.1.6       evaluate_1.0.4   </code></pre>
+ [1] gtable_0.3.6       jsonlite_2.0.0     compiler_4.5.1     tidyselect_1.2.1  
+ [5] scales_1.4.0       yaml_2.3.10        fastmap_1.2.0      R6_2.6.1          
+ [9] generics_0.1.4     knitr_1.50         rprojroot_2.1.0    pillar_1.11.0     
+[13] RColorBrewer_1.1-3 tzdb_0.5.0         rlang_1.1.6        stringi_1.8.7     
+[17] xfun_0.52          timechange_0.3.0   cli_3.6.4          withr_3.0.2       
+[21] magrittr_2.0.3     digest_0.6.37      grid_4.5.1         rstudioapi_0.17.1 
+[25] hms_1.1.3          lifecycle_1.0.4    vctrs_0.6.5        evaluate_1.0.4    
+[29] glue_1.8.0         farver_2.1.2       rmarkdown_2.29     tools_4.5.1       
+[33] pkgconfig_2.0.3    htmltools_0.5.8.1 </code></pre>
 </div>
 </div>
+</section>
+<section>
+<section id="importing-and-exporting-data" class="title-slide slide level1 center">
+<h1>Importing and exporting data</h1>
+
+</section>
+<section id="importing-.csv-data" class="slide level2">
+<h2>Importing .csv Data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>my_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"dataset.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<p>This is what we primarily use in this class.</p>
+<p>We have to tell <code>read_csv()</code> the name of the data file.</p>
+</div>
+</section>
+<section id="importing-excel-data" class="slide level2">
+<h2>Importing Excel Data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a>my_data <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">"dataset.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="importing-excel-data-1" class="slide level2">
+<h2>Importing Excel Data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>my_data <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">"dataset.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="importing-sas-spss-stata-data" class="slide level2">
+<h2>Importing SAS, SPSS, Stata Data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">library</span>(haven)</span>
+<span id="cb6-2"><a href=""></a><span class="co"># SAS</span></span>
+<span id="cb6-3"><a href=""></a>my_data <span class="ot">&lt;-</span> <span class="fu">read_sas</span>(<span class="st">"dataset.sas7bdat"</span>)</span>
+<span id="cb6-4"><a href=""></a><span class="co"># SPSS</span></span>
+<span id="cb6-5"><a href=""></a>my_data <span class="ot">&lt;-</span> <span class="fu">read_sav</span>(<span class="st">"dataset.sav"</span>)</span>
+<span id="cb6-6"><a href=""></a><span class="co"># Stata</span></span>
+<span id="cb6-7"><a href=""></a>my_data <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"dataset.dta"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="where-is-the-dataset-file" class="slide level2">
+<h2>Where is the dataset file?</h2>
+<p>Importing data will depend on where the dataset is on your computer or online.</p>
+<p>If we only provide <code>read_csv()</code> with the name of the data file, the data must be saved in the same location as the Quarto document.</p>
+</section>
+<section id="where-is-the-dataset-file-online" class="slide level2">
+<h2>Where is the dataset file? Online</h2>
+<p>Up to this point we have only been using data from packages or reading in data from online.</p>
+<p>Recall the data from lab 1a read in from a url</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>baby_names <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"http://csuci-data200.github.io/lectures/week-01/data/california-popular-baby-names.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="where-is-the-dataset-file-local" class="slide level2">
+<h2>Where is the dataset file? Local</h2>
+<p>If the data is saved within another folder locally, we need to provide the path to the data.</p>
+<p>If we had data saved in a folder named <code>data</code> we could write</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>my_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/dataset.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<p>We use the help of <code>here()</code> function from the <code>here</code> library. This function sets the working directory (aka location the path starts from) to the project folder (i.e.&nbsp;where the <code>.Rproj</code> file is).</p>
+</div>
+</section>
+<section id="exporting-data-as-a-csv" class="slide level2">
+<h2>Exporting data as a csv</h2>
+<p>Say we cleaned our data and wanted to save it locally</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="fu">write_csv</span>(baby_names, <span class="at">file =</span> <span class="st">"baby-names.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<p>If I wanted to save it within a folder called <code>data</code> I could write</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="fu">write_csv</span>(baby_names, <span class="at">file =</span> <span class="fu">here</span>(<span class="st">"data/baby-names.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="naming-files" class="slide level2">
+<h2>Naming files</h2>
+<div>
+<p>Three principles of naming files</p>
+<ul>
+<li>machine readable</li>
+<li>human readable</li>
+<li>plays well with default ordering (e.g.&nbsp;alphabetical and numerical ordering)</li>
+</ul>
+<!-- (Jenny Bryan) -->
+<p>For the purposes of this course an additional principle is that file names follow</p>
+<ul>
+<li>tidyverse style (all lower case letters, words separated by HYPHEN)</li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="version-control" class="title-slide slide level1 center">
+<h1>Version Control</h1>
+
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+<div>
+<p>Does this look familiar?</p>
+<ul>
+<li class="fragment"><p>hw1</p></li>
+<li class="fragment"><p>hw1_final</p></li>
+<li class="fragment"><p>hw1_final2</p></li>
+<li class="fragment"><p>hw1_final3</p></li>
+<li class="fragment"><p>hw1_finalwithfinalimages</p></li>
+<li class="fragment"><p>hw1_finalestfinal</p></li>
+</ul>
+</div>
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<div>
+<p>What if we tracked our file with better names for each version and have only 1 file <strong>hw1</strong>?</p>
+<ul>
+<li class="fragment"><p>hw1 <strong><em>added questions 1 through 5</em></strong></p></li>
+<li class="fragment"><p>hw1 <strong><em>changed question 1 image</em></strong></p></li>
+<li class="fragment"><p>hw1 <strong><em>fixed typos</em></strong></p></li>
+</ul>
+<p>We will call the descriptions in italic <strong>commit</strong> messages.</p>
+</div>
+</section>
+<section id="git-vs.-github" class="slide level2">
+<h2>git vs.&nbsp;GitHub</h2>
+<ul>
+<li><p>git allows us to keep track of different versions of a file(s).</p></li>
+<li><p>GitHub is a website where we can store (and share) different versions of the files.</p></li>
+</ul>
+</section>
+<section id="section-2" class="slide level2">
+<h2></h2>
+
+<img data-src="img/github-illustration.002.jpeg" class="quarto-figure quarto-figure-center r-stretch" style="width:40.0%"></section>
+<section id="section-3" class="slide level2">
+<h2></h2>
+
+<img data-src="img/github-illustration.003.jpeg" class="quarto-figure quarto-figure-center r-stretch" style="width:55.0%"></section>
+<section id="section-4" class="slide level2">
+<h2></h2>
+
+<img data-src="img/github-illustration.004.jpeg" class="quarto-figure quarto-figure-center r-stretch" style="width:55.0%"></section>
+<section id="section-5" class="slide level2">
+<h2></h2>
+
+<img data-src="img/github-illustration.005.jpeg" class="quarto-figure quarto-figure-center r-stretch" style="width:55.0%"></section>
+<section id="section-6" class="slide level2">
+<h2></h2>
+
+<img data-src="img/github-illustration.006.jpeg" class="quarto-figure quarto-figure-center r-stretch" style="width:55.0%"></section>
+<section id="section-7" class="slide level2">
+<h2></h2>
+
+<img data-src="img/github-illustration.007.jpeg" class="quarto-figure quarto-figure-center r-stretch" style="width:55.0%"></section>
+<section id="section-8" class="slide level2">
+<h2></h2>
+<div class="font75">
+<p>Demo <a href="https://github.com/csuci-data200/lectures" class="uri">https://github.com/csuci-data200/lectures</a></p>
+</div>
+</section>
+<section id="cloning-a-repo" class="slide level2">
+<h2>Cloning a repo</h2>
+<p><strong>repo</strong> is a short form of repository. Repositories contain all of your project’s files as well as each file’s revision history.</p>
+<p>To <strong>clone</strong> a GitHub repo to our computer, we first copy the cloning link as shown in demo then start an RStudio project using that link.</p>
+<p><strong>Cloning</strong> a repo pulls (downloads) all the elements of a repo available at that specific time.</p>
+</section>
+<section id="commits" class="slide level2">
+<h2>Commits</h2>
+<p>Once you make changes to your repo (e.g.&nbsp;take notes during lecture, answer an activity question) you can take a snapshot of your changes with a commit.</p>
+<p>This way if you ever have to go back in version history you have your older commits to get back to.</p>
+<p>This is especially useful, for instance, if you want to go back to an earlier solution you have committed.</p>
+</section>
+<section id="push" class="slide level2">
+<h2>Push</h2>
+<p>All the commits you make will initially be local (i.e.&nbsp;on your own computer).</p>
+<p>In order for us to see your commits and your final submission on any file, you have to <strong>push</strong> your commits. In other words upload your files at the stage in that specific time.</p>
+</section>
+<section id="an-incomplete-gitgithub-glossary" class="slide level2">
+<h2>(An incomplete) Git/GitHub glossary</h2>
+<p><strong>Git:</strong> is software for tracking changes in any set of files</p>
+<p><strong>GitHub:</strong> is an internet host for Git projects.</p>
+<p><strong>repo:</strong> is a short form of repository. Repositories contain all of your project’s files as well as each file’s revision history.</p>
+<p><strong>clone:</strong> Cloning a repo <strong>pulls</strong> (downloads) all the elements of a repo available at that specific time.</p>
+<p><strong>commit:</strong> A snapshot of your repo at a specific point in time. We distinguish each commit with a <strong>commit message</strong>.</p>
+<p><strong>push:</strong> Uploads the latest “committed” state of your repo to GitHub.</p>
+</section>
+<section id="section-9" class="slide level2">
+<h2></h2>
+<div class="font150">
+<p>Do you git it?</p>
+</div>
+</section>
+<section id="gitignore" class="slide level2">
+<h2>.gitignore</h2>
+<p>A .gitignore file contains the list of files which Git has been explicitly told to ignore.</p>
+<p>For instance README.html can be git ignored.</p>
+<p>You may consider git ignoring confidential files (e.g.&nbsp;some datasets) so that they would not be pushed by mistake to GitHub.</p>
+</section>
+<section id="gitignore-1" class="slide level2">
+<h2>.gitignore</h2>
+<p>A file can be git ignored either by point-and-click using RStudio’s Git pane or by adding the file path to the .gitignore file. For instance weather.csv data file in a data folder need to be added as data/weather.csv</p>
+<p>Files with certain files (e.g.&nbsp;all .log files) can also be ignored. See git ignore patterns.</p>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
 </div>
-</section>
+</section></section>
     </div>
   </div>
 
