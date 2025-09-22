@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="lec-5a-strings-factors-dates_files/libs/clipboard/clipboard.min.js"></script>
-<script src="lec-5a-strings-factors-dates_files/libs/quarto-html/tabby.min.js"></script>
-<script src="lec-5a-strings-factors-dates_files/libs/quarto-html/popper.min.js"></script>
-<script src="lec-5a-strings-factors-dates_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="lec-5a-strings-factors-dates_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="lec-5a-strings-factors-dates_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="lec-5a-strings-factors-dates_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="lec-5a-strings-factors-dates_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="lec-5a-data-wrangling3_files/libs/clipboard/clipboard.min.js"></script>
+<script src="lec-5a-data-wrangling3_files/libs/quarto-html/tabby.min.js"></script>
+<script src="lec-5a-data-wrangling3_files/libs/quarto-html/popper.min.js"></script>
+<script src="lec-5a-data-wrangling3_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="lec-5a-data-wrangling3_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="lec-5a-data-wrangling3_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="lec-5a-data-wrangling3_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="lec-5a-data-wrangling3_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.4.555">
 
   <meta name="author" content="Professor Catalina Medina">
@@ -15,8 +15,8 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="lec-5a-strings-factors-dates_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="lec-5a-strings-factors-dates_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="lec-5a-data-wrangling3_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="lec-5a-data-wrangling3_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -95,11 +95,11 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="lec-5a-strings-factors-dates_files/libs/revealjs/dist/theme/quarto.css">
-  <link href="lec-5a-strings-factors-dates_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="lec-5a-strings-factors-dates_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="lec-5a-strings-factors-dates_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="lec-5a-strings-factors-dates_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="lec-5a-data-wrangling3_files/libs/revealjs/dist/theme/quarto.css">
+  <link href="lec-5a-data-wrangling3_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="lec-5a-data-wrangling3_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="lec-5a-data-wrangling3_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="lec-5a-data-wrangling3_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -545,7 +545,7 @@ $ tvhours &lt;int&gt; 12, NA, 2, 4, 1, NA, 3, NA, 0, 3, 2, NA, 1, NA, 1, 7, NA, 
 <span id="cb16-3"><a href=""></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="lec-5a-strings-factors-dates_files/figure-revealjs/unnamed-chunk-10-1.png" class="quarto-figure quarto-figure-center r-stretch" width="576"></section>
+<img data-src="lec-5a-data-wrangling3_files/figure-revealjs/unnamed-chunk-10-1.png" class="quarto-figure quarto-figure-center r-stretch" width="576"></section>
 <section id="reordering-levels-1" class="slide level2">
 <h2>Reordering levels</h2>
 <p>If we want to specify the order of the levels we can use <code>factor()</code> with <code>levels</code> instead of <code>as.factor()</code></p>
@@ -559,7 +559,7 @@ $ tvhours &lt;int&gt; 12, NA, 2, 4, 1, NA, 3, NA, 0, 3, 2, NA, 1, NA, 1, 7, NA, 
 <span id="cb17-7"><a href=""></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="lec-5a-strings-factors-dates_files/figure-revealjs/unnamed-chunk-11-1.png" class="quarto-figure quarto-figure-center r-stretch" width="576"></section>
+<img data-src="lec-5a-data-wrangling3_files/figure-revealjs/unnamed-chunk-11-1.png" class="quarto-figure quarto-figure-center r-stretch" width="576"></section>
 <section id="recoding-levels" class="slide level2">
 <h2>Recoding levels</h2>
 <p>We can change the names by specifying <code>labels</code></p>
@@ -574,7 +574,7 @@ $ tvhours &lt;int&gt; 12, NA, 2, 4, 1, NA, 3, NA, 0, 3, 2, NA, 1, NA, 1, 7, NA, 
 <span id="cb18-8"><a href=""></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="lec-5a-strings-factors-dates_files/figure-revealjs/unnamed-chunk-12-1.png" class="quarto-figure quarto-figure-center r-stretch" width="576"></section></section>
+<img data-src="lec-5a-data-wrangling3_files/figure-revealjs/unnamed-chunk-12-1.png" class="quarto-figure quarto-figure-center r-stretch" width="576"></section></section>
 <section>
 <section id="working-with-strings" class="title-slide slide level1 center">
 <h1>Working with Strings</h1>
@@ -1217,7 +1217,7 @@ $ rating      &lt;dbl&gt; 8.3, 8.0, 8.2, 8.1, 8.5, 8.1, 9.0, 8.1, 8.2, 8.1, 8.2,
 </div>
 <div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href=""></a><span class="fu">now</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-09-21 18:09:53 PDT"</code></pre>
+<pre><code>[1] "2025-09-21 18:19:05 PDT"</code></pre>
 </div>
 </div>
 </section></section>
@@ -1780,19 +1780,19 @@ Levels: Sun &lt; Mon &lt; Tue &lt; Wed &lt; Thu &lt; Fri &lt; Sat</code></pre>
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="lec-5a-strings-factors-dates_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="lec-5a-data-wrangling3_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="lec-5a-strings-factors-dates_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="lec-5a-strings-factors-dates_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="lec-5a-strings-factors-dates_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="lec-5a-strings-factors-dates_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="lec-5a-strings-factors-dates_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="lec-5a-data-wrangling3_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="lec-5a-data-wrangling3_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="lec-5a-data-wrangling3_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="lec-5a-data-wrangling3_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="lec-5a-data-wrangling3_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="lec-5a-strings-factors-dates_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="lec-5a-strings-factors-dates_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="lec-5a-strings-factors-dates_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="lec-5a-strings-factors-dates_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="lec-5a-data-wrangling3_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="lec-5a-data-wrangling3_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="lec-5a-data-wrangling3_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="lec-5a-data-wrangling3_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
