@@ -257,11 +257,15 @@ knitr::include_graphics('img/github-illustration.006.jpeg')
 knitr::include_graphics('img/github-illustration.007.jpeg')
 ```
 
-## 
+## Demo <https://github.com/csuci-data200/lectures>
 
-::: {.font75}
+<center>
 
-Demo <https://github.com/csuci-data200/lectures>
+<video width="80%" height="45%%" align = "center" controls>
+  <source src="screencast/github-intro-screencast.mp4" type="video/mp4">
+</video>
+
+</center>
 
 :::
 
