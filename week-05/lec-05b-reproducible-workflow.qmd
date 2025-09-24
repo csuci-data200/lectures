@@ -17,11 +17,9 @@ library(here)
 
 ```
 
-# Good practices
+# Good practices we are already following
 
-## 
-
-We already know 
+## We already know 
 
 - following a style guide makes your code more easily read by another person
 
@@ -45,20 +43,6 @@ We should load our packages in a chunk all together at the top of the document
 
 - to make it clear what packages the document relies on,
 - and to avoid loading packages multiple times.
-
-## Session info
-
-It is also a good practice to save session information as package versions change, in order to be able to 
-
-- reproduce results from an analysis we need to know under what technical conditions the analysis was conducted,
-- figure out [bugs in packages](https://github.com/quarto-dev/quarto/issues/791)
-
-. . .
-
-```{r}
-#| echo: true
-sessionInfo()
-```
 
 
 # Importing and exporting data
@@ -344,12 +328,10 @@ knitr::include_graphics('img/github-illustration.007.jpeg')
 <center>
 
 <video width="80%" height="45%%" align = "center" controls>
-  <source src="screencast/github-intro-screencast.mp4" type="video/mp4">
+  <source src="screencast/GitHub-with-Posit-Cloud.mp4" type="video/mp4">
 </video>
 
 </center>
-
-:::
 
 
 ## Cloning a repo
