@@ -17,15 +17,43 @@ library(here)
 
 ```
 
+# Good practices
+
+## 
+
+We already know 
+
+- following a style guide makes your code more easily read by another person
+
+. . .
+
+*What style guide do we use?*
+
+. . .
+
+- coding in a document allows code to be reproducible versus coding in the Console
+
+. . .
+
+*What document do we use for coding?*
+
 ## Loading packages
 
 In a single Quarto document we may use several packages.
 
-We should always load our packages in a chunk all together at the top of the document to make it clear what packages the document relies on.
+We should load our packages in a chunk all together at the top of the document 
+
+- to make it clear what packages the document relies on,
+- and to avoid loading packages multiple times.
 
 ## Session info
 
-It is also a good practice to save session information as package versions change, in order to be able to reproduce results from an analysis we need to know under what technical conditions the analysis was conducted.
+It is also a good practice to save session information as package versions change, in order to be able to 
+
+- reproduce results from an analysis we need to know under what technical conditions the analysis was conducted,
+- figure out [bugs in packages](https://github.com/quarto-dev/quarto/issues/791)
+
+. . .
 
 ```{r}
 #| echo: true
@@ -35,20 +63,31 @@ sessionInfo()
 
 # Importing and exporting data
 
+## 
+
+We have learned how to clean and wrangle our data through code.
+
+. . .
+
+*Why didn't we just open and edit the data file itself?*
+
 ## Importing .csv Data 
 
 
 ```{r}
 #| echo: true
 #| eval: false
-my_data <- readr::read_csv("dataset.csv")
+
+library(readr)
+
+my_data <- read_csv("dataset.csv")
 ```
 
 . . .
 
-This is what we primarily use in this class.
+- This is what we primarily use in this class.
 
-We have to tell `read_csv()` the name of the data file.
+- We have to tell `read_csv()` the name of the data file.
 
 
 ## Importing Excel Data
@@ -56,7 +95,10 @@ We have to tell `read_csv()` the name of the data file.
 ```{r}
 #| echo: true
 #| eval: false
-my_data <- readxl::read_excel("dataset.xlsx")
+
+library(readxl)
+
+my_data <- read_excel("dataset.xlsx")
 ```
 
 
@@ -65,7 +107,10 @@ my_data <- readxl::read_excel("dataset.xlsx")
 ```{r}
 #| echo: true
 #| eval: false
-my_data <- readxl::read_excel("dataset.xlsx", sheet = 2)
+
+library(readxl)
+
+my_data <- read_excel("dataset.xlsx", sheet = 2)
 ```
 
 
@@ -84,13 +129,6 @@ my_data <- read_dta("dataset.dta")
 ```
 
 
-## Where is the dataset file?
-
-Importing data will depend on where the dataset is on your computer or online.
-
-If we only provide `read_csv()` with the name of the data file, the data must be saved in the same location as the Quarto document.
-
-
 ## Where is the dataset file? Online
 
 
@@ -102,23 +140,67 @@ Recall the data from lab 1a read in from a url
 baby_names <- read_csv("http://csuci-data200.github.io/lectures/week-01/data/california-popular-baby-names.csv")
 ```
 
+## Where is the dataset file? Locally
+
+Importing data locally will depend on where the dataset is on your computer.
+
+::::{.columns}
+:::{.column width="50%"}
+```{r}
+#| out.width: '55%'
+#| fig.align: 'center'
+#| echo: false
+knitr::include_graphics('img/same-directory.png')
+```
+:::
+
+:::{.column width="50%"}
+```{r}
+#| out.width: '55%'
+#| fig.align: 'center'
+#| echo: false
+knitr::include_graphics('img/different-directory.png')
+```
+:::
+::::
+
 
 ## Where is the dataset file? Local
 
-If the data is saved within another folder locally, we need to provide the path to the data. 
+If the data is saved in a subfolder we have to include that with the file name.
 
-If we had data saved in a folder named `data` we could write
-
+::::{.columns}
+:::{.column width="50%"}
 ```{r}
-#| echo: true
 #| eval: false
-my_data <- read_csv(here("data/dataset.csv"))
+
+dolphins <- read_csv("dataset.csv")
 ```
 
-. . .
+```{r}
+#| out.width: '55%'
+#| fig.align: 'center'
+#| echo: false
+knitr::include_graphics('img/same-directory.png')
+```
+:::
 
-We use the help of `here()` function from the `here` library. 
-This function sets the working directory (aka location the path starts from) to the project folder (i.e. where the `.Rproj` file is).
+:::{.column width="50%"}
+```{r}
+#| eval: false
+
+dolphins <- read_csv("data/dataset.csv")
+```
+
+```{r}
+#| out.width: '55%'
+#| fig.align: 'center'
+#| echo: false
+knitr::include_graphics('img/different-directory.png')
+```
+:::
+::::
+
 
 ## Exporting data as a csv
 
@@ -133,7 +215,7 @@ write_csv(baby_names, file = "baby-names.csv")
 If I wanted to save it within a folder called `data` I could write
 ```{r}
 #| eval: false
-write_csv(baby_names, file = here("data/baby-names.csv"))
+write_csv(baby_names, file = "data/baby-names.csv")
 ```
 
 ## Naming files
@@ -199,7 +281,7 @@ We will call the descriptions in italic **commit** messages.
 
 ## git vs. GitHub
 
-- git allows us to keep track of different versions of a file(s).
+- git allows us to keep track of different versions of a file(s) locally.
 
 - GitHub is a website where we can store (and share) different versions of the files. 
 
@@ -272,28 +354,30 @@ knitr::include_graphics('img/github-illustration.007.jpeg')
 
 ## Cloning a repo
 
-**repo** is a short form of repository. Repositories contain all of your project's files as well as each file's revision history.
+**repo** is a short for repository. Repositories contain all of your project's files as well as each file's revision history.
 
 To **clone** a GitHub repo to our computer, we first copy the cloning link as shown in demo then start an RStudio project using that link.  
 
-**Cloning** a repo pulls (downloads) all the elements of a repo available at that specific time. 
+- **Cloning** a repo pulls (downloads) all the elements of a repo available at that specific time. 
 
 
 
 ## Commits
 
-Once you make changes to your repo (e.g. take notes during lecture, answer an activity question) you can take a snapshot of your changes with a commit.
+Once you make changes to your repo (e.g. edit our lab or homework) you can take a snapshot of your changes with a commit.
 
-This way if you ever have to go back in version history you have your older commits to get back to. 
+- This way if you ever have to go back in version history you have your older commits to get back to. 
 
-This is especially useful, for instance, if you want to go back to an earlier solution you have committed.
+- This is especially useful, for instance, if you want to go back to an earlier solution you have committed.
 
 
 ## Push
 
 All the commits you make will initially be local (i.e. on your own computer). 
 
-In order for us to see your commits and your final submission on any file, you have to **push** your commits. In other words upload your files at the stage in that specific time.
+In order for us to see your commits and your final submission on any file, you have to **push** your commits. 
+
+- In other words upload your files at the stage in that specific time.
 
 
 
@@ -319,17 +403,16 @@ Do you git it?
 
 ::: 
 
+## Now your turn!
 
-## .gitignore
+1. Log into your email and accept my invitation to our class **GitHub** organization
 
-A .gitignore file contains the list of files which Git has been explicitly told to ignore.
+2. In the GitHub organization I created a repo for you. **Clone** it to PositCloud.
 
-For instance README.html can be git ignored.
+3. Open your homework file.
 
-You may consider git ignoring confidential files (e.g. some datasets) so that they would not be pushed by mistake to GitHub.
+4. Make a simple change to your hw-05.qmd and save the file.
 
-## .gitignore
+5. In the Git window pane in PositCloud **commit** your change with a **commit message**
 
-A file can be git ignored either by point-and-click using RStudio's Git pane or by adding the file path to the .gitignore file. For instance weather.csv data file in a data folder need to be added as data/weather.csv
-
-Files with certain files (e.g. all .log files) can also be ignored. See git ignore patterns.
+6. **Push** your change. You'll need a personal access token.
