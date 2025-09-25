@@ -323,12 +323,22 @@ knitr::include_graphics('img/github-illustration.006.jpeg')
 knitr::include_graphics('img/github-illustration.007.jpeg')
 ```
 
-## Demo <https://github.com/csuci-data200/lectures>
+## First time cloning weekly repo, commiting a change, and pushing to GitHub
 
 <center>
 
 <video width="80%" height="45%%" align = "center" controls>
   <source src="screencast/GitHub-with-Posit-Cloud.mp4" type="video/mp4">
+</video>
+
+</center>
+
+## Regular weekly repo cloning, commiting a change, and pushing to GitHub
+
+<center>
+
+<video width="80%" height="45%%" align = "center" controls>
+  <source src="screencast/regular-clone-and-push.mp4" type="video/mp4">
 </video>
 
 </center>
