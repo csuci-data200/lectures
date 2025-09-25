@@ -323,7 +323,7 @@ knitr::include_graphics('img/github-illustration.006.jpeg')
 knitr::include_graphics('img/github-illustration.007.jpeg')
 ```
 
-## First time cloning weekly repo, commiting a change, and pushing to GitHub
+## First time cloning weekly repo, committing a change, and pushing to GitHub
 
 <center>
 
@@ -333,7 +333,7 @@ knitr::include_graphics('img/github-illustration.007.jpeg')
 
 </center>
 
-## Regular weekly repo cloning, commiting a change, and pushing to GitHub
+## Regular weekly repo cloning, committing a change, and pushing to GitHub
 
 <center>
 
