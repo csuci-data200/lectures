@@ -1,0 +1,93 @@
+---
+title: "Tidyverse Style Guide"
+format: html
+execute: 
+  eval: false
+---
+
+The full Tidyverse Style Guide is available at <https://style.tidyverse.org/>.
+
+We have not covered all the content in the style guide, but through different lectures we have learned the style rules we are following.
+
+The major rules fall under three tasks, naming objects, spacing/indenting code, and naming files.
+
+## Naming objects
+
+- Variable and object names should use only lowercase letters, numbers, and _. Use underscores (`_`) (so called snake case) to separate words within a name.
+
+```{r}
+# Good
+day_one
+day_1
+
+# Bad
+DayOne
+dayone
+```
+
+## Spacing and indenting
+
+- Most operators (==, +, -, <-, *, etc.) should always be surrounded by spaces.
+
+```{r}
+# Good
+height <- (feet * 12) + inches
+mean(x, na.rm = TRUE)
+
+# Bad
+height<-feet*12+inches
+mean(x, na.rm=TRUE)
+```
+
+- If a function call is too long to fit on a single line, use one line each for the function name, each argument, and the closing ). This makes the code easier to read and to change later.
+
+```{r}
+# Good
+mutate(
+  penguins, 
+  species_abbreviated = case_when(
+    species == "Gentoo" ~ "G",
+    species == "Chinstrap" ~ "C",
+    specied == "Adelie" ~ "A"
+  )
+)
+
+# Bad
+mutate(penguins, species_abbreviated = case_when(species == "Gentoo" ~ "G", species == "Chinstrap" ~ "C",
+  specied == "Adelie" ~ "A"
+))
+```
+
+- A pipe `|>` should be followed by a function on a new line, not the same line.
+
+```{r}
+# Good
+new_penguins_data <- penguins |> 
+  filter(islans != "Dream") |> 
+  mutate(species_abbreviated = case_when(
+    species == "Gentoo" ~ "G",
+    species == "Chinstrap" ~ "C",
+    specied == "Adelie" ~ "A"
+  ))
+
+# Bad
+new_penguins_data <- penguins |> filter(islans != "Dream") |> mutate(species_abbreviated = case_when(species == "Gentoo" ~ "G",
+  species == "Chinstrap" ~ "C",
+  specied == "Adelie" ~ "A"
+))
+```
+
+- The `+` operator for ggplots should be followed by a function on a new line, not the same line.
+
+```{r}
+# Good
+ggplot(penguins, aes(x = bill_len, y = bill_dep)) +
+  geom_point()
+
+# Bad
+ggplot(penguins, aes(x = bill_len, y = bill_dep)) + geom_point()
+```
+
+## Naming files
+
+- File names should use only lowercase letters, numbers, and -. Use dashes (-) to separate words within a name. For example`tidyverse-style-guide-summary.qmd` or `popular-baby-names.csv`. This is only relevant when you are creating a file or exporting data to a file.
