@@ -36,7 +36,7 @@ plot_beta_prob <- function(value, alpha, beta, direction = "lower"){
     ) +
     labs(
       x = expression(pi),
-      y = expression(paste("f(",pi,")"))
+      y = "Density"
     )
   
   if(direction == "lower"){
@@ -109,10 +109,13 @@ plot_normal_prob <- function(value, mean, sd, end = 3, direction = "lower"){
         alpha = 0.8,
         xlim = c(mean - (end*sd), value)
       ) +
-      labs(caption = paste0(
-        "The area under the curve is ",
-        round(pnorm(value, mean, sd), digits = 4)*100, "%."
-      ))
+      labs(
+        caption = paste0(
+          "The area under the curve is ",
+          round(pnorm(value, mean, sd), digits = 4) * 100, 
+          "%."
+        )
+      )
   }
   
   
@@ -127,10 +130,13 @@ plot_normal_prob <- function(value, mean, sd, end = 3, direction = "lower"){
         alpha = 0.8, 
         xlim = c(value, mean+(end * sd))
       ) +
-      labs(caption = paste0(
-        "The area under the curve is ", 
-        round(pnorm(value, mean, sd, lower.tail = FALSE), digits = 4)*100, "%."
-      ))
+      labs(
+        caption = paste0(
+          "The area under the curve is ", 
+          round(pnorm(value, mean, sd, lower.tail = FALSE), digits = 4) * 100, 
+          "%."
+        )
+      )
   }
   
   p
@@ -482,7 +488,7 @@ ggplot(sat_scores, aes(x = x)) +
     axis.text.y=element_blank(),
     axis.ticks.y=element_blank()
   ) +
-  labs(y = "Count", x = "Sat Score", title = "Normal Model")
+  labs(y = "Density", x = "Sat Score", title = "Normal Model")
 ```
 
 :::
