@@ -1,0 +1,558 @@
+---
+title: "Data 200: Lecture 8a"
+subtitle: "Bayesian Credible Intervals and Hypothesis Testing"
+author: "Professor Catalina Medina"
+execute:
+  echo: true
+format: 
+  revealjs:
+    theme: [sky, ../slide-style.scss]
+    slide-number: true
+---
+
+## 
+
+```{r}
+library(bayesrules)
+library(tidyverse)
+```
+
+```{r}
+#| echo: false
+theme_set(theme_gray(base_size = 18))
+```
+
+Examples from this lecture are mainly taken from the [Bayes Rules! book](https://www.bayesrulesbook.com/) and the new functions are from the `bayesrules` package.
+
+## Recall
+
+Last lecture the optimist had the following models.
+
+```{r}
+summarize_beta_binomial(alpha = 14, beta = 1, y = 9, n = 20)
+```
+
+. . .
+
+Prior model: $\pi \sim \text{Beta}(\alpha = 14, \beta = 1)$
+
+We can read this as the variable $\pi$ follows a Beta model with parameters 14 and 1.
+
+. . .
+
+Posterior model: $\pi|Y \sim \text{Beta}(\alpha = 23, \beta = 12)$
+
+We can read this as $\pi$ given $Y$ (i.e., the data) follows a Beta model with parameters 23 and 12.
+
+## 
+
+```{r}
+plot_beta_binomial(alpha = 14, beta = 1, y = 9, n = 20)
+```
+
+# Credible Intervals
+
+## 
+
+We are often interested in how our ideas change from prior to posterior. 
+
+One measure that can capture this change is the credible interval. 
+
+## Prior credible interval
+
+
+```{r}
+#| echo: false
+ci_prior <- qbeta(c(0.025, 0.975), shape1 = 14, shape2 = 1)
+```
+
+According to optimist's prior model the probability that $\pi$ is between 
+`r ci_prior[1]` and `r ci_prior[2]` is 95%. 
+
+
+## 
+
+
+```{r}
+#| echo: false
+pi <- seq(0, 1, by = 0.01)
+y <- dbeta(pi, shape1 = 14, shape2 = 1)
+
+data <- tibble(pi = pi, y = y)
+
+qplot(pi, y, data = data, geom = "line") +
+  geom_ribbon(
+    data = subset(data, pi > ci_prior[1] & pi < ci_prior[2]),
+    aes(ymax = y),
+    ymin = 0,
+    fill = "#e56646", 
+    colour = NA, 
+    alpha = 0.5
+  ) +
+  annotate(geom = "text", x = 0.9, y = 1.5, label = "95%")
+```
+##
+
+```{r}
+#| echo: false
+pi <- seq(0, 1, by = 0.01)
+y <- dbeta(pi, 14,1)
+
+data <- tibble(pi = pi, y = y)
+
+qplot(pi, y, data = data, geom = "line") +
+  geom_ribbon(
+    data = subset(data, pi > ci_prior[1] & pi < ci_prior[2]),
+    aes(ymax = y),
+    ymin = 0,
+    fill = "#e56646",
+    colour = NA, 
+    alpha = 0.5
+  ) +
+  annotate(geom = "text", x = 0.9, y = 1.5, label = "95%") +
+  geom_segment(
+    aes(
+      x = ci_prior[1],
+      y = dbeta(ci_prior[1], 14, 1),
+      xend = 0.65, 
+      yend =  5
+    ),
+    arrow = arrow(length = unit(0.1, "cm"))
+  ) +
+  annotate(geom = "text", x = 0.65, y = 5.5, label = "2.5th percentile") +
+  geom_segment(
+    aes(x = 0.99,  y = 12.5, xend = 0.8, yend =  16),
+    arrow = arrow(length = unit(0.1, "cm"))
+  ) +
+  annotate(geom = "text", x = 0.8, y = 17, label = "97.5th percentile")
+```
+## Prior Credible Interval
+
+```{r}
+qbeta(c(0.025, 0.975), shape1 = 14, shape2 = 1)
+```
+
+We can utilize the `qbeta()` function to calculate the middle 95% prior credible interval. 
+
+For a given quantile (probability) the `qbeta()` function returns the corresponding $\pi$ value. 
+
+We are essentially calculating the 2.5th and 97.5th percentiles. 
+
+## Posterior credible interval
+
+```{r}
+qbeta(c(0.025, 0.975), shape1 = 23, shape2 = 12)
+```
+
+```{r}
+#| echo: false
+posterior_ci <- qbeta(c(0.025, 0.975), shape1 = 23, shape2 = 12)
+```
+
+After having observed the data, optimist's posterior model indicates that with 95% probability $\pi$ is between `r posterior_ci[1]` and `r posterior_ci[2]`.
+
+# Hypothesis Testing
+
+## Recall realist's data analysis
+
+```{r}
+#| fig-align: center
+summarize_beta_binomial(alpha = 5, beta = 11, y = 9, n = 20)
+
+plot_beta_binomial(alpha = 5, beta = 11, y = 9, n = 20) 
+```
+
+## Scenario
+
+Let's assume that the general public assumes that more than one-third of the movies pass the Bechdel test. In other words, they believe $\pi \geq 0.33$.
+
+While working on his prior model, the realist was unsure of this and wanted to put this claim to test during his data analysis. 
+
+## Setting hypotheses
+
+$H_0: \pi \geq 0.33$  
+$H_A: \pi < 0.33$
+
+The null hypothesis ($H_0$) represents the status quo and the alternative hypothesis, ($H_a$), is realist's claim that he'd like to test.
+
+## Prior Probability
+
+What is the prior probability that $\pi$ is less than 0.33 ? In other words $P(\pi < 0.33) = ?$
+
+. . .
+
+
+```{r}
+prior_prob <- pbeta(0.33, shape1 = 5 , shape2 = 11)
+prior_prob
+```
+
+Note that `pbeta(0.33, 5, 11)` always shows probability that $pi$ is less than a specific value, in this case 0.33 for a specific Beta distribution, in this case Beta (5,11). 
+
+
+## Posterior Probability
+
+What is the posterior probability that $\pi$ is less than 0.33 after having observed the data? In other words $P(\pi |Y < 0.33) = ?$
+
+. . .
+
+```{r}
+posterior_prob <- pbeta(0.33, shape1 = 14 , shape2 = 22)
+posterior_prob
+```
+
+##
+
+```{r}
+#| echo: false
+#| fig-align: center
+plot_prob_plot <- function(a,b,cutoff){
+  ggplot(data.frame(x = c(0,1)), aes(x=x)) + 
+    stat_function(
+      fun = dbeta, 
+      args = list(a, b), 
+      xlim = c(0,cutoff), 
+      geom = "area", 
+      fill = "lightblue"
+    ) + 
+    stat_function(fun = dbeta, args = list(a, b)) + 
+    geom_segment(
+      aes(x = cutoff, xend = cutoff, y = 0, yend = dbeta(cutoff, a, b))
+    ) +
+    labs(x = expression(pi), y = "density")
+}
+
+plot_prob_plot(a = 5, b = 11, cutoff = 0.33) + 
+  lims(x = c(0, 1)) +
+  labs(title = "Prior")
+```
+
+##
+
+```{r}
+#| echo: false
+#| fig-align: center
+plot_prob_plot(a = 14, b = 22, cutoff = 0.33) + 
+  lims(x = c(0, 1)) +
+  labs(title = "Posterior")
+```
+
+
+## 
+
+$$P(\pi<0.33)$$
+
+```{r}
+#| echo: true
+prior_prob <- pbeta(0.33, shape1 = 5, shape2 = 11)
+prior_prob
+```
+
+. . .
+
+```{r}
+#| echo: false
+prior_odds <- prior_prob / (1 - prior_prob)
+```
+
+$$\text{Prior odds } = \frac{P(H_a)}{P(H_0)} = `r prior_odds` \; .$$ 
+
+```{r}
+#| echo: true
+prior_odds <- prior_prob / (1 - prior_prob)
+prior_odds
+```
+
+## 
+
+$$P(\pi | Y <0.33)$$
+
+```{r}
+#| echo: true
+posterior_prob <- pbeta(0.33, shape1 = 14, shape2 = 22)
+posterior_prob
+```
+
+. . .
+
+```{r}
+#| echo: false
+posterior_odds <- posterior_prob / (1 - posterior_prob)
+```
+
+$$\text{Posterior odds } = \frac{P(H_a |Y)}{P(H_0 |Y)} = `r posterior_odds` \; .$$ 
+
+```{r}
+#| echo: true
+posterior_odds <- posterior_prob / (1 - posterior_prob)
+posterior_odds
+```
+
+## 
+
+The __Bayes Factor (BF)__ compares the posterior odds to the prior odds, hence provides insight into just how much the realist's understanding about movies passing the Bechdel test _evolved_ upon observing the sample data:
+
+
+$$\text{Bayes Factor} = \frac{\text{Posterior odds }}{\text{Prior odds }}$$
+
+
+```{r}
+BF <- posterior_odds / prior_odds
+BF
+```
+
+
+## Bayes Factor
+
+In a hypothesis test of two competing hypotheses, $H_a$ vs $H_0$, the Bayes Factor is an odds ratio for $H_a$:
+
+$$\text{Bayes Factor}
+= \frac{\text{Posterior odds}}{\text{Prior odds}}
+= \frac{P(H_a | Y) / P(H_0 | Y)}{P(H_a) / P(H_0)}
+ \; .$$
+
+
+##
+
+As a ratio, it's meaningful to compare the Bayes Factor (BF)\ to 1.  To this end, consider three possible scenarios:
+
+1. BF = 1:  The plausibility of $H_a$ _didn't change_ in light of the observed data.
+2. BF > 1:  The plausibility of $H_a$ _increased_ in light of the observed data.  Thus the greater the Bayes Factor, the more convincing the evidence for $H_a$.
+3. BF < 1:  The plausibility of $H_a$ _decreased_ in light of the observed data. 
+
+
+# Refining hypothesis testing
+
+## Notation
+
+<table align ="center">
+
+<thead>
+<th> </th>
+<th>Sample Statistic</th>
+<th>Population Parameter</th>
+</thead>
+
+<tr> 
+<td>Proportion</td>
+<td>p</td>
+<td>&pi;</td>
+
+</tr>
+
+
+</table>
+
+## Notation
+
+<table align ="center">
+
+<thead>
+<th> </th>
+<th>Sample Statistic</th>
+<th>Population Parameter</th>
+</thead>
+
+<tr> 
+<td>Proportion</td>
+<td>p</td>
+<td>&pi;</td>
+
+</tr>
+
+<tr>
+<td>Mean</td>
+<td> x&#772; </td>
+<td> &mu;</td>
+
+</tr>
+
+<tr>
+<td> Standard Deviation </td>
+<td> s </td>
+<td> &sigma;</td>
+
+</tr>
+
+<tr>
+<td> Variance </td>
+<td> s<sup>2</sup> </td>
+<td> &sigma;<sup>2</sup></td>
+
+</tr>
+
+</table>
+
+*There are more types of hypothesis tests beyond what we cover in this class, but they all follow the same structure!*
+
+##
+
+To make the connection between research questions of studies and statistics, we will take small steps and begin with writing hypotheses using notation.
+
+##
+
+`r fontawesome::fa(name = "search", fill = "#e56646")` **Research Question** Do the majority of Americans approve allowing DACA immigrants to become citizens?
+
+. . .
+
+`r fontawesome::fa(name = "table", fill = "#e56646")` **Variable** `approve` (yes, yes, yes, no, yes, no, no)
+
+. . .
+
+`r fontawesome::fa(name = "language", fill = "#e56646")` **Research Question Using Notation** $\pi \stackrel{?}{>} 0.5$ 
+
+. . .
+
+**Hypotheses** 
+
+$H_0: \pi \leq 0.5$  
+$H_A: \pi > 0.5$
+
+. . .
+
+The parameter we want to infer about is **a single proportion**.
+
+##
+
+::: {.callout-tip }
+
+If you want to type math notation correctly in Quarto as $\pi$ then you can write 
+
+```{r}
+#| echo: true
+#| eval: false
+$$\pi$$
+```
+
+The double dollar signs at the beginning and at the end let Quarto know that you are writing a math equation. You would do this in regular text, not a code chunk.
+
+:::
+
+##
+
+`r fontawesome::fa(name = "search", fill = "#e56646")` **Research Question** Is California March 2020 unemployment rate different than US March 2020 unemployment rate which is at 4.4%?
+
+. . .
+
+`r fontawesome::fa(name = "table", fill = "#e56646")` **Variable** `unemployed_CA` (no, no, yes, no, yes, no, no...)
+
+. . .
+
+`r fontawesome::fa(name = "language", fill = "#e56646")` **Research Question Using Notation** $\pi \stackrel{?}{=} 0.044$
+
+. . .
+
+**Hypotheses**
+
+$$H_0:\pi= 0.044$$  $$H_A: \pi \neq 0.044$$
+
+. . .
+
+
+The parameter we want to infer about is **a single proportion**.
+
+## 
+
+`r fontawesome::fa(name = "search", fill = "#e56646")` **Research Question** Are there more STEM majors at CS UCI than non-STEM majors?
+
+. . .
+
+`r fontawesome::fa(name = "table", fill = "#e56646")` **Variable** `STEM` (TRUE, FALSE, FALSE, TRUE, FALSE, TRUE, TRUE...)
+
+. . .
+
+`r fontawesome::fa(name = "language", fill = "#e56646")` **Research Question Using Notation** $\pi_{STEM} \stackrel{?}{>} 0.5$
+
+. . .
+
+**Hypotheses**
+
+$$H_0: \pi \leq 0.5$$ $$H_A: \pi > 0.5$$
+
+. . .
+
+The parameter we want to infer about is **a single proportion**.
+
+##
+
+`r fontawesome::fa(name = "search", fill = "#e56646")` **Research Question** Do CS UCI students sleep on average 8 hours on a typical night? 
+
+
+. . .
+
+`r fontawesome::fa(name = "table", fill = "#e56646")` **Variable** `sleep` (8,7,9,7.5, ...)
+
+. . .
+
+`r fontawesome::fa(name = "language", fill = "#e56646")` **Research Question Using Notation** $\mu \stackrel{?}{=} 8$
+
+. . .
+
+**Hypotheses** 
+
+:::{.pull-left}
+$H_0 : \mu = 8$  
+$H_A : \mu \neq 8$
+
+::: 
+
+:::{.pull-right}
+$H_0 : \mu - 8 = 0$  
+$H_A : \mu - 8 \neq 0$ 
+:::
+
+. . .
+
+The parameter we want to infer about is **a single mean**.
+
+##
+
+`r fontawesome::fa(name = "search", fill = "#e56646")` **RQ** Do Democrats and Republicans approve legal abortion at same rates?
+
+. . .
+
+`r fontawesome::fa(name = "table", fill = "#e56646")` **Variables** explanatory: `party` (D, D, R, R,...)  
+response: `approve`(TRUE, FALSE, FALSE, TRUE,...)
+
+. . .
+
+`r fontawesome::fa(name = "language", fill = "#e56646")` **Research Question Using Notation** $\pi_{d} \stackrel{?}{=} \pi_{r}$ or $\pi_{d} -  \pi_{r} \stackrel{?}{=}0$ 
+
+. . .
+
+**Hypotheses**
+
+$H_0:\pi_{d} = \pi_{r}$  
+$H_A:\pi_{d} \neq \pi_{r}$
+. . .
+
+We want to infer about **difference of two proportions**.
+
+
+##
+
+
+<div align="center">
+
+|                               | Parameter of Interest | Response variable             |Explanatory variable           |
+|-------------------------------|-----------------------|-----------------------|-----------------------|
+| Single Proportion             | $\pi$                 | Binary                |
+| Difference of Two Proportions | $\pi_1 - \pi_2$       | Binary                |Binary                 |
+| Single Mean                   | $\mu$                 | Numeric               |
+| Difference of Two Means       | $\mu_1 - \mu_2$       | Numeric               |Binary                 |
+
+</div>
+
+A categorical variable with two levels is called a __binary__ variable.
+
+##
+
+Later on we will also learn
+
+<div align = "center">
+
+| Parameter of Interest | Response              |Explanatory                |
+|-----------------------|-----------------------|-----------------------    |
+| $\beta_1$             | Numeric               | Categorical and/or Numeric|
+
+</div>
