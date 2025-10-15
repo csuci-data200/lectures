@@ -1,0 +1,32 @@
+---
+title: "Lab 8: Frequentist Inference"
+format:
+  html:
+    embed-resources: true
+---
+
+Solve this homework assignment using frequentist principles.
+
+University of California conducts Undergraduate Experience Survey (UCUES) every two years.
+In Fall 2022, there were 28,661 undergraduate students at UC Irvine and 5866 of these students responded to the following question on the survey.
+
+> Were the following very important in deciding your major?
+
+> Leads to a high paying job
+
+> Yes (3272 students) and No (2594 students)
+
+## Question 1 - Hypothesis Testing
+
+Write hypotheses using notation with $\pi$ to test the following statement.
+
+For majority of UCI students whether a major leads to a high paying job is an important part of their consideration when picking a major. Test the hypotheses. Make sure to report p value, decision, and conclusion.
+
+## Question 2 - Confidence Interval
+
+Build a 95% confidence interval for $\pi$ which represents the proportion of students for whom  whether a major leads to a high paying job is a very important part of their major decision process. Comment on whether the values in this interval are greater than $0.5$ or not. 
+
+
+## Question 3 - Check Conditions
+
+Check if conditions are met to be able to use the Central Limit Theorem.

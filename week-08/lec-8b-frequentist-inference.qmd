@@ -27,113 +27,6 @@ theme_set(theme_bw(base_size = 18))
 
 # Central Limit Theorem
 
-## Parameters of a normal distribution $N(\mu, \sigma^2)$
-
-
-```{r echo = FALSE, fig.align='center'}
-#| echo: false
-p1 <- 
-  ggplot(data = data.frame(x = c(0, 200)), aes(x)) +
-  stat_function(fun = dnorm, n = 1001, args = list(mean = 100, sd = 15)) + 
-  ylab("") +
-  labs(title = bquote(N(100, 15^2)))
-
-p2 <- 
-  ggplot(data = data.frame(x = c(0, 200)), aes(x)) +
-  stat_function(fun = dnorm, n = 1001, args = list(mean = 100, sd = 30)) + 
-  ylab("") +
-  labs(title = bquote(N(100, 30^2)))
-
-p3 <- 
-  ggplot(data = data.frame(x = c(0, 200)), aes(x)) +
-  stat_function(fun = dnorm, n = 1001, args = list(mean = 90, sd = 15)) + 
-  ylab("") +
-  labs(title = bquote(N(90, 15^2)))
-
-
-p4 <- 
-  ggplot(data = data.frame(x = c(0, 200)), aes(x)) +
-  stat_function(fun = dnorm, n = 1001, args = list(mean = 90, sd = 30)) + 
-  ylab("") +
-  labs(title = bquote(N(90, 30^2)))
-
-gridExtra::grid.arrange(p1, p2, p3, p4, ncol = 2, nrow = 2)
-```
-
-
-## Data
-
-```{r}
-#| echo: false
-lapd <- read_csv("../data/Police_Payroll.csv") |> 
-  janitor::clean_names() |>  
-  filter(year == 2018) |> 
-  select(base_pay)
-```
-
-We will be using payroll data from Los Angeles Police Department (LAPD) from 2018.
-
-
-```{r echo = TRUE}
-glimpse(lapd)
-```
-
-## Population Distribution
-
-```{r}
-#| echo: false
-lapd |>  
-  ggplot(aes(x = base_pay)) +
-  geom_histogram(binwidth = 5000) +
-  scale_x_continuous(labels = comma) +
-  theme(text = element_text(size = 20)) 
-  
-```
-
-## Population Mean
-
-We have data on everyone who worked for LAPD in the year 2018. So the distribution we just looked at is a population distribution. We can go ahead and calculate the population mean ( $\mu$ ).
-
-```{r}
-summarize(lapd, mean(base_pay))
-```
-
-## Population Standard Deviation
-
-We can calculate the population standard deviation ( $\sigma$ ).
-
-```{r}
-summarize(lapd, sd(base_pay))
-```
-
-##
-
-What if we did not have access to all this data? What would we do?
-
-. . .
-
-Rely on a sample!
-
-##
-
-```{r}
-#| echo: false
-pop_mean <- mean(lapd$base_pay)
-```
-
-##
-
-Let's assume we went ahead and took a (random) sample of LAPD staff and asked their salary information (and they report to us truthfully) and calculated a mean, would we find a mean of 85149.05? Why, why not?
-
-##
-
-Let's pretend we have never seen the data and we do not know the population parameter $\mu$. In fact this is usually what happens in real life. We do not have the population information but we do want to know a population __parameter__ (does not necessarily have to be the mean).
-
-. . .
-
-If we took a sample and calculated the sample mean, we would name this __point estimate__ of the parameter. 
-
-
 ##
 
 |                               | Parameter of Interest | Point Estimate / Sample Statistic |
@@ -143,105 +36,128 @@ If we took a sample and calculated the sample mean, we would name this __point e
 | Proportion                    | $\pi$                 | $p$                               |
 | Difference of Two Proportions | $\pi_1 - \pi_2$       | $p_1 - p_2$                       |
 
+## 
+```{r fig.height = 4, fig.align='center'}
+#| echo: false
+set.seed(7)
 
-## First Sample
+bike_prop <- 0.15
 
-We would like to know about $\mu$ but we cannot access the whole population.
+bike <- c(rep("yes", bike_prop*10000), rep("no", (1-bike_prop)*10000))
 
-A researcher takes a random sample of 20 LAPD staff and ask them about their base pay.
+pop <- tibble(bike)
+
+
+pop %>% 
+  ggplot() +
+  aes(x = bike, y = ..prop.., group = 1) +
+  geom_bar() +
+  labs(title = "Population Distribution")
+```
+
+Let $\pi$ represent the proportion of bike owners on campus then $\pi =$ `r bike_prop`. 
+
+Let's pretend we have never seen the data and we do not know the population parameter $\pi$. In fact this is usually what happens in real life. 
+
+- We do not have the population information but we do want to know a population __parameter__ (does not necessarily have to be the proportion).
 
 . . .
 
-```{r}
-sample_1 <- lapd |>  
-  sample_n(20) 
+- If we took a sample and calculated the sample mean, we would name this __point estimate__ of the parameter. 
 
-sample_1$base_pay
-```
 
-. . . 
+## Getting to sampling distribution of a proportion
 
-**Mean of first sample**, $\bar x_1$ = 
+$p_1$ - Proportion of first sample (n = 100)
 
 ```{r}
-mean(sample_1$base_pay)
+sample1 <- pop %>% 
+  sample_n(100) %>% 
+  count(bike) %>% 
+  mutate(prop = n/sum(n)) %>% 
+  filter(bike == "yes") %>% 
+  select(prop) %>% 
+  pull()
+
+sample1
 ```
 
-## Mean of second sample
+## Getting to sampling distribution of a proportion
 
-$\bar x_2$ = 
+$p_2$ -Proportion of second sample (n = 100)
 
 ```{r}
-sample_2 <- lapd |>  
-  sample_n(20) |>  
-  select(base_pay)
-
-mean(sample_2$base_pay)
+pop %>% 
+  sample_n(100) %>% 
+  count(bike) %>% 
+  mutate(prop = n/sum(n)) %>% 
+  filter(bike == "yes") %>% 
+  select(prop) %>% 
+  pull()
 ```
 
+## Getting to sampling distribution of a proportion
 
-## Mean of third sample
-
-$\bar x_3$ = 
+$p_3$ -Proportion of third sample (n = 100)
 
 ```{r}
-sample_3 <- lapd |>  
-  sample_n(20) |>  
-  select(base_pay)
-
-mean(sample_3$base_pay)
+pop %>% 
+  sample_n(100) %>% 
+  count(bike) %>% 
+  mutate(prop = n/sum(n)) %>% 
+  filter(bike == "yes") %>% 
+  select(prop) %>% 
+  pull()
 ```
 
-## 
-We could do this over and over again. Don't you worry! I did it.
+## Sampling Distribution of a Proportion across 10,000 samples
 
-I have taken 10,000 samples of size 200 (sample size of 20 is just too small) and calculated their mean. The following slide shows the distribution of the **sample means**.
-
-## Sampling Distribution of the Mean
-
-```{r warning = FALSE, cache = TRUE}
+```{r cache = TRUE}
 #| echo: false
-set.seed(123)
-sample_means <-vector()
+sample_props <- vector()
+
 
 for (i in 1:10000){
-    sample_means <- c(sample_means, mean(sample_n(lapd, 200)$base_pay))
+ 
+    sample <- pop %>% 
+    sample_n(100) 
+    
+     sample_props[i] <- min(prop.table(table(sample$bike)))
+  
+  
+  
 }
 
-sample_means_data <- data.frame(sample_means = sample_means)
-
+sample_props_data <- tibble(sample_props = sample_props)
 ```
 
-```{r warning = FALSE, message = FALSE}
+```{r}
 #| echo: false
-sample_means_data |>  
-  ggplot(aes(x = sample_means)) +
-  geom_histogram() +
-  labs(x = "Sample Means") +
-  scale_x_continuous(labels = comma) +
-  theme(text = element_text(size = 20))  +
-  geom_text(x = 0, y = 0, label = "bar(x)", parse = T)
-```
-
-## Sampling Distribution of the Mean
-
-```{r warning = FALSE, message = FALSE}
-#| echo: false
-population_mean <- mean(lapd$base_pay)
-
-sample_means_data |>  
-  ggplot(aes(x = sample_means)) +
-  geom_histogram() +
-  labs(x = "Sample Means") +
-  scale_x_continuous(labels = comma) +
-  theme(text = element_text(size = 20))  +
-  geom_text(x = 0, y = 0, label = "bar(x)", parse = T) +
-  geom_vline(xintercept = population_mean)
+sample_props_data %>% 
+  ggplot() +
+  aes(x = sample_props) +
+  geom_histogram(binwidth=0.01) +
+  geom_vline(xintercept = bike_prop, color= "#e56646") +
+  labs(x = "Sample proportions")
 ```
 
 ##
 
+If certain conditions are met then
+
+$$p \sim \text{approximately } N(\pi, \frac{\pi(1-\pi)}{n})$$
+
+##
+
 When certain conditions are met then:
+
+$$p \sim  \text{approximately } N(\pi,  \frac{\pi(1-\pi)}{n})$$
+
+. . .
+
+$$(p_1 - p_2) \sim \text{approximately } N((\pi_1 - \pi_2),  {\frac{\pi_1(1-\pi_1)}{n_1} + \frac{\pi_2(1-\pi_2)}{n_2}})$$
+
+. . .
 
 
 $$\bar x \sim \text{approximately }N( \mu, \frac{\sigma^2}{n})$$
@@ -250,13 +166,6 @@ $$\bar x \sim \text{approximately }N( \mu, \frac{\sigma^2}{n})$$
 
 $$(\bar x_1 - \bar x_2) \sim \text{approximately } N(\mu_1 - \mu_2, \frac{\sigma_1^2}{n_1}+ \frac{\sigma_2^2}{n_2})$$
 
-. . .
-
-$$p \sim  \text{approximately } N(\pi,  \frac{\pi(1-\pi)}{n})$$
-
-. . .
-
-$$(p_1 - p_2) \sim \text{approximately } N((\pi_1 - \pi_2),  {\frac{\pi_1(1-\pi_1)}{n_1} + \frac{\pi_2(1-\pi_2)}{n_2}})$$
 
 
 ## Central Limit Theorem (CLT)
@@ -280,12 +189,10 @@ Moving forward we will use CLT to make __inference__ about population parameters
 - Sampling distribution is never observed. 
 
 
-# Central Limit Theorem Review
 
-## Remembering CLT
+# Confidence Interval for a Proportion
 
-
-```{r fig.height = 4, fig.align='center'}
+```{r }
 #| echo: false
 set.seed(7)
 
@@ -294,61 +201,7 @@ bike_prop <- 0.15
 bike <- c(rep("yes", bike_prop * 10000), rep("no", (1 - bike_prop) * 10000))
 
 pop <- tibble(bike)
-
-
-pop %>% 
-  ggplot() +
-  aes(x = bike, y = ..prop.., group = 1) +
-  geom_bar() +
-  labs(title = "Population Distribution")
-
-
 ```
-
-Let $\pi$ represent the proportion of bike owners on campus then $\pi =$ `r bike_prop`. 
-
-
-## Getting to sampling distribution of a proportion
-
-$p_1$ - Proportion of first sample (n = 100)
-
-```{r}
-sample1 <- pop %>% 
-  sample_n(100) %>% 
-  count(bike) %>% 
-  mutate(prop = n/sum(n)) %>% 
-  filter(bike == "yes") %>% 
-  select(prop) %>% 
-  pull()
-
-sample1
-```
-
-$p_2$ -Proportion of second sample (n = 100)
-
-```{r}
-pop %>% 
-  sample_n(100) %>% 
-  count(bike) %>% 
-  mutate(prop = n/sum(n)) %>% 
-  filter(bike == "yes") %>% 
-  select(prop) %>% 
-  pull()
-```
-
-$p_3$ -Proportion of third sample (n = 100)
-
-```{r}
-pop %>% 
-  sample_n(100) %>% 
-  count(bike) %>% 
-  mutate(prop = n/sum(n)) %>% 
-  filter(bike == "yes") %>% 
-  select(prop) %>% 
-  pull()
-```
-
-##
 
 ```{r cache = TRUE}
 #| echo: false
@@ -369,28 +222,6 @@ for (i in 1:10000){
 sample_props_data <- tibble(sample_props = sample_props)
 ```
 
-
-
-## Sampling Distribution of a Proportion
-
-```{r}
-
-sample_props_data %>% 
-  ggplot() +
-  aes(x = sample_props) +
-  geom_histogram(binwidth=0.01) +
-  geom_vline(xintercept = bike_prop, color= "#e56646") +
-  labs(x = "Sample proportions")
-```
-
-##
-
-If certain conditions are met then
-
-$$p \sim \text{approximately } N(\pi, \frac{\pi(1-\pi)}{n})$$
-
-# Confidence Interval for a Proportion
-
 ## In Reality
 
 - We only have one sample and thus one point estimate of the population parameter. How can make use of it? 
@@ -402,7 +233,6 @@ $$p \sim \text{approximately } N(\pi, \frac{\pi(1-\pi)}{n})$$
 . . .
 
 - Second, even though we embrace the sample proportion as a point estimate of the population proportion, we will need to acknowledge that it has some error. 
-
 
 
 ## Standard Error
@@ -447,16 +277,17 @@ CI for a proportion = $p \pm \text {critical value} \times \sqrt{\frac{p(1-p)}{n
 z <- seq(-4, 4, by = 0.01)
 y <- dnorm(z)
 data <- tibble(z = z, y = y)
-qplot(z, y, data = data, 
-          geom = "line") +
-  geom_ribbon(data = subset(data, z > -1.96 & z <1.96),
-                  aes(ymax = y), 
-                  ymin = 0,
-                  fill = "#e56646", 
-                  colour = NA, 
-                  alpha = 0.5) +
+qplot(z, y, data = data, geom = "line") +
+  geom_ribbon(
+    data = subset(data, z > -1.96 & z <1.96),
+    aes(ymax = y),
+    ymin = 0,
+    fill = "#e56646", 
+    colour = NA, 
+    alpha = 0.5
+  ) +
   ylab("") +
-  scale_x_continuous(breaks = c(-1.96,0,1.96)) +
+  scale_x_continuous(breaks = c(-1.96, 0, 1.96)) +
   annotate(geom = "text", x = 0, y = 0.15, label = "95%") +
   annotate(geom = "text", x = 2.3, y = 0.01, label = "2.5%") +
   annotate(geom = "text", x = - 2.3, y = 0.01, label = "2.5%")
@@ -518,8 +349,7 @@ tibble(p = bike_prop, n = 1, lower_bound = 0.09637597, upper_bound = 0.243624) %
   aes(x = 0.17, y = n) +
   geom_point() +
   geom_errorbarh(aes(xmin = lower_bound, xmax = upper_bound, height = .01)) +
-  labs(y = " ",
-       x = " ") +
+  labs(y = " ", x = " ") +
   theme(axis.text.y = element_blank()) 
 ```
 
@@ -530,6 +360,7 @@ tibble(p = bike_prop, n = 1, lower_bound = 0.09637597, upper_bound = 0.243624) %
 I have taken 100 samples with $n = 100$, calculated the sample proportion, standard error, and 95% CI interval for each sample
 
 ```{r}
+#| echo: false
 set.seed(26)
 
 cv <- qnorm(0.025)
@@ -603,7 +434,7 @@ CI = $\text{point estimate} \pm \text { critical value} \times \text{standard er
 
 
 ```{r echo = TRUE}
-qnorm(0.05, mean = 0, sd = 1) # critical value for 90%CI
+qnorm(0.05, mean = 0, sd = 1) # critical value for 90% CI
 ```
 
 
@@ -635,7 +466,7 @@ CI = $\text{point estimate} \pm \text { critical value} \times \text{standard er
 
 
 ```{r echo = TRUE}
-qnorm(0.025, mean = 0, sd = 1) # critical value for 95%CI
+qnorm(0.025, mean = 0, sd = 1) # critical value for 95% CI
 ```
 
 
@@ -819,13 +650,13 @@ p + cv * se # upper bound of the CI
 
 . . . 
 
-- If we find any evidence against the null (e.g. a single pink cow) then we can conclude null is false. We say we **reject the null hypothesis**.
+- If we find any evidence against the null then we can conclude null is false. We say we **reject the null hypothesis**.
 
 . . .
 
 ##
 
-- If we do not find any evidence against the null (a single pink cow) then we fail to reject the null. We can keep searching for more evidence against the null (i.e. continue looking for a pink cow). We will never be able to say the null is true so we never accept the null. We **fail to reject the null**. All we can do is keep looking for a pink cow.
+- If we do not find any evidence against the null then we fail to reject the null. We can keep searching for more evidence against the null. We will never be able to say the null is true so we never accept the null. We **fail to reject the null**.
 
 
 
@@ -847,6 +678,7 @@ $H_0: \pi \leq 0.5$
 $H_A: \pi > 0.5$
 
 
+# Theoretical reasoning
 
 ## Assuming $H_0$ is True
 
@@ -881,6 +713,7 @@ $N(0.5, 0.0001644737)$
 ## The $H_0$ Sampling Distribution 
 
 ```{r}
+#| echo: false
 p <- seq(0.45, 0.55, by = 0.0001)
 y <- dnorm(p, mean = 0.5, sd = sqrt(0.5*0.5/1520))
 data <- tibble(p = p, y = y)
@@ -902,8 +735,8 @@ If the null is true, then it would be unlikely to observe extremely high or low 
 ## Sampling Distribution
 
 ```{r}
-
-se <- sqrt(0.5*0.5/1520)
+#| echo: false
+se <- sqrt(0.5 * 0.5 / 1520)
 p <- seq(0.1, 0.9, by = 0.0001)
 y <- dnorm(p, mean = 0.5, sd = se)
 data <- tibble(p = p, y = y)
@@ -927,8 +760,9 @@ If our sample proportion is "extreme" then so is 0.90, 0.91, 0.917, 0.9273423 et
 
 
 
+# Hypothesis tests in practice
 
-##
+## 
 
 
 If the $H_0$ is true what is the probability that we will observe an extremely high sample proportion?
@@ -937,15 +771,17 @@ If the $H_0$ is true what is the probability that we will observe an extremely h
 Probability of observing sample proportion of 0.83 and higher 
 
 ```{r echo=TRUE}
-pnorm(0.83, mean = 0.5, sd = 0.01282473, 
-      lower.tail = FALSE)
+p <- 0.83
+pi_null <- 0.5
+n <- 1520
+pnorm(p, mean = pi_null, sd = sqrt(pi_null * (1 - pi_null) / n), lower.tail = FALSE)
 ```
 
 P-value is the probability of observing a sample statistic at least as extreme as the one that has been observed if the null hypothesis were true.
 
 . . .
 
-If p-value is less than 0.05 we reject the null hypothesis. 
+We can use the cutoff of 0.05 to say the probability is low enough that we reject the null hypothesis. 
 
 
 ## Decision and Conclusion
@@ -954,18 +790,13 @@ In the Gallup survey the sample proportion was 0.83.
 
 . . .
 
-If the null hypothesis (
-$H_0 = \pi = 0.5$
-) were true, then it would be quite unlikely (p = $2.594241 \times 10^{-146}$) to observe a sample proportion that is at least extreme like the one we observed. We consider this "quite unlikely" since p < 0.05.
+If the null hypothesis ($H_0: \pi = 0.5$) were true, then it would be quite unlikely (p = $2.594241 \times 10^{-146}$) to observe a sample proportion that is at least extreme like the one we observed. 
 
-
-. . .
-
-Since we have observed the sample proportion of 0.83 then we reject the $H_0$.
+- We consider this "quite unlikely" since p < 0.05 and reject the $H_0$.
 
 . . .
 
-We conclude that the population proportion of Americans who approve allowing DACA immigrants to become citizens is higher than 0.5.
+- We conclude that the population proportion of Americans who approve allowing DACA immigrants to become citizens is higher than 0.5.
 
 
 ## Conditions
@@ -979,7 +810,7 @@ We conclude that the population proportion of Americans who approve allowing DAC
 `r fontawesome::fa(name = "check", fill = "#e56646")`Number of successes > 10
 
 ```{r echo = TRUE}
-0.83*1520
+0.83 * 1520
 ```
 
 :::
@@ -989,7 +820,7 @@ We conclude that the population proportion of Americans who approve allowing DAC
 `r fontawesome::fa(name = "check", fill = "#e56646")`Number of failures > 10
 
 ```{r echo = TRUE}
-(1-0.83)*1520
+(1 - 0.83) * 1520
 ```
 
 :::
