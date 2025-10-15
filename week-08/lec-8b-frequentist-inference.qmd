@@ -10,8 +10,6 @@ format:
     slide-number: true
 ---
 
-## 
-
 ```{r}
 #| echo: false
 options(scipen=0)
@@ -149,7 +147,7 @@ $$p \sim \text{approximately } N(\pi, \frac{\pi(1-\pi)}{n})$$
 
 ##
 
-When certain conditions are met then:
+If certain conditions are met then:
 
 $$p \sim  \text{approximately } N(\pi,  \frac{\pi(1-\pi)}{n})$$
 
