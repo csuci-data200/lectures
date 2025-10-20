@@ -1,0 +1,37 @@
+---
+title: "Data 200 Fall 202"
+format: html
+---
+
+## Syllabus
+
+- [Syllabus Section 1](https://docs.google.com/document/d/1iqrVrfYycfpV3MnY97QQmcw7qq57TDBKslZnU6VvFKU/edit?usp=sharing)
+- [Syllabus Section 2](https://docs.google.com/document/d/1Cby0ZkQw_200pjhHrvJRSAqfozQHzawbqlIGQKqU3cA/edit?usp=sharing)
+
+## Lectures
+
+- [Lecture 1a](https://csuci-data200.github.io/lectures/week-01/lecture-01a-introduction-to-class.html)
+
+- [Lecture 1b](https://csuci-data200.github.io/lectures/week-01/lecture-01b-introduction-to-toolkit.html)
+
+- Lecture 2a was a holiday.
+
+- [Lecture 2b](https://csuci-data200.github.io/lectures/week-02/lec-02b-describing-data-with-numbers.html)
+
+- [Lecture 3a](https://csuci-data200.github.io/lectures/week-03/lec-03a-data-viz-foundations.html)
+
+- [Lecture 3b](https://csuci-data200.github.io/lectures/week-03/lec-03b-data-viz-improvements.html)
+
+- [Lecture 4a](https://csuci-data200.github.io/lectures/week-04/lec-04a-data-wrangling1.html)
+
+- [Lecture 4b](https://csuci-data200.github.io/lectures/week-04/lec-04b-data-wrangling2)
+
+- [Lecture 5a](https://csuci-data200.github.io/lectures/week-05/lec-05a-data-wrangling3.html)
+
+- [Lecture 5b](https://csuci-data200.github.io/lectures/week-05/lec-05b-reproducible-workflow.html)
+
+- Week 6 was the individual project
+
+- [Lecture 7a](https://csuci-data200.github.io/lectures/week-07/lec-07a-inference-foundations.html)
+
+- [Lecture 7b](https://csuci-data200.github.io/lectures/week-07/lec-07b-bayesian-inference.html)
