@@ -644,22 +644,17 @@ p + cv * se # upper bound of the CI
 
 . . .
 
-- We look for evidence against the null.
+- We look for evidence against the null (p-value).
 
 . . . 
 
-- If we find any evidence against the null then we can conclude null is false. We say we **reject the null hypothesis**.
+- We make a decision (reject or fail to reject $H_0$)
+  - If we find any evidence against the null then we can conclude null is false. We say we **reject the null hypothesis**.
+  - If we do not find any evidence against the null then we fail to reject the null. We **fail to reject the null**.
 
 . . .
 
-##
-
-- If we do not find any evidence against the null then we fail to reject the null. We can keep searching for more evidence against the null. We will never be able to say the null is true so we never accept the null. We **fail to reject the null**.
-
-
-
-- We are searching for evidence against the null. 
-We are searching for evidence in the sample that may serve as an evidence against the null. 
+- Conclude in context
 
 
 
@@ -713,13 +708,10 @@ $N(0.5, 0.0001644737)$
 ```{r}
 #| echo: false
 p <- seq(0.45, 0.55, by = 0.0001)
-y <- dnorm(p, mean = 0.5, sd = sqrt(0.5*0.5/1520))
+y <- dnorm(p, mean = 0.5, sd = sqrt(0.5 * 0.5 / 1520))
 data <- tibble(p = p, y = y)
-qplot(p, y, data = data, 
-          geom = "line") +
-    ylab("") 
-
-
+qplot(p, y, data = data, geom = "line") +
+  ylab("") 
 ```
 
 
@@ -760,13 +752,25 @@ If our sample proportion is "extreme" then so is 0.90, 0.91, 0.917, 0.9273423 et
 
 # Hypothesis tests in practice
 
-## 
+## P-value
+
+> **P-value** is the probability of observing a sample statistic at least as extreme as the one that has been observed if the null hypothesis were true.
+
+. . .
+
+We can use the cutoff of 0.05 to say the probability is low enough that we reject the null hypothesis. 
+
+. . .
+
+We can use `pnorm()` to calculate p-value.
+
+## Calculating p-value
 
 
 If the $H_0$ is true what is the probability that we will observe an extremely high sample proportion?
 
 
-Probability of observing sample proportion of 0.83 and higher 
+Probability of observing sample proportion of 0.83 and higher: 
 
 ```{r echo=TRUE}
 p <- 0.83
@@ -775,26 +779,40 @@ n <- 1520
 pnorm(p, mean = pi_null, sd = sqrt(pi_null * (1 - pi_null) / n), lower.tail = FALSE)
 ```
 
-P-value is the probability of observing a sample statistic at least as extreme as the one that has been observed if the null hypothesis were true.
-
 . . .
 
-We can use the cutoff of 0.05 to say the probability is low enough that we reject the null hypothesis. 
+- If $H_A: \pi < ...$, you specify `lower.tail = TRUE`.
+- If $H_A: \pi > ...$, you specify `lower.tail = FALSE`.
 
 
-## Decision and Conclusion
+## Our results
 
 In the Gallup survey the sample proportion was 0.83. 
 
 . . .
 
-If the null hypothesis ($H_0: \pi = 0.5$) were true, then it would be quite unlikely (p = $2.594241 \times 10^{-146}$) to observe a sample proportion that is at least extreme like the one we observed. 
+If the null hypothesis were true, then it would be quite unlikely (p-value = $2.6 \times 10^{-146}$) to observe a sample proportion that is at least extreme like the one we observed. 
 
-- We consider this "quite unlikely" since p < 0.05 and reject the $H_0$.
+
+## Decision and Conclusion
+
+- **Decision:** It is quite unlikely that we would observe results as or more extreme as what we observed if the null were true, so we reject the $H_0$ (since p-value < 0.05).
 
 . . .
 
-- We conclude that the population proportion of Americans who approve allowing DACA immigrants to become citizens is higher than 0.5.
+- **Conclusion** We found evidence (p-value = $2.6 \times 10^{-146}$) that the population proportion of Americans who approve allowing DACA immigrants to become citizens is not less than 0.5.
+
+## Pretend Decision and Conclusion
+
+Let's pretend our p-value was actually 0.3, so we can see the other way we could conclude.
+
+. . .
+
+- **Decision:** It is not unlikely that we would observe results as or more extreme as what we observed if the null were true, so we fail to reject the $H_0$ (since p-value > 0.05).
+
+. . .
+
+- **Conclusion** We failed to find evidence (p-value = 0.3) that the population proportion of Americans who approve allowing DACA immigrants to become citizens is less than 0.5.
 
 
 ## Conditions
@@ -837,5 +855,5 @@ If the null hypothesis ($H_0: \pi = 0.5$) were true, then it would be quite unli
 1. Set hypotheses
 2. Identify Sampling Distribution of $H_0$  
 3. Calculate p-value  
-4. Make a Decision and a Conclusion.
+4. Make a Decision(reject or fail to reject $H_0$) and a Conclusion (explain your decision to someone that does not know statistics).
 

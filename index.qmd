@@ -5,7 +5,12 @@ format: html
 
 ## Announcements:
 
-**You do not need to do Question 6 on homework 7**. I said something incorrect in class, and the question is phrased confusingly. To clarify: when calculating p-values, whether we use the upper or lower tail is determined by the direction of our alternative hypothesis. If our alternative hypothesis is $H_A: \pi < ...$, then in `pnorm()` we would specify `lower.tail = TRUE`. If our alternative hypothesis is $H_A: \pi > ...$, then in `pnorm()` we would specify `lower.tail = FALSE`. 
+**You do not need to do Question 6 on homework 7**. I said something incorrect in class, and the question is phrased confusingly. To clarify: when calculating p-values, whether we use the upper or lower tail is determined by the direction of our alternative hypothesis. 
+
+- If our alternative hypothesis is $H_A: \pi < ...$, then in `pnorm()` we would specify `lower.tail = TRUE`. 
+- If our alternative hypothesis is $H_A: \pi > ...$, then in `pnorm()` we would specify `lower.tail = FALSE`. 
+
+You will not be asked to calculate or interpret p-values on the exam. This is a concept we need more practice with, and we will return to it after the midterm.
 
 ## Syllabus
 

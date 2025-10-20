@@ -830,21 +830,23 @@ Professor Catalina Medina
 </ul>
 <div class="fragment">
 <ul>
-<li>We look for evidence against the null.</li>
+<li>We look for evidence against the null (p-value).</li>
 </ul>
 </div>
 <div class="fragment">
 <ul>
+<li>We make a decision (reject or fail to reject <span class="math inline">\(H_0\)</span>)
+<ul>
 <li>If we find any evidence against the null then we can conclude null is false. We say we <strong>reject the null hypothesis</strong>.</li>
+<li>If we do not find any evidence against the null then we fail to reject the null. We <strong>fail to reject the null</strong>.</li>
+</ul></li>
 </ul>
 </div>
-</section>
-<section id="section-12" class="slide level2">
-<h2></h2>
+<div class="fragment">
 <ul>
-<li><p>If we do not find any evidence against the null then we fail to reject the null. We can keep searching for more evidence against the null. We will never be able to say the null is true so we never accept the null. We <strong>fail to reject the null</strong>.</p></li>
-<li><p>We are searching for evidence against the null. We are searching for evidence in the sample that may serve as an evidence against the null.</p></li>
+<li>Conclude in context</li>
 </ul>
+</div>
 </section>
 <section id="research-question" class="slide level2">
 <h2>Research Question</h2>
@@ -893,7 +895,7 @@ Professor Catalina Medina
 <h2>Sampling Distribution</h2>
 
 <img data-src="lec-8b-frequentist-inference_files/figure-revealjs/unnamed-chunk-27-1.png" width="960" class="r-stretch"></section>
-<section id="section-13" class="slide level2">
+<section id="section-12" class="slide level2">
 <h2></h2>
 <p>We want to know the probability of observing an extreme sample proportion like ours (p = 0.83) if the <span class="math inline">\(H_0\)</span> were true.</p>
 <div class="fragment">
@@ -905,10 +907,22 @@ Professor Catalina Medina
 <h1>Hypothesis tests in practice</h1>
 
 </section>
-<section id="section-14" class="slide level2">
-<h2></h2>
+<section id="p-value" class="slide level2">
+<h2>P-value</h2>
+<blockquote>
+<p><strong>P-value</strong> is the probability of observing a sample statistic at least as extreme as the one that has been observed if the null hypothesis were true.</p>
+</blockquote>
+<div class="fragment">
+<p>We can use the cutoff of 0.05 to say the probability is low enough that we reject the null hypothesis.</p>
+</div>
+<div class="fragment">
+<p>We can use <code>pnorm()</code> to calculate p-value.</p>
+</div>
+</section>
+<section id="calculating-p-value" class="slide level2">
+<h2>Calculating p-value</h2>
 <p>If the <span class="math inline">\(H_0\)</span> is true what is the probability that we will observe an extremely high sample proportion?</p>
-<p>Probability of observing sample proportion of 0.83 and higher</p>
+<p>Probability of observing sample proportion of 0.83 and higher:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a>p <span class="ot">&lt;-</span> <span class="fl">0.83</span></span>
 <span id="cb22-2"><a href=""></a>pi_null <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
@@ -918,23 +932,42 @@ Professor Catalina Medina
 <pre><code>[1] 2.594161e-146</code></pre>
 </div>
 </div>
-<p>P-value is the probability of observing a sample statistic at least as extreme as the one that has been observed if the null hypothesis were true.</p>
 <div class="fragment">
-<p>We can use the cutoff of 0.05 to say the probability is low enough that we reject the null hypothesis.</p>
+<ul>
+<li>If <span class="math inline">\(H_A: \pi &lt; ...\)</span>, you specify <code>lower.tail = TRUE</code>.</li>
+<li>If <span class="math inline">\(H_A: \pi &gt; ...\)</span>, you specify <code>lower.tail = FALSE</code>.</li>
+</ul>
+</div>
+</section>
+<section id="our-results" class="slide level2">
+<h2>Our results</h2>
+<p>In the Gallup survey the sample proportion was 0.83.</p>
+<div class="fragment">
+<p>If the null hypothesis were true, then it would be quite unlikely (p-value = <span class="math inline">\(2.6 \times 10^{-146}\)</span>) to observe a sample proportion that is at least extreme like the one we observed.</p>
 </div>
 </section>
 <section id="decision-and-conclusion" class="slide level2">
 <h2>Decision and Conclusion</h2>
-<p>In the Gallup survey the sample proportion was 0.83.</p>
-<div class="fragment">
-<p>If the null hypothesis (<span class="math inline">\(H_0: \pi = 0.5\)</span>) were true, then it would be quite unlikely (p = <span class="math inline">\(2.594241 \times 10^{-146}\)</span>) to observe a sample proportion that is at least extreme like the one we observed.</p>
 <ul>
-<li>We consider this “quite unlikely” since p &lt; 0.05 and reject the <span class="math inline">\(H_0\)</span>.</li>
+<li><strong>Decision:</strong> It is quite unlikely that we would observe results as or more extreme as what we observed if the null were true, so we reject the <span class="math inline">\(H_0\)</span> (since p-value &lt; 0.05).</li>
+</ul>
+<div class="fragment">
+<ul>
+<li><strong>Conclusion</strong> We found evidence (p-value = <span class="math inline">\(2.6 \times 10^{-146}\)</span>) that the population proportion of Americans who approve allowing DACA immigrants to become citizens is not less than 0.5.</li>
+</ul>
+</div>
+</section>
+<section id="pretend-decision-and-conclusion" class="slide level2">
+<h2>Pretend Decision and Conclusion</h2>
+<p>Let’s pretend our p-value was actually 0.3, so we can see the other way we could conclude.</p>
+<div class="fragment">
+<ul>
+<li><strong>Decision:</strong> It is not unlikely that we would observe results as or more extreme as what we observed if the null were true, so we fail to reject the <span class="math inline">\(H_0\)</span> (since p-value &gt; 0.05).</li>
 </ul>
 </div>
 <div class="fragment">
 <ul>
-<li>We conclude that the population proportion of Americans who approve allowing DACA immigrants to become citizens is higher than 0.5.</li>
+<li><strong>Conclusion</strong> We failed to find evidence (p-value = 0.3) that the population proportion of Americans who approve allowing DACA immigrants to become citizens is less than 0.5.</li>
 </ul>
 </div>
 </section>
@@ -974,7 +1007,7 @@ Professor Catalina Medina
 </li>
 <li>Calculate p-value<br>
 </li>
-<li>Make a Decision and a Conclusion.</li>
+<li>Make a Decision(reject or fail to reject <span class="math inline">\(H_0\)</span>) and a Conclusion (explain your decision to someone that does not know statistics).</li>
 </ol>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
