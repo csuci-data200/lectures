@@ -1,9 +1,13 @@
 ---
 title: "Data 200 Fall 202"
-format: html
+format: 
+  html:
+    toc: true
 ---
 
 ## Announcements:
+
+### Midterm
 
 **You do not need to do Question 6 on homework 7**. I said something incorrect in class, and the question is phrased confusingly. To clarify: when calculating p-values, whether we use the upper or lower tail is determined by the direction of our alternative hypothesis. 
 
@@ -11,6 +15,33 @@ format: html
 - If our alternative hypothesis is $H_A: \pi > ...$, then in `pnorm()` we would specify `lower.tail = FALSE`. 
 
 You will not be asked to calculate or interpret p-values on the exam. This is a concept we need more practice with, and we will return to it after the midterm.
+
+### Plot-a-thon events for extra credit
+
+There are two this week! Both are hybrid (in person and on Zoom) and free! Remember to receive extra credit I need you to write up a breif reflection.
+
+#### Plot-A-Thon Lunch & Learn: Visualizing with Tableau 
+
+- Led by Dr. Matt Zivot, Chief Information Officer at CSU Channel Islands
+- Date/Time:  Wednesday, October 22, 2025, 12:00-1:30pm
+- Conversation with Mic Farris (Trade Desk): 1:30-2:00pm
+- Location:  Broome 2680 (Zoom link provided through RSVP).
+- [RSVP FOR TABLEAU HERE](https://nam10.safelinks.protection.outlook.com/?url=https%3A%2F%2Fcsuci.qualtrics.com%2Fjfe%2Fform%2FSV_3yfs9J5AlelKvzM&data=05%7C02%7Ccatalina.medina%40csuci.edu%7C1dacef9a888a4b491e0908de0fe95d91%7Ce30f5bdb7f18435b84369d84aa7b96dd%7C1%7C0%7C638965692522650088%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=iHHjb7UgmfuEZ9EBzyPWBv%2B8QlT%2BajhalGqKi3%2BBn5M%3D&reserved=0)
+
+The Lunch & Learn workshop on Tableau focuses on how to use the tools provided by Tableau to make powerful data visualizations.  This workshop is led by CSUCI's Chief Information Officer, Dr. Matt Zivot.  For the first time, we're extending our workshop with an industry professional who can connect skills students learn with the workplace.  
+Students to hear from Mic Farris, Senior Director of Business Intelligence at the Trade Desk, a global company that helps advertisers program advertising campaigns.  He will speak to how Tableau is used in his company but there will be plenty of opportunity for Q & A! 
+Students who cannot attend the workshop for Tableau can enroll for the FREE Plot-A-Thon Canvas modules on the Plot-A-Thon website that walk them through the steps of downloading the free software as well as using the tools.
+Students attending should download the free version of Tableau before workshop.  Directions are provided when they RSVP.
+
+#### Data Visualization in the Age of AI (Industry Panel) 
+
+- With representation from the Trade Desk and Cydcor;
+- Moderator: Dr. Ekin Pehlivan, Professor of Marketing at CSU Channel Islands
+- Date/Time:  Wednesday, October 22, 2025, 4:00-5:00pm
+- Location:  Broome 1720 (Zoom link provided through RSVP).
+- [RSVP FOR DATAVIZ PANEL HERE](https://nam10.safelinks.protection.outlook.com/?url=https%3A%2F%2Fcsuci.qualtrics.com%2Fjfe%2Fform%2FSV_514lVc3h7LBQJIq&data=05%7C02%7Ccatalina.medina%40csuci.edu%7C1dacef9a888a4b491e0908de0fe95d91%7Ce30f5bdb7f18435b84369d84aa7b96dd%7C1%7C0%7C638965692522685110%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=HR4JVWUbEap%2Fzkt%2BYw9PruDJBbcoCSjNG6JNF%2B6Mhhc%3D&reserved=0)
+
+This workshop will provide students to hear from industry leaders on how the landscape of data visualization is changing with AI.  This is a **must attend** workshop for students and faculty interested in hearing industry perspectives and trends in the fields!  Speakers are on the flyer (see attachment).
 
 ## Syllabus
 
