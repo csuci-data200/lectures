@@ -23,8 +23,8 @@ format: html
 - Week 6 was the individual project
 - [Lecture 7a](https://csuci-data200.github.io/lectures/week-07/lec-07a-inference-foundations.html)
 - [Lecture 7b](https://csuci-data200.github.io/lectures/week-07/lec-07b-bayesian-inference.html)
-- [Lecture 8a](https://csuci-data200.github.io/lectures/week-07/lec-8a-bayesian-inference.html)
-- [Lecture 8b](https://csuci-data200.github.io/lectures/week-07/lec-8b-frequentist-inference.html)
+- [Lecture 8a](https://csuci-data200.github.io/lectures/week-08/lec-8a-bayesian-inference.html)
+- [Lecture 8b](https://csuci-data200.github.io/lectures/week-08/lec-8b-frequentist-inference.html)
 
 
 ## Practice midterm
