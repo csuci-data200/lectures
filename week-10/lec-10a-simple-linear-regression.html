@@ -742,14 +742,19 @@ $ smoke     &lt;int&gt; 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0,
 </section>
 <section id="least-squares-regression" class="slide level2">
 <h2>Least Squares Regression</h2>
-<p>The goal is to minimize the <strong>sum of squared residuals</strong>:</p>
+<p>There are different ways we could have fit a line to our data, we choose the one (<span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_1\)</span>) that minimizes the <strong>sum of squared residuals</strong>:</p>
 <p><span class="math display">\[e_1^2 + e_2^2 + ... + e_n^2\]</span></p>
-<p>The estimates <span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_1\)</span> that we get from <code>lm()</code> are for the line the minimizes the sum of squared residuals</p>
+<div class="fragment">
+<p><em>Why didn’t we choose to minimize</em></p>
+<p><span class="math display">\[e_1 + e_2 + ... + e_n?\]</span></p>
+</div>
 </section>
 <section id="inference-confidence-interval" class="slide level2">
 <h2>Inference: Confidence Interval</h2>
 <p>Recall that when we do statistics we don’t just want an estimate, we want some understanding of the uncertainty of our estimate (e.g., confidence interval)</p>
-<div class="fragment">
+</section>
+<section id="inference-confidence-interval-1" class="slide level2">
+<h2>Inference: Confidence Interval</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="fu">confint</span>(linear_baby_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -758,268 +763,16 @@ $ smoke     &lt;int&gt; 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0,
 gestation     0.4059083 0.5226169</code></pre>
 </div>
 </div>
-<p>Note that the 95% confidence interval for the slope does not contain zero and all the values in the interval are positive indicating a significant positive relationship between gestation and birth weight.</p>
-</div>
-</section></section>
-<section>
-<section id="conditions-for-linear-regression" class="title-slide slide level1 center">
-<h1>Conditions for Linear Regression</h1>
+<p>We expect a difference in birth weight between 0.41 and 0.52, for a 1 day increase in gestation, with 95% confidence.</p>
+<div class="fragment">
+<p>Note that the 95% confidence interval for the slope does not contain zero and all the values in the interval are positive</p>
 <ul>
-<li><p>Linearity</p></li>
-<li><p>Independence</p></li>
-<li><p>Constant Variance</p></li>
-<li><p>Normality of Residuals</p></li>
-</ul>
-</section>
-<section id="linearity-conition" class="slide level2">
-<h2>Linearity conition</h2>
-<div class="pull-left">
-<p><strong>Linear</strong></p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="lec-10a-simple-linear-regression_files/figure-revealjs/unnamed-chunk-16-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div class="pull-right">
-<p><strong>Non-linear</strong></p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="lec-10a-simple-linear-regression_files/figure-revealjs/unnamed-chunk-17-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="checking-linearity" class="slide level2">
-<h2>Checking linearity</h2>
-<div class="cell" data-fig-alight="center">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a><span class="fu">ggplot</span>(babies, <span class="fu">aes</span>(<span class="at">x =</span> gestation, <span class="at">y =</span> bwt)) <span class="sc">+</span></span>
-<span id="cb14-2"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb14-3"><a href=""></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="lec-10a-simple-linear-regression_files/figure-revealjs/unnamed-chunk-18-1.png" width="384" class="r-stretch"><p>These variables do appear to be weakly linearly related.</p>
-</section>
-<section id="independence" class="slide level2">
-<h2>Independence</h2>
-<p>Harder to check because we need to know how the data were collected.</p>
-<div class="fragment">
-<p>In the description of the dataset it says <em>[a study]considered all pregnancies between 1960 and 1967 among women in the Kaiser Foundation Health Plan in the San Francisco East Bay area.</em></p>
-</div>
-<div class="fragment">
-<p>It is possible that babies born in the same hospital may have similar birth weight.</p>
-<p>Correlated data examples: patients within hospitals, students within schools, people within families, time-series data.</p>
-</div>
-</section>
-<section id="variance-of-residuals" class="slide level2">
-<h2>Variance of residuals</h2>
-<div class="pull-left">
-<p><strong>Constant Variance</strong></p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="lec-10a-simple-linear-regression_files/figure-revealjs/unnamed-chunk-20-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div class="pull-right">
-<p><strong>Non-constant variance</strong></p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="lec-10a-simple-linear-regression_files/figure-revealjs/unnamed-chunk-21-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="checking-variance-of-residuals" class="slide level2">
-<h2>Checking variance of residuals</h2>
-<div class="cell" data-fig-alight="center">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>babies <span class="sc">|&gt;</span> </span>
-<span id="cb15-2"><a href=""></a>  modelr<span class="sc">::</span><span class="fu">add_residuals</span>(linear_baby_model) <span class="sc">|&gt;</span> </span>
-<span id="cb15-3"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gestation, <span class="at">y =</span> resid)) <span class="sc">+</span></span>
-<span id="cb15-4"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb15-5"><a href=""></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="lec-10a-simple-linear-regression_files/figure-revealjs/unnamed-chunk-22-1.png" width="384" class="r-stretch"><p>For gestation over 300 days there does appear to be less variance in residuals. This assumption does not appear to be met.</p>
-</section>
-<section id="normality-of-residuals" class="slide level2">
-<h2>Normality of residuals</h2>
-<div class="pull-left">
-<p><strong>Nearly normal</strong></p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="lec-10a-simple-linear-regression_files/figure-revealjs/unnamed-chunk-23-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div class="pull-right">
-<p><strong>Not normal</strong></p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="lec-10a-simple-linear-regression_files/figure-revealjs/unnamed-chunk-24-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="checking-normality-of-residuals" class="slide level2">
-<h2>Checking normality of residuals</h2>
-<div class="cell" data-fig-alight="center">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a>babies <span class="sc">|&gt;</span> </span>
-<span id="cb16-2"><a href=""></a>  modelr<span class="sc">::</span><span class="fu">add_residuals</span>(linear_baby_model) <span class="sc">|&gt;</span> </span>
-<span id="cb16-3"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> resid)) <span class="sc">+</span></span>
-<span id="cb16-4"><a href=""></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="lec-10a-simple-linear-regression_files/figure-revealjs/unnamed-chunk-25-1.png" width="384" class="r-stretch"><p>The residuals do appear to be normally distributed.</p>
-</section></section>
-<section>
-<section id="new-example-regressing-birth-weight-on-mothers-smoking" class="title-slide slide level1 center">
-<h1>New example: Regressing birth weight on mother’s smoking</h1>
-
-</section>
-<section id="section-3" class="slide level2">
-<h2></h2>
-<p>Birth weight regressed on mother’s smoking</p>
-<center>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Variable</th>
-<th>Symbol</th>
-<th>Relationship</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Birth weight</td>
-<td>y</td>
-<td>Response</td>
-<td>Numeric</td>
-</tr>
-<tr class="even">
-<td>Mother’s smoking</td>
-<td>x</td>
-<td>Explanatory</td>
-<td>Categorical</td>
-</tr>
-</tbody>
-</table>
-</center>
-<div class="fragment">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="fu">glimpse</span>(babies)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 1,236
-Columns: 8
-$ case      &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1…
-$ bwt       &lt;int&gt; 120, 113, 128, 123, 108, 136, 138, 132, 120, 143, 140, 144, …
-$ gestation &lt;int&gt; 284, 282, 279, NA, 282, 286, 244, 245, 289, 299, 351, 282, 2…
-$ parity    &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
-$ age       &lt;int&gt; 27, 33, 28, 36, 23, 25, 33, 23, 25, 30, 27, 32, 23, 36, 30, …
-$ height    &lt;int&gt; 62, 64, 64, 69, 67, 62, 62, 65, 62, 66, 68, 64, 63, 61, 63, …
-$ weight    &lt;int&gt; 100, 135, 115, 190, 125, 93, 178, 140, 125, 136, 120, 124, 1…
-$ smoke     &lt;int&gt; 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, …</code></pre>
-</div>
-</div>
-</div>
-</section>
-<section id="fitting-our-model" class="slide level2">
-<h2>Fitting our model</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>linear_baby_model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(bwt <span class="sc">~</span> smoke, <span class="at">data =</span> babies)</span>
-<span id="cb19-2"><a href=""></a><span class="fu">tidy</span>(linear_baby_model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 5
-  term        estimate std.error statistic  p.value
-  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-1 (Intercept)   123.       0.649    190.   0       
-2 smoke          -8.94     1.03      -8.65 1.55e-17</code></pre>
-</div>
-</div>
-<p><span class="math inline">\(\hat {y}_i = \hat{\beta}_0 + \hat{\beta}_1 x_i\)</span></p>
-<p><span class="math inline">\(\widehat{\text{Birth Weight}_i} = \hat{\beta}_0 + \hat{\beta}_1 \text{ smoke}_i\)</span></p>
-<p><span class="math inline">\(\widehat{\text{Birth Weight}_i} = 123 + (-8.94\text{ smoke}_i)\)</span></p>
-<div class="fragment">
-<p>-8.94 ounces is the expected difference in birth weight, comparing smoking mothers (<code>smoke</code> = 1) to non smoking mothers (<code>smoke</code> = 0).</p>
-</div>
-</section>
-<section id="predicting-with-our-model" class="slide level2">
-<h2>Predicting with our model</h2>
-<p>Expected bwt for a baby with a non-smoker mother</p>
-<p><span class="math inline">\(\widehat{\text{Birth Weight}_i} = 123 + (-8.94\text{ smoke}_i)\)</span></p>
-<p><span class="math inline">\(\widehat{\text{Birth Weight}_i} = 123 + (-8.94\times 0)\)</span></p>
-<p><span class="math inline">\(\widehat{\text{Birth Weight}_i} = 123\)</span></p>
-<div class="fragment">
-<p>Expected bwt for a baby with a smoker mother</p>
-<p><span class="math inline">\(\widehat{\text{Birth Weight}_i} = 123 + (-8.94\text{ smoke}_i)\)</span></p>
-<p><span class="math inline">\(\widehat{\text{Birth Weight}_i} = 123 + (-8.94\times 1)\)</span></p>
-<p><span class="math inline">\(\widehat{\text{Birth Weight}_i} = 114.06\)</span></p>
-</div>
-</section>
-<section id="predicting-with-our-model-1" class="slide level2">
-<h2>Predicting with our model</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a>new_data2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">smoke =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span>
-<span id="cb21-2"><a href=""></a></span>
-<span id="cb21-3"><a href=""></a><span class="fu">predict</span>(linear_baby_model2, <span class="at">newdata =</span> new_data2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>       1        2 
-123.0472 114.1095 </code></pre>
-</div>
-</div>
-</section>
-<section id="inference-with-our-model" class="slide level2">
-<h2>Inference with our model</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a><span class="fu">confint</span>(linear_baby_model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                2.5 %     97.5 %
-(Intercept) 121.77391 124.320430
-smoke       -10.96413  -6.911199</code></pre>
-</div>
-</div>
-<div class="fragment">
-<p>We estimate the expected difference in birth weight to be between -10.96 and -6.91 with 95% confidence, comparing smoking mothers to non smoking mothers.</p>
-</div>
-<div class="fragment">
-<p>Note that the confidence interval for the “slope”, <span class="math inline">\(\beta_1\)</span>, does not contain 0 and all the values in the interval are negative.</p>
-</div>
-</section>
-<section id="understanding-relationships" class="slide level2">
-<h2>Understanding Relationships</h2>
-<ul>
-<li><p>Just because we observe a significant relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, it does not mean that <span class="math inline">\(x\)</span> causes <span class="math inline">\(y\)</span>. <em>Correlation does not prove causation!</em></p></li>
-<li><p>Just because we observe a significant relationship in a sample that does not mean the findings will generalize to the population.</p></li>
-<li><p>For these we need to understand sampling and study design.</p></li>
+<li>indicating a statistically significant positive relationship between gestation and birth weight.</li>
 </ul>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
+</div>
 </div>
 </div>
 </section></section>

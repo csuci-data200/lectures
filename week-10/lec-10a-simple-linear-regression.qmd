@@ -394,303 +394,33 @@ $e_{148} =$ 160 - `r -10.1 + 0.464*300` =  `r 160 -(-10.1 + 0.464*300)`
 
 ## Least Squares Regression 
 
-The goal is to minimize the **sum of squared residuals**:
+There are different ways we could have fit a line to our data, we choose the one ($\hat{\beta}_0$ and $\hat{\beta}_1$) that minimizes the **sum of squared residuals**:
 
 $$e_1^2 + e_2^2 + ... + e_n^2$$
 
-The estimates $\hat{\beta}_0$ and $\hat{\beta}_1$ that we get from `lm()` are for the line the minimizes the sum of squared residuals
+. . .
+
+*Why didn't we choose to minimize*
+
+$$e_1 + e_2 + ... + e_n?$$
+
 
 ## Inference: Confidence Interval
 
 Recall that when we do statistics we don't just want an estimate, we want some understanding of the uncertainty of our estimate (e.g., confidence interval)
 
-. . .
+## Inference: Confidence Interval
 
 
 ```{r}
 confint(linear_baby_model)
 ```
 
-Note that the 95% confidence interval for the slope does not contain zero and all the values in the interval are positive indicating a significant positive relationship between gestation and birth weight.
-
-
-# Conditions for Linear Regression
-
-- Linearity
-
-- Independence
-
-- Constant Variance
-
-- Normality of Residuals 
-
-
-## Linearity conition
-
-:::{.pull-left}
-
-**Linear**
-```{r  echo = FALSE, message = FALSE}
-set.seed(84735)
-x <- seq(-2, 2, by = 0.01)
-y <- 4*x + 5 + rnorm(length(x), 0 , 1.5)
-
-data_good <- data.frame(x = x, y = y) |>   
-  sample_n(50)
-
-data_good |> 
-  ggplot() +
-  aes(x = x, y = y) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE)
-```
-
-:::
-
-:::{.pull-right}
-
-**Non-linear**
-
-```{r  echo = FALSE, message = FALSE}
-set.seed(84735)
-x <- seq(-2, 2, by = 0.01)
-y <- 3*x^2 + x + 5 + rnorm(length(x), 0 , 2)
-
-data_bad<- data.frame(x = x, y = y) |> 
-  sample_n(50)
-
-data_bad |> 
-  ggplot() +
-  aes(x = x, y = y) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE) +
-  stat_function(fun = function(x)3*x^2 + x + 5 )
-```
-
-:::
-
-## Checking linearity
-
-```{r}
-#| fig-alight: center
-#| fig-width: 4
-#| fig-height: 3
-
-ggplot(babies, aes(x = gestation, y = bwt)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE) 
-```
-
-These variables do appear to be weakly linearly related.
-
-
-## Independence
-
-Harder to check because we need to know how the data were collected.
+We expect a difference in birth weight between `r round(confint(linear_baby_model)["gestation", ], digits = 2)[1]` and `r round(confint(linear_baby_model)["gestation", ], digits = 2)[2]`, for a 1 day increase in gestation, with 95% confidence. 
 
 . . .
 
-In the description of the dataset it says _[a study]considered all pregnancies between 1960 and 1967 among women in the Kaiser Foundation Health Plan in the San Francisco East Bay area._
+Note that the 95% confidence interval for the slope does not contain zero and all the values in the interval are positive 
 
-. . .
+- indicating a statistically significant positive relationship between gestation and birth weight.
 
-It is possible that babies born in the same hospital may have similar birth weight.
-
-Correlated data examples: patients within hospitals, students within schools, people within families, time-series data. 
-
-
-## Variance of residuals
-
-:::{.pull-left}
-
-```{r}
-#| echo: false
-linear_model_good <- lm(y ~ x, data = data_good)
-
-data_good <- data_good |>
-  sample_n(50) |> 
-  modelr::add_residuals(linear_model_good)
-
-linear_model_bad <- lm(y ~ x, data = data_bad)
-
-data_bad <- data_bad |> 
-  modelr::add_residuals(linear_model_bad) 
-```
-
-
-**Constant Variance**
-
-```{r echo = FALSE, message = FALSE}
-data_good |> 
-  ggplot(aes(x = x, y = resid)) +
-  geom_point() +
-  geom_hline(yintercept = 0)
-```
-
-:::
-
-:::{.pull-right}
-
-**Non-constant variance**
-
-
-```{r echo = FALSE, message = FALSE}
-data_bad |> 
-  ggplot(aes(x = x, y = resid)) +
-  geom_point() +
-  geom_hline(yintercept = 0)
-```
-
-:::
-
-## Checking variance of residuals
-
-```{r}
-#| fig-alight: center
-#| fig-width: 4
-#| fig-height: 3
-
-babies |> 
-  modelr::add_residuals(linear_baby_model) |> 
-  ggplot(aes(x = gestation, y = resid)) +
-  geom_point() +
-  geom_hline(yintercept = 0, color = "blue")
-```
-
-For gestation over 300 days there does appear to be less variance in residuals. This assumption does not appear to be met.
-
-
-## Normality of residuals
-
-:::{.pull-left}
-
-**Nearly normal**
-
-```{r echo = FALSE, message = FALSE}
-data_good |> 
-  ggplot(aes(x = resid)) +
-  geom_density()
-```
-
-:::
-
-:::{.pull-right}
-
-**Not normal**
-
-
-```{r echo = FALSE, message = FALSE}
-data_bad |> 
-  ggplot(aes(x = resid)) +
-  geom_density()
-```
-
-:::
-
-## Checking normality of residuals
-
-```{r}
-#| fig-alight: center
-#| fig-width: 4
-#| fig-height: 3
-
-babies |> 
-  modelr::add_residuals(linear_baby_model) |> 
-  ggplot(aes(x = resid)) +
-  geom_density()
-```
-
-The residuals do appear to be normally distributed.
-
-
-# New example: Regressing birth weight on mother's smoking
-
-##
-
-Birth weight regressed on mother's smoking
-
-<center>
-
-
-| Variable | Symbol | Relationship | Type |
-|---|-------------|-----------------|---------|
-| Birth weight | y | Response | Numeric |
-| Mother's smoking | x | Explanatory | Categorical |
-
-</center>
-
-. . .
-
-```{r}
-glimpse(babies)
-```
-
-## Fitting our model
-
-```{r}
-linear_baby_model2 <- lm(bwt ~ smoke, data = babies)
-tidy(linear_baby_model2)
-```
-
-$\hat {y}_i = \hat{\beta}_0 + \hat{\beta}_1 x_i$
-
-$\widehat{\text{Birth Weight}_i} = \hat{\beta}_0 + \hat{\beta}_1 \text{ smoke}_i$
-
-$\widehat{\text{Birth Weight}_i} = 123 + (-8.94\text{ smoke}_i)$
-
-. . .
-
-`r round(linear_baby_model2$coefficients["smoke"], digits = 2)` ounces is the expected difference in birth weight, comparing smoking mothers (`smoke` = 1) to non smoking mothers (`smoke` = 0).
-
-## Predicting with our model
-
-Expected bwt for a baby with a non-smoker mother
-
-$\widehat{\text{Birth Weight}_i} = 123 + (-8.94\text{ smoke}_i)$
-
-$\widehat{\text{Birth Weight}_i} = 123 + (-8.94\times 0)$
-
-$\widehat{\text{Birth Weight}_i} = 123$
-
-. . .
-
-
-Expected bwt for a baby with a smoker mother
-
-$\widehat{\text{Birth Weight}_i} = 123 + (-8.94\text{ smoke}_i)$
-
-$\widehat{\text{Birth Weight}_i} = 123 + (-8.94\times 1)$
-
-$\widehat{\text{Birth Weight}_i} = 114.06$
-
-## Predicting with our model
-
-```{r}
-new_data2 <- data.frame(smoke = c(0, 1))
-
-predict(linear_baby_model2, newdata = new_data2)
-```
-
-
-## Inference with our model
-
-```{r}
-confint(linear_baby_model2)
-```
-
-. . .
-
-We estimate the expected difference in birth weight to be between `r round(confint(linear_baby_model2)["smoke",], digits = 2)[1]` and `r round(confint(linear_baby_model2)["smoke",], digits = 2)[2]` with 95% confidence, comparing smoking mothers to non smoking mothers.
-
-. . .
-
-Note that the confidence interval for the "slope", $\beta_1$, does not contain 0 and all the values in the interval are negative. 
-
-
-## Understanding Relationships
-
-- Just because we observe a significant relationship between $x$ and $y$, it does not mean that $x$ causes $y$. *Correlation does not prove causation!*
-
-- Just because we observe a significant relationship in a sample that does not mean the findings will generalize to the population. 
-
-- For these we need to understand sampling and study design. 
