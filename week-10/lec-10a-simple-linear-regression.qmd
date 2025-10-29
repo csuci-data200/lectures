@@ -424,3 +424,4 @@ Note that the 95% confidence interval for the slope does not contain zero and al
 
 - indicating a statistically significant positive relationship between gestation and birth weight.
 
+# Week 10 lab question 1-8

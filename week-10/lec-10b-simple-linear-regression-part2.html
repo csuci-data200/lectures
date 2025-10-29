@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="lec-10a-simple-linear-regression_files/libs/clipboard/clipboard.min.js"></script>
-<script src="lec-10a-simple-linear-regression_files/libs/quarto-html/tabby.min.js"></script>
-<script src="lec-10a-simple-linear-regression_files/libs/quarto-html/popper.min.js"></script>
-<script src="lec-10a-simple-linear-regression_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="lec-10a-simple-linear-regression_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="lec-10a-simple-linear-regression_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="lec-10a-simple-linear-regression_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="lec-10a-simple-linear-regression_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="lec-10b-simple-linear-regression-part2_files/libs/clipboard/clipboard.min.js"></script>
+<script src="lec-10b-simple-linear-regression-part2_files/libs/quarto-html/tabby.min.js"></script>
+<script src="lec-10b-simple-linear-regression-part2_files/libs/quarto-html/popper.min.js"></script>
+<script src="lec-10b-simple-linear-regression-part2_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="lec-10b-simple-linear-regression-part2_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="lec-10b-simple-linear-regression-part2_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="lec-10b-simple-linear-regression-part2_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="lec-10b-simple-linear-regression-part2_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.4.555">
 
   <meta name="author" content="Professor Catalina Medina">
-  <title>Data 200: Lecture 10a</title>
+  <title>Data 200: Lecture 10b</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="lec-10a-simple-linear-regression_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="lec-10a-simple-linear-regression_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="lec-10b-simple-linear-regression-part2_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="lec-10b-simple-linear-regression-part2_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -95,11 +95,11 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="lec-10a-simple-linear-regression_files/libs/revealjs/dist/theme/quarto.css">
-  <link href="lec-10a-simple-linear-regression_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="lec-10a-simple-linear-regression_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="lec-10a-simple-linear-regression_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="lec-10a-simple-linear-regression_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="lec-10b-simple-linear-regression-part2_files/libs/revealjs/dist/theme/quarto.css">
+  <link href="lec-10b-simple-linear-regression-part2_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="lec-10b-simple-linear-regression-part2_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="lec-10b-simple-linear-regression-part2_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="lec-10b-simple-linear-regression-part2_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -391,8 +391,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Data 200: Lecture 10a</h1>
-  <p class="subtitle">Simple Linear Regression</p>
+  <h1 class="title">Data 200: Lecture 10b</h1>
+  <p class="subtitle">Simple linear regression modeling conditions</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -403,8 +403,11 @@ Professor Catalina Medina
 </div>
 
 </section>
-<section id="data-babies-in-openintro-package" class="slide level2">
-<h2>Data <code>babies</code> in <code>openintro</code> package</h2>
+<section id="section" class="slide level2">
+<h2></h2>
+</section>
+<section id="recal-our-babies-data-in-openintro-package" class="slide level2">
+<h2>Recal our <code>babies</code> data in <code>openintro</code> package</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">library</span>(openintro)</span>
 <span id="cb1-2"><a href=""></a></span>
@@ -424,159 +427,57 @@ $ smoke     &lt;int&gt; 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0,
 </div>
 </div>
 </section>
-<section id="baby-weights" class="slide level2">
-<h2>Baby Weights</h2>
+<section id="we-fit-a-linear-regression-model" class="slide level2">
+<h2>We fit a linear regression model</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>linear_baby_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(bwt <span class="sc">~</span> gestation, <span class="at">data =</span> babies)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="we-used-the-model-for-predicting" class="slide level2">
+<h2>We used the model for predicting</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="co"># Define x value for data to predict with</span></span>
+<span id="cb4-2"><a href=""></a>new_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">gestation =</span> <span class="dv">250</span>)</span>
+<span id="cb4-3"><a href=""></a></span>
+<span id="cb4-4"><a href=""></a><span class="fu">predict</span>(linear_baby_model, <span class="at">newdata =</span> new_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       1 
+106.0015 </code></pre>
+</div>
+</div>
+</section>
+<section id="we-plotted-the-model-with-the-data" class="slide level2">
+<h2>We plotted the model with the data</h2>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="fu">ggplot</span>(</span>
-<span id="cb3-2"><a href=""></a>  babies,</span>
-<span id="cb3-3"><a href=""></a>  <span class="fu">aes</span>(<span class="at">x =</span> gestation, <span class="at">y =</span> bwt)</span>
-<span id="cb3-4"><a href=""></a>) <span class="sc">+</span></span>
-<span id="cb3-5"><a href=""></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">ggplot</span>(</span>
+<span id="cb6-2"><a href=""></a>  babies,</span>
+<span id="cb6-3"><a href=""></a>  <span class="fu">aes</span>(<span class="at">x =</span> gestation, <span class="at">y =</span> bwt)</span>
+<span id="cb6-4"><a href=""></a>) <span class="sc">+</span></span>
+<span id="cb6-5"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb6-6"><a href=""></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb6-7"><a href=""></a>    <span class="at">method =</span> <span class="st">"lm"</span>, </span>
+<span id="cb6-8"><a href=""></a>    <span class="at">se =</span> <span class="cn">FALSE</span></span>
+<span id="cb6-9"><a href=""></a>  ) <span class="sc">+</span></span>
+<span id="cb6-10"><a href=""></a>  <span class="fu">labs</span>(</span>
+<span id="cb6-11"><a href=""></a>    <span class="at">x =</span> <span class="st">"Gestation (days)"</span>,</span>
+<span id="cb6-12"><a href=""></a>    <span class="at">y =</span> <span class="st">"Birth weight (ounces)"</span></span>
+<span id="cb6-13"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="lec-10a-simple-linear-regression_files/figure-revealjs/unnamed-chunk-3-1.png" width="960"></p>
+<p><img data-src="lec-10b-simple-linear-regression-part2_files/figure-revealjs/unnamed-chunk-5-1.png" width="960"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="baby-weights-1" class="slide level2">
-<h2>Baby Weights</h2>
-<div class="cell columns column-output-location">
-<div class="column">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">ggplot</span>(</span>
-<span id="cb4-2"><a href=""></a>  babies,</span>
-<span id="cb4-3"><a href=""></a>  <span class="fu">aes</span>(<span class="at">x =</span> gestation, <span class="at">y =</span> bwt)</span>
-<span id="cb4-4"><a href=""></a>) <span class="sc">+</span></span>
-<span id="cb4-5"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb4-6"><a href=""></a>  <span class="fu">geom_smooth</span>(</span>
-<span id="cb4-7"><a href=""></a>    <span class="at">method =</span> <span class="st">"lm"</span>, </span>
-<span id="cb4-8"><a href=""></a>    <span class="at">se =</span> <span class="cn">FALSE</span></span>
-<span id="cb4-9"><a href=""></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="lec-10a-simple-linear-regression_files/figure-revealjs/unnamed-chunk-4-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<p><code>lm</code> stands for linear model<br>
-<code>se</code> stands for standard error</p>
-</section>
-<section id="section" class="slide level2">
-<h2></h2>
-<center>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Variable</th>
-<th>Symbol</th>
-<th>Relationship</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Birth weight</td>
-<td>y</td>
-<td>Response</td>
-<td>Numeric</td>
-</tr>
-<tr class="even">
-<td>Gestation</td>
-<td>x</td>
-<td>Explanatory</td>
-<td>Numeric</td>
-</tr>
-</tbody>
-</table>
-</center>
-</section>
-<section id="why-do-we-want-a-linear-model" class="slide level2">
-<h2>Why do we want a linear model?</h2>
-<div class="fragment">
-<p>Recall for the inference unit of our class, we wanted to have a model that represented the data well, so we could use that model to learn information.</p>
-</div>
-<div class="fragment">
-<p>A linear model is nice, when if fits the data well, because it is very understandable.</p>
-</div>
-</section>
-<section id="linear-equations-review" class="slide level2">
-<h2>Linear Equations Review</h2>
-<div class="pull-left">
-<p>Recall from your previous math classes</p>
-<p><span class="math inline">\(y = mx + b\)</span></p>
-<p>where <span class="math inline">\(m\)</span> is the slope and <span class="math inline">\(b\)</span> is the y-intercept</p>
-<p>e.g.&nbsp;<span class="math inline">\(y = 2x -1\)</span></p>
-</div>
-<div class="fragment">
-<div class="pull-right">
+<section id="we-looked-at-estimates-from-the-model" class="slide level2">
+<h2>We looked at estimates from the model</h2>
 <div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="lec-10a-simple-linear-regression_files/figure-revealjs/unnamed-chunk-5-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><em>Notice anything different between baby weights plot and this one?</em></p>
-</div>
-</div>
-</section>
-<section id="section-1" class="slide level2">
-<h2></h2>
-<div class="pull-left">
-<p><strong>Math</strong> class</p>
-<p><span class="math inline">\(y = b + mx\)</span></p>
-<ul>
-<li><span class="math inline">\(b\)</span> is y-intercept<br>
-</li>
-<li><span class="math inline">\(m\)</span> is slope<br>
-</li>
-</ul>
-</div>
-<div class="pull-left">
-<p><strong>Stats</strong> class</p>
-<p><span class="math inline">\(y_i = \beta_0 +\beta_1x_i + \epsilon_i\)</span></p>
-<ul>
-<li><span class="math inline">\(\beta_0\)</span> is <strong>y-intercept</strong></li>
-<li><span class="math inline">\(\beta_1\)</span> is <strong>slope</strong><br>
-</li>
-<li><span class="math inline">\(\epsilon_i\)</span> is <strong>randomness / “random noise”</strong><br>
-</li>
-<li><span class="math inline">\(i = 1, 2, ...n\)</span> identifier for each point</li>
-</ul>
-</div>
-<div class="fragment">
-<p>Note <span class="math inline">\(y_i = \beta_0 +\beta_1x_i + \epsilon_i\)</span> is the <strong>theoretical model</strong>. In reality we don’t have data for everything in our population, so we use a sample to get estimates for <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>.</p>
-</div>
-</section>
-<section id="section-2" class="slide level2">
-<h2></h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>linear_baby_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(bwt <span class="sc">~</span> gestation, <span class="at">data =</span> babies)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>We are fitting a linear regression model.</p>
-<ul>
-<li>the <code>lm()</code> function fits a linear regression model.</li>
-<li><code>lm</code> stands for linear model.</li>
-<li>Note that the variables are entered in y ~ x order.</li>
-</ul>
-</section>
-<section id="model-output" class="slide level2">
-<h2>Model output</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">library</span>(broom)</span>
-<span id="cb6-2"><a href=""></a></span>
-<span id="cb6-3"><a href=""></a><span class="fu">tidy</span>(linear_baby_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="fu">tidy</span>(linear_baby_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 5
   term        estimate std.error statistic  p.value
@@ -585,194 +486,243 @@ $ smoke     &lt;int&gt; 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0,
 2 gestation      0.464    0.0297     15.6  3.22e-50</code></pre>
 </div>
 </div>
-<div class="fragment">
-<p>General formula for fitted model:</p>
-<p><span class="math inline">\(\hat {y}_i = \hat{\beta}_0 + \hat{\beta}_1 x_i\)</span></p>
-</div>
-<div class="fragment">
-<p><em>The hat means it is an estimate!</em></p>
-</div>
-<div class="fragment">
-<p><strong>Fitted model</strong> (Context specific):</p>
-<p><span class="math inline">\(\widehat{\text{Birth Weight}_i} = -10.1 + 0.464\text{ gestation}_i\)</span></p>
-</div>
-</section>
-<section>
-<section id="we-can-use-our-model-for-prediction" class="title-slide slide level1 center">
-<h1>We can use our model for prediction!</h1>
-
-</section>
-<section id="expectedpredicted-birth-weight-for-a-baby-with-300-days-of-gestation" class="slide level2">
-<h2>Expected/predicted birth weight for a baby with 300 days of gestation</h2>
-<p><span class="math inline">\(\widehat{\text{Birth Weight}_i} = -10.1 + 0.464\text{ gestation}_i\)</span></p>
-<p><span class="math inline">\(\widehat{\text{Birth Weight}_i} = -10.1 + 0.464 ( 300)\)</span></p>
-<p><span class="math inline">\(\widehat{\text{Birth Weight}_i} =\)</span> 129.1</p>
-<p>For a baby with 300 days of gestation the expected birth weight is 129.1 ounces.</p>
-</section>
-<section id="expectedpredicted-birth-weight-for-a-baby-with-300-days-of-gestation-1" class="slide level2">
-<h2>Expected/predicted birth weight for a baby with 300 days of gestation</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="co"># Define x value for data to predict with</span></span>
-<span id="cb8-2"><a href=""></a>new_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">gestation =</span> <span class="dv">300</span>)</span>
-<span id="cb8-3"><a href=""></a></span>
-<span id="cb8-4"><a href=""></a><span class="fu">predict</span>(linear_baby_model, <span class="at">newdata =</span> new_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>       1 
-129.2146 </code></pre>
-</div>
-</div>
-
-<img data-src="lec-10a-simple-linear-regression_files/figure-revealjs/unnamed-chunk-9-1.png" class="quarto-figure quarto-figure-center r-stretch" width="576"></section>
-<section id="interpretation-of-estimates-general" class="slide level2">
-<h2>Interpretation of estimates: general</h2>
 <ul>
-<li><p><span class="math inline">\(\hat{\beta}_0\)</span> is the predicted/expected <span class="math inline">\(Y\)</span> value when <span class="math inline">\(X = 0\)</span>.</p></li>
-<li><p><span class="math inline">\(\hat{\beta}_1\)</span> is the difference in predicted/expected <span class="math inline">\(Y\)</span> value associated with a 1 unit increase in <span class="math inline">\(X\)</span></p></li>
-</ul>
-</section>
-<section id="interpretation-of-estimates-in-context" class="slide level2">
-<h2>Interpretation of estimates: in context</h2>
-<div class="pull-left">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="lec-10a-simple-linear-regression_files/figure-revealjs/unnamed-chunk-10-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><span class="math inline">\(\hat{\beta}_1 = 0.464\)</span> which means for one unit (day) increase in gestation period the expected increase in birth weight is 0.464 ounces.</p>
-</div>
-<div class="fragment">
-<div class="pull-right">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="lec-10a-simple-linear-regression_files/figure-revealjs/unnamed-chunk-11-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><span class="math inline">\(\hat{\beta}_0 = -10.1\)</span> which means for a gestation period of 0 days the expected birth weight is -10.1 ounces!!!!!!!! (does NOT make sense)</p>
-</div>
-</div>
-</section>
-<section id="extrapolation" class="slide level2">
-<h2>Extrapolation</h2>
-<ul>
-<li>There is no such thing as 0 days of gestation.</li>
+<li><p><span class="math inline">\(\hat{\beta}_1\)</span>: For a 1 unit (day) increase in gestation, we expect/predict a higher birth weight of 0.46 ounces.</p></li>
+<li><p><span class="math inline">\(\hat{\beta}_0\)</span>: We expect/predict babies with a gestation of 0 days to have a birth weight of -10.06….</p></li>
 </ul>
 <div class="fragment">
-<ul>
-<li>Birth weight cannot possibly be -10.1 ounces.</li>
-</ul>
+<p><span class="math inline">\(\beta_0\)</span> <em>typically doesn’t have meaning in context so we typically don’t worry about interpreting it.</em></p>
 </div>
-<div class="fragment">
-<ul>
-<li>Extrapolation happens when we use a model outside the range of the x-values that are observed. After all, we cannot really know how the model behaves (e.g.&nbsp;may be non-linear) outside of the scope of what we have observed.</li>
-</ul>
-</div>
-</section></section>
-<section>
-<section id="model-error" class="title-slide slide level1 center">
-<h1>Model Error</h1>
-
 </section>
-<section id="baby-number-148" class="slide level2">
-<h2>Baby number 148</h2>
-<p>Let’s consider a baby in our data and see how far/close the true birth weight is from the predicted birth weight.</p>
-<div class="fragment">
-<div class="pull-left">
+<section id="we-used-the-model-for-confidence-intervals" class="slide level2">
+<h2>We used the model for confidence intervals</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a>babies <span class="sc">|&gt;</span> </span>
-<span id="cb10-2"><a href=""></a>  <span class="fu">filter</span>(case <span class="sc">==</span> <span class="dv">148</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb10-3"><a href=""></a>  <span class="fu">select</span>(bwt, gestation)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 2
-    bwt gestation
-  &lt;int&gt;     &lt;int&gt;
-1   160       300</code></pre>
-</div>
-</div>
-</div>
-<div class="pull-right">
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="lec-10a-simple-linear-regression_files/figure-revealjs/unnamed-chunk-13-1.png" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="baby-148" class="slide level2">
-<h2>Baby #148</h2>
-<p><strong>Observed</strong></p>
-<p><span class="math inline">\(\text{Birth Weight}_{148} =\)</span> 160</p>
-<p><strong>Expected / Predicted</strong></p>
-<p><span class="math inline">\(\widehat{\text{Birth Weight}}_{148} = \hat{\beta}_0 +\hat{\beta}_1 \text{Gestation}_{148}\)</span></p>
-<p><span class="math inline">\(\widehat{\text{Birth Weight}}_{148} = -10.1 + 0.464\times300\)</span></p>
-<p><span class="math inline">\(\widehat{\text{Birth Weight}}_{148}\)</span> = 129.1</p>
-</section>
-<section id="residual-for-i-148" class="slide level2">
-<h2>Residual for <code>i = 148</code></h2>
-<div class="pull-left">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="lec-10a-simple-linear-regression_files/figure-revealjs/unnamed-chunk-14-1.png" class="quarto-figure quarto-figure-center" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div class="pull-right">
-<p><span class="math inline">\(\text{Birth Weight}_{148} = 160\)</span></p>
-<p><span class="math inline">\(\widehat{\text{Birth Weight}}_{148}\)</span> = 129.1</p>
-<p><strong>Residual:</strong></p>
-<p><span class="math inline">\(e_{i} = y_{i} - \hat y_{i}\)</span></p>
-<p><span class="math inline">\(e_{148} =\)</span> 160 - 129.1 = 30.9</p>
-</div>
-</section>
-<section id="least-squares-regression" class="slide level2">
-<h2>Least Squares Regression</h2>
-<p>There are different ways we could have fit a line to our data, we choose the one (<span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_1\)</span>) that minimizes the <strong>sum of squared residuals</strong>:</p>
-<p><span class="math display">\[e_1^2 + e_2^2 + ... + e_n^2\]</span></p>
-<div class="fragment">
-<p><em>Why didn’t we choose to minimize</em></p>
-<p><span class="math display">\[e_1 + e_2 + ... + e_n?\]</span></p>
-</div>
-</section>
-<section id="inference-confidence-interval" class="slide level2">
-<h2>Inference: Confidence Interval</h2>
-<p>Recall that when we do statistics we don’t just want an estimate, we want some understanding of the uncertainty of our estimate (e.g., confidence interval)</p>
-</section>
-<section id="inference-confidence-interval-1" class="slide level2">
-<h2>Inference: Confidence Interval</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="fu">confint</span>(linear_baby_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="fu">confint</span>(linear_baby_model, <span class="at">level =</span> <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                  2.5 %    97.5 %
 (Intercept) -26.3915884 6.2632199
 gestation     0.4059083 0.5226169</code></pre>
 </div>
 </div>
-<p>We expect a difference in birth weight between 0.41 and 0.52, for a 1 day increase in gestation, with 95% confidence.</p>
-<div class="fragment">
-<p>Note that the 95% confidence interval for the slope does not contain zero and all the values in the interval are positive</p>
+<p>95% Confidence Interval for <span class="math inline">\(\beta_1\)</span></p>
+<p>For a 1 unit (day) increase in gestation, we expect a higher birth weight between 0.41 and 0.52 ounces, with 95% confidence.</p>
+</section>
+<section>
+<section id="why-we-do-linear-regression" class="title-slide slide level1 center">
+<h1>Why we do linear regression</h1>
+<p>Let <span class="math inline">\(Y\)</span> the response variable (outcome of interest) and <span class="math inline">\(X\)</span> be the explanatory variable (explains changes in <span class="math inline">\(Y\)</span>)</p>
 <ul>
-<li>indicating a statistically significant positive relationship between gestation and birth weight.</li>
+<li><p>We could use more complicated models for <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span>, but more complicated typically means less understandable</p></li>
+<li><p>Linear regression is easily understandable</p></li>
+</ul>
+</section>
+<section id="simple-linear-regression-purpose-1" class="slide level2">
+<h2>Simple linear regression purpose 1:</h2>
+<p><strong>Prediction</strong> (aka “machine learning”)</p>
+<ul>
+<li><p>Predict expected value of <span class="math inline">\(Y\)</span>, using <span class="math inline">\(X\)</span>:</p>
+<ul>
+<li>To use our model on future data where only <span class="math inline">\(X\)</span> is known</li>
+</ul></li>
+</ul>
+</section>
+<section id="simple-linear-regression-purpose-2" class="slide level2">
+<h2>Simple linear regression purpose 2:</h2>
+<p><strong>Inference</strong></p>
+<ul>
+<li><p>Confidence interval for <span class="math inline">\(\beta_1\)</span>:</p>
+<ul>
+<li>To learn about the relationship between <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span></li>
+</ul></li>
+</ul>
+<div class="fragment">
+<ul>
+<li><p>Hypothesis test for <span class="math inline">\(\beta_1\)</span>: (<em>Not covered</em>)</p>
+<ul>
+<li>To test if there is a linear relationship between <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span> (numeric <span class="math inline">\(X\)</span>)</li>
+<li>To test if the mean of <span class="math inline">\(Y\)</span> differs for different <span class="math inline">\(X\)</span> (categorical <span class="math inline">\(X\)</span>)</li>
+</ul></li>
 </ul>
 </div>
 </section></section>
-<section id="week-10-lab-question-1-8" class="title-slide slide level1 center">
-<h1>Week 10 lab question 1-8</h1>
+<section>
+<section id="conditions-for-simple-linear-regression" class="title-slide slide level1 center">
+<h1>Conditions for Simple Linear Regression</h1>
+<p>Whether we do prediction or inference, we need to make sure our model is appropriate:</p>
+<ul>
+<li><p>Independence</p></li>
+<li><p>Linearity</p></li>
+<li><p>Constant Variance</p></li>
+<li><p>Normality of Residuals</p></li>
+</ul>
+</section>
+<section id="checking-conditions-for-simple-linear-regression" class="slide level2">
+<h2>Checking conditions for simple linear regression</h2>
+<ul>
+<li><p>Independence (need context)</p></li>
+<li><p>Linearity (plot residual)</p></li>
+<li><p>Constant Variance (plot residuals)</p></li>
+<li><p>Normality of Residuals (plot residuals)</p></li>
+</ul>
+</section>
+<section id="independence" class="slide level2">
+<h2>Independence</h2>
+<p>Independence of observations means knowing one observation should not give me information about another observation.</p>
+<p>Correlated data examples:</p>
+<ul>
+<li><p>Time-series data (aka collecting multiple observations on the same person)</p>
+<ul>
+<li>If I wanted to learn about typical body temperature, I wouldn’t want to collect multiple measurements from one person</li>
+</ul></li>
+</ul>
+</section>
+<section id="independence-1" class="slide level2">
+<h2>Independence</h2>
+<p>Correlated data examples continued:</p>
+<ul>
+<li><p>People within the same families</p>
+<ul>
+<li>If I wanted to estimate the proportion of families that eat dinner together, I wouldn’t record observations from people within the same family</li>
+</ul></li>
+<li><p>Students within the same class</p></li>
+<li><p>Patients from the same hospital</p></li>
+</ul>
+</section>
+<section id="checking-independence" class="slide level2">
+<h2>Checking Independence</h2>
+<p>Harder to check because we need to know how the data were collected.</p>
+<div class="fragment">
+<p>In the description of the dataset it says:</p>
+<blockquote>
+<p>[a study] considered all pregnancies between 1960 and 1967 among women in the Kaiser Foundation Health Plan in the San Francisco East Bay area.</p>
+</blockquote>
+</div>
+<div class="fragment">
+<p>If they all had the same doctor I would think this condition was not met</p>
+<ul>
+<li>Sometimes this requires a little research into the area to determine</li>
+</ul>
+</div>
+</section>
+<section id="linearity-conition" class="slide level2">
+<h2>Linearity conition</h2>
+<p>Recall residuals are the errors: <span class="math inline">\(e_i = y_i - \hat{y}_i\)</span></p>
+<p>Vocabulary: <span class="math inline">\(\hat{y}\)</span> = predicted <span class="math inline">\(y\)</span> = “fitted <span class="math inline">\(y\)</span>”</p>
+<div class="fragment">
+<div class="pull-left">
+<p><strong>Linear</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec-10b-simple-linear-regression-part2_files/figure-revealjs/unnamed-chunk-9-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Random =&gt; looks good</p>
+</div>
+<div class="pull-right">
+<p><strong>Non-linear</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec-10b-simple-linear-regression-part2_files/figure-revealjs/unnamed-chunk-10-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Pattern =&gt; Uncaptured pattern</p>
+</div>
+</div>
+</section>
+<section id="checking-linearity" class="slide level2">
+<h2>Checking linearity</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="fu">fortify</span>(linear_baby_model) <span class="sc">|&gt;</span> <span class="co"># Extracts residuals and predicted/fitted y</span></span>
+<span id="cb11-2"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid)) <span class="sc">+</span> </span>
+<span id="cb11-3"><a href=""></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="lec-10b-simple-linear-regression-part2_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"><p>Looks generally random, so linearity condition appears to be met.</p>
+</section>
+<section id="variance-of-residuals" class="slide level2">
+<h2>Variance of residuals</h2>
+<div class="pull-left">
+<p><strong>Constant Variance</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec-10b-simple-linear-regression-part2_files/figure-revealjs/unnamed-chunk-13-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="pull-right">
+<p><strong>Non-constant variance</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec-10b-simple-linear-regression-part2_files/figure-revealjs/unnamed-chunk-14-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="checking-variance-of-residuals" class="slide level2">
+<h2>Checking variance of residuals</h2>
+<div class="cell" data-fig-alight="center">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="fu">fortify</span>(linear_baby_model) <span class="sc">|&gt;</span> </span>
+<span id="cb12-2"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid)) <span class="sc">+</span> </span>
+<span id="cb12-3"><a href=""></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="lec-10b-simple-linear-regression-part2_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch"><p>The variance of the residuals does appear to be relatively constant. Nothing too concerning.</p>
+</section>
+<section id="normality-of-residuals" class="slide level2">
+<h2>Normality of residuals</h2>
+<div class="pull-left">
+<p><strong>Nearly normal</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec-10b-simple-linear-regression-part2_files/figure-revealjs/unnamed-chunk-16-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="pull-right">
+<p><strong>Not normal</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec-10b-simple-linear-regression-part2_files/figure-revealjs/unnamed-chunk-17-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="checking-normality-of-residuals" class="slide level2">
+<h2>Checking normality of residuals</h2>
+<div class="cell" data-fig-alight="center">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="fu">fortify</span>(linear_baby_model) <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> .resid)) <span class="sc">+</span> </span>
+<span id="cb13-3"><a href=""></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="lec-10b-simple-linear-regression-part2_files/figure-revealjs/unnamed-chunk-18-1.png" width="384" class="r-stretch"><p>The residuals do appear to be normally distributed.</p>
+</section></section>
+<section id="week-10-lab-question-9" class="title-slide slide level1 center">
+<h1>Week 10 lab question 9</h1>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
@@ -783,19 +733,19 @@ gestation     0.4059083 0.5226169</code></pre>
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="lec-10a-simple-linear-regression_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="lec-10b-simple-linear-regression-part2_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="lec-10a-simple-linear-regression_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="lec-10a-simple-linear-regression_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="lec-10a-simple-linear-regression_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="lec-10a-simple-linear-regression_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="lec-10a-simple-linear-regression_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="lec-10b-simple-linear-regression-part2_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="lec-10b-simple-linear-regression-part2_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="lec-10b-simple-linear-regression-part2_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="lec-10b-simple-linear-regression-part2_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="lec-10b-simple-linear-regression-part2_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="lec-10a-simple-linear-regression_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="lec-10a-simple-linear-regression_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="lec-10a-simple-linear-regression_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="lec-10a-simple-linear-regression_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="lec-10b-simple-linear-regression-part2_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="lec-10b-simple-linear-regression-part2_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="lec-10b-simple-linear-regression-part2_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="lec-10b-simple-linear-regression-part2_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
