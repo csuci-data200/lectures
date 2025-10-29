@@ -388,4 +388,77 @@ The residuals do appear to be normally distributed.
 
 # Week 10 lab question 9
 
+# Example: Elephant Mass
 
+::::{.columns}
+
+:::{.column width="50%"}
+Weighing elephants is not an easy task, but an elephant's mass can help inform about appropriate diet and medicine for elephants in captivity.
+
+:::
+
+:::{.column width="50%"}
+[![Elphants as San Diego Zoo](img/san-diego-zoo-elephant.jpg)](https://sandiegozoowildlifealliance.org/story-hub/zoonooz/social-giants){height=50%}
+
+:::
+::::
+
+. . .
+
+[Lalande et. al. 2022](https://doi.org/10.1111/jeb.14008) figured height could be a useful proxy for mass of elephants. 
+
+
+## Example: Elephant Mass by height
+
+The idea is to:
+
+1. Collect height and mass for a sample of elephants.
+2. Use that sample to fit a model
+3. Predicting mass from height using model.
+
+## 1. Collect sample
+
+```{r}
+elephants <- read_csv(
+  "http://csuci-data200.github.io/lectures/data/elephants.csv",
+  show_col_types = FALSE
+)
+
+glimpse(elephants)
+```
+
+## 2. Fit model (visually)
+
+```{r}
+#| fig-align: center
+#| fig-height: 3
+#| fig-width: 5
+ggplot(elephants, aes(x = Height, y = Mass)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(x = "Height (cm)", y = "Mass (kg)")
+```
+
+## 2. Fit model (numerically)
+
+```{r}
+elephant_model <- lm(Mass ~ Height, data = elephants)
+```
+
+
+
+## 3. Predict an elephant's mass from its height
+
+For a new elephant with an unknown mass, if its height is 250 cm, what would you predict its mass is? 
+
+. . .
+
+```{r}
+new_data <- data.frame(Height = 250)
+
+predict(elephant_model, newdata = new_data)
+```
+
+. . .
+
+We predict an elephant of height 250 cm to have a mass of 3235.5 kg.

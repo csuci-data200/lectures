@@ -723,12 +723,96 @@ gestation     0.4059083 0.5226169</code></pre>
 </section></section>
 <section id="week-10-lab-question-9" class="title-slide slide level1 center">
 <h1>Week 10 lab question 9</h1>
+
+</section>
+
+<section>
+<section id="example-elephant-mass" class="title-slide slide level1 center">
+<h1>Example: Elephant Mass</h1>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Weighing elephants is not an easy task, but an elephant’s mass can help inform about appropriate diet and medicine for elephants in captivity.</p>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="https://sandiegozoowildlifealliance.org/story-hub/zoonooz/social-giants" height="50%"><img data-src="img/san-diego-zoo-elephant.jpg" alt="Elphants as San Diego Zoo"></a></p>
+<figcaption>Elphants as San Diego Zoo</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p><a href="https://doi.org/10.1111/jeb.14008">Lalande et. al.&nbsp;2022</a> figured height could be a useful proxy for mass of elephants.</p>
+</div>
+</section>
+<section id="example-elephant-mass-by-height" class="slide level2">
+<h2>Example: Elephant Mass by height</h2>
+<p>The idea is to:</p>
+<ol type="1">
+<li>Collect height and mass for a sample of elephants.</li>
+<li>Use that sample to fit a model</li>
+<li>Predicting mass from height using model.</li>
+</ol>
+</section>
+<section id="collect-sample" class="slide level2">
+<h2>1. Collect sample</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a>elephants <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb14-2"><a href=""></a>  <span class="st">"http://csuci-data200.github.io/lectures/data/elephants.csv"</span>,</span>
+<span id="cb14-3"><a href=""></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span></span>
+<span id="cb14-4"><a href=""></a>)</span>
+<span id="cb14-5"><a href=""></a></span>
+<span id="cb14-6"><a href=""></a><span class="fu">glimpse</span>(elephants)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1,470
+Columns: 5
+$ Sex    &lt;chr&gt; "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B"…
+$ Age    &lt;dbl&gt; 58.96235, 59.03901, 59.12389, 59.29090, 59.37303, 59.45791, 59.…
+$ Chest  &lt;dbl&gt; 359, 359, 359, 361, 360, 359, 361, 357, 360, 364, 355, 355, 325…
+$ Height &lt;dbl&gt; 252, 252, 252, 253, 255, 254, 255, 256, 254, 255, 251, 257, 258…
+$ Mass   &lt;dbl&gt; 3244, 3182, 3239, 3336, 3317, 3357, 3358, 3155, 3334, 3357, 324…</code></pre>
+</div>
+</div>
+</section>
+<section id="fit-model-visually" class="slide level2">
+<h2>2. Fit model (visually)</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a><span class="fu">ggplot</span>(elephants, <span class="fu">aes</span>(<span class="at">x =</span> Height, <span class="at">y =</span> Mass)) <span class="sc">+</span></span>
+<span id="cb16-2"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb16-3"><a href=""></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb16-4"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Height (cm)"</span>, <span class="at">y =</span> <span class="st">"Mass (kg)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="lec-10b-simple-linear-regression-part2_files/figure-revealjs/unnamed-chunk-20-1.png" class="quarto-figure quarto-figure-center r-stretch" width="480"></section>
+<section id="fit-model-numerically" class="slide level2">
+<h2>2. Fit model (numerically)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>elephant_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Mass <span class="sc">~</span> Height, <span class="at">data =</span> elephants)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="predict-an-elephants-mass-from-its-height" class="slide level2">
+<h2>3. Predict an elephant’s mass from its height</h2>
+<p>For a new elephant with an unknown mass, if its height is 250 cm, what would you predict its mass is?</p>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a>new_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Height =</span> <span class="dv">250</span>)</span>
+<span id="cb18-2"><a href=""></a></span>
+<span id="cb18-3"><a href=""></a><span class="fu">predict</span>(elephant_model, <span class="at">newdata =</span> new_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       1 
+3235.452 </code></pre>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p>We predict an elephant of height 250 cm to have a mass of 3235.5 kg.</p>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
 </div>
-</section>
+</div>
+</section></section>
     </div>
   </div>
 
