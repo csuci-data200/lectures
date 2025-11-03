@@ -253,8 +253,8 @@ fortify(penguins_model_3) |>
 
 Common transformations to correct for non constant variance of residuals:
 
-- $log(Y)$, $log(X)$
-- $\sqrt{Y}, \sqrt{X})$
+- $log(Y)$
+- $\sqrt{Y}$
 
 ##
 
