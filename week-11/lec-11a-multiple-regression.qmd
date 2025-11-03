@@ -88,7 +88,7 @@ $$y_i = \beta_0 +\beta_1x_{1i} + \epsilon_i$$
 
 **Multiple** linear regression = multiple $X$'s
 
-$$y_i = \beta_0 +\beta_1x_{1i} + \beta_1 x_{2i} + ... + \beta_p x_{pi} \epsilon_i$$
+$$y_i = \beta_0 +\beta_1x_{1i} + \beta_2 x_{2i} + ... + \beta_p x_{pi} \epsilon_i$$
 
 ##
 
@@ -216,7 +216,7 @@ Let's also consider body mass type in our model
 It gets harder/impossible to visualize our model the more predictors we have. Instead we can still look at a plot of $Y$ and one $X$ to see if we think they are linearly related.
 
 ```{r}
-ggplot(penguins, aes(x = flipper_len, y = body_mass)) + 
+ggplot(penguins, aes(x = body_mass, y = bill_dep)) + 
   geom_point()
 ```
 
