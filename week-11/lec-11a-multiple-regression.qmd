@@ -251,10 +251,9 @@ fortify(penguins_model_3) |>
 
 # Transformations
 
-Common transformations:
+Common transformations to correct for non constant variance of residuals:
 
 - $log(Y)$, $log(X)$
-- $1/Y$, $1/X$
 - $\sqrt{Y}, \sqrt{X})$
 
 ##
@@ -314,7 +313,7 @@ Let's also consider body mass type in our model
 
 . . .
 
-Note in `R` log is natural log(), meaning *\text{log}_e()*
+Note in `R` log() is natural log() = \ln() = $\text{log}_e$()
 
 ## 
 
@@ -354,6 +353,8 @@ Did we make a better model?
 - Adjusted $R^2$
 - Root Mean Square Error (RMSE)
 
+*For models that meet the conditions of linear regression.*
+
 ## $R^2$
 
 $R^2$ is the percent of variation on $Y$ explained by $X$
@@ -373,7 +374,7 @@ glance(penguins_model_4)
 
 Model 4 explains 83% of the variation in log(Bill Depth).
 
-Model 3 explains 81% of the variation in log(Bill Depth).
+Model 3 explains 81% of the variation in Bill Depth.
 
 So model 4 appears to be a slightly better fit for the data.
 
@@ -388,17 +389,13 @@ A more responsible metric to use is Adjusted $R^2$, which account for the number
 When comparing models with multiple predictors we rely on Adjusted R-squared.
 
 
-:::{.pull-left}
 ```{r}
 glance(penguins_model_2)
 ```
-:::
 
-:::{.pull-right}
 ```{r}
 glance(penguins_model_4)
 ```
-:::
 
 Adjusted $R^2$ supports that model 4 (Adj $R^2$ = `r round(glance(penguins_model_4)$adj.r.squared, digits = 2)`) is a better fit for our data than model 2 (Adj $R^2$ = `r round(glance(penguins_model_2)$adj.r.squared, digits = 2)`).
 

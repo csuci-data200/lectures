@@ -696,10 +696,9 @@ Professor Catalina Medina
 <section>
 <section id="transformations" class="title-slide slide level1 center">
 <h1>Transformations</h1>
-<p>Common transformations:</p>
+<p>Common transformations to correct for non constant variance of residuals:</p>
 <ul>
 <li><span class="math inline">\(log(Y)\)</span>, <span class="math inline">\(log(X)\)</span></li>
-<li><span class="math inline">\(1/Y\)</span>, <span class="math inline">\(1/X\)</span></li>
 <li><span class="math inline">\(\sqrt{Y}, \sqrt{X})\)</span></li>
 </ul>
 </section>
@@ -790,7 +789,7 @@ Professor Catalina Medina
 </table>
 </center>
 <div class="fragment">
-<p>Note in <code>R</code> log is natural log(), meaning *_e()*</p>
+<p>Note in <code>R</code> log() is natural log() = () = <span class="math inline">\(\text{log}_e\)</span>()</p>
 </div>
 </section>
 <section id="section-11" class="slide level2">
@@ -840,6 +839,7 @@ Professor Catalina Medina
 <li>Adjusted <span class="math inline">\(R^2\)</span></li>
 <li>Root Mean Square Error (RMSE)</li>
 </ul>
+<p><em>For models that meet the conditions of linear regression.</em></p>
 </section>
 <section id="r2" class="slide level2">
 <h2><span class="math inline">\(R^2\)</span></h2>
@@ -872,7 +872,7 @@ Professor Catalina Medina
 </div>
 </div>
 <p>Model 4 explains 83% of the variation in log(Bill Depth).</p>
-<p>Model 3 explains 81% of the variation in log(Bill Depth).</p>
+<p>Model 3 explains 81% of the variation in Bill Depth.</p>
 <p>So model 4 appears to be a slightly better fit for the data.</p>
 </section>
 <section id="adjusted-r2" class="slide level2">
@@ -883,7 +883,6 @@ Professor Catalina Medina
 <section id="adjusted-r-squared" class="slide level2">
 <h2>Adjusted R-Squared</h2>
 <p>When comparing models with multiple predictors we rely on Adjusted R-squared.</p>
-<div class="pull-left">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a><span class="fu">glance</span>(penguins_model_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -894,8 +893,6 @@ Professor Catalina Medina
 # ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 </div>
 </div>
-</div>
-<div class="pull-right">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a><span class="fu">glance</span>(penguins_model_4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -904,7 +901,6 @@ Professor Catalina Medina
       &lt;dbl&gt;         &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
 1     0.828         0.825 0.0490      404. 3.50e-127     4   548. -1085. -1062.
 # ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
-</div>
 </div>
 </div>
 <p>Adjusted <span class="math inline">\(R^2\)</span> supports that model 4 (Adj <span class="math inline">\(R^2\)</span> = 0.83) is a better fit for our data than model 2 (Adj <span class="math inline">\(R^2\)</span> = 0.75).</p>

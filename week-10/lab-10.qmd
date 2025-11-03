@@ -1,0 +1,65 @@
+---
+title: "Data 200: Week 10 Lab"
+subtitle: "Simple linear regression"
+author: "Your name here"
+format: html
+---
+
+*Please change the author name to your own.*
+
+The `bayesrules` and `tidyverse` packages have already been installed for you. To avoid memory issues please do not install them again.
+
+# Bike share data
+
+We have data on bike ridership among registered members of the Capital Bikeshare service in Washington, D.C. rentals by weather.
+
+```{r}
+library(tidyverse)
+library(bayesrules)
+
+data("bikes")
+```
+
+## Question 1
+
+Type ?bikes into the console to view the data documentation. What is the description of the variables called `rides` and `temp_actual`?
+
+
+## Question 2
+
+We want to explore if we can use the temperature to predict the number of daily bikeshare rides we will get. Produce a plot to visualize the relationship between `rides` and `temp_actual`. 
+
+
+## Question 3
+
+Reproduce your plot from question 2, but now add a linear regression line to the plot. Does it appear to model your data well?
+
+
+## Question 4
+
+Fit a linear model to regress `rides` on `temp_actual`, saving your model as `bike_model`. 
+
+
+## Question 5
+
+We will assume that the conditions have been met for our linear model. Specify the fitted model.
+
+
+## Question 6
+
+Interpret each coefficient estimate in context. Does the intercept have a meaningful interpretation in this context?
+
+
+## Question 7
+
+Provide the 95% confidence interval for the slope estimate, and an interpretation of the interval in context.
+
+
+## Question 8
+
+What daily number of rides would our model predict for a day where the temperature is 60 degrees Fahrenheit?
+
+## Question 9
+
+Check if the conditions for simple linear regression have been met.
+
