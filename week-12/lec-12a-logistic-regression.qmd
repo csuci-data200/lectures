@@ -361,7 +361,7 @@ model_r <- glm(
 tidy(model_r)
 ```
 
-$log(\frac{\hat \pi_i}{1-\hat \pi_i}) = -2.67 + 0.438\times racewhite_i$
+$log(\frac{\hat \pi_i}{1-\hat \pi_i}) = -2.67 + 0.438\times I(race_i = white)$
 
 ## Pause
 
@@ -418,7 +418,9 @@ logit callback = log(odds call back) = `r round(intercept, digits = 2)` + `r rou
 
 ## From logit to odds
 
-Logit for a Candidate with 1 year of experience (rounded equation)
+Model: logit callback = `r round(intercept, digits = 2)` + `r round(slope, digits = 4)` Years Experience
+
+Logit for a Candidate with 1 year of experience 
 
 $-2.76 +  0.0391 \times 1$
 
@@ -426,11 +428,11 @@ $-2.76 +  0.0391 \times 1$
 
 Odds for a Candidate with 1 year of experience
 
-$odds = e^{logit}$
+$e^{logit} = odds = \frac{\pi_i}{1 - \pi_i}$
 
-$\frac{\pi_i}{1-\pi_i} = e^{log(\frac{\pi_i}{1-\pi_i})}$
+so
 
-$\frac{\hat\pi_i}{1-\hat\pi_i} = e^{-2.76 + 0.0391 \times 1}$
+Odds $= \frac{\hat\pi_i}{1-\hat\pi_i} = e^{-2.76 + 0.0391 \times 1}$
 
 
 
@@ -438,9 +440,13 @@ $\frac{\hat\pi_i}{1-\hat\pi_i} = e^{-2.76 + 0.0391 \times 1}$
 
 $\pi_i = \frac{odds}{1+odds}$
 
-$\pi_i = \frac{\frac{\pi_i}{1-\pi_i}}{1+\frac{\pi_i}{1-\pi_i}}$
-
 $\hat\pi_i = \frac{e^{-2.76 + 0.0391 \times 1}}{1+e^{-2.76 + 0.0391 \times 1}} = 0.0618$
+
+```{r}
+exp(-2.76 + 0.0391 * 1) / (1 + exp(-2.76 + 0.0391 * 1))
+```
+
+. . .
 
 Note you can use `exp()` function in R for exponentiating number e.
 
@@ -566,9 +572,9 @@ model_g <- glm(low_bwt ~ gestation, data = babies, family = "binomial")
 tidy(model_g)
 ```
 
-$\hat p = \frac{\exp(b_0 +b_1x)}{1+\exp(b_0 + b_1x)}$
+$\hat{\pi} = \frac{\exp(b_0 +b_1x)}{1+\exp(b_0 + b_1x)}$
 
-$\hat p$ when gestation is 284 oz = $\frac{\exp(17.5 -0.0758 \cdot 284)}{1+\exp(17.5 -0.0758 \cdot 284)} = \frac{\exp(-4.0272)}{1+ \exp(-4.0272)} = 0.01751203$
+$\hat{\pi}$ when gestation is 284 oz = $\frac{\exp(17.5 -0.0758 \cdot 284)}{1+\exp(17.5 -0.0758 \cdot 284)} = \frac{\exp(-4.0272)}{1+ \exp(-4.0272)} = 0.01751203$
 
 . . .
 
@@ -580,7 +586,7 @@ $\hat p$ when gestation is 284 oz = $\frac{\exp(17.5 -0.0758 \cdot 284)}{1+\exp(
 babies <- babies |> 
   add_predictions(model_g) 
 
-select(babies, pred) 
+select(babies, low_bwt, pred) 
 ```
 
 ##
@@ -590,7 +596,7 @@ babies <- babies |>
   add_predictions(model_g) |> 
   mutate(pred_p = exp(pred)/(1 + exp(pred)))
 
-select(babies, pred, pred_p)
+select(babies, low_bwt, pred, pred_p)
 ```
 
 ## Cutoff 
@@ -649,8 +655,6 @@ babies_test_data <- babies_test_data |>
 ## Out-of-sample prediction accuracy
 
 ```{r}
-#| echo: false
-
 caret::confusionMatrix(
   as.factor(babies_test_data$pred_y), # Predicted response
   as.factor(babies_test_data$low_bwt) # Actual response (from our data)

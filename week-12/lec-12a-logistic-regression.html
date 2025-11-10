@@ -699,7 +699,7 @@ $ job_city          &lt;chr&gt; "Chicago", "Chicago", "Chicago", "Chicago", "Chi
 2 racewhite      0.438    0.107       4.08 4.45e-  5</code></pre>
 </div>
 </div>
-<p><span class="math inline">\(log(\frac{\hat \pi_i}{1-\hat \pi_i}) = -2.67 + 0.438\times racewhite_i\)</span></p>
+<p><span class="math inline">\(log(\frac{\hat \pi_i}{1-\hat \pi_i}) = -2.67 + 0.438\times I(race_i = white)\)</span></p>
 </section>
 <section id="pause" class="slide level2">
 <h2>Pause</h2>
@@ -756,25 +756,33 @@ $ job_city          &lt;chr&gt; "Chicago", "Chicago", "Chicago", "Chicago", "Chi
 </section>
 <section id="from-logit-to-odds" class="slide level2">
 <h2>From logit to odds</h2>
-<p>Logit for a Candidate with 1 year of experience (rounded equation)</p>
+<p>Model: logit callback = -2.76 + 0.0391 Years Experience</p>
+<p>Logit for a Candidate with 1 year of experience</p>
 <p><span class="math inline">\(-2.76 +  0.0391 \times 1\)</span></p>
 <div class="fragment">
 <p>Odds for a Candidate with 1 year of experience</p>
-<p><span class="math inline">\(odds = e^{logit}\)</span></p>
-<p><span class="math inline">\(\frac{\pi_i}{1-\pi_i} = e^{log(\frac{\pi_i}{1-\pi_i})}\)</span></p>
-<p><span class="math inline">\(\frac{\hat\pi_i}{1-\hat\pi_i} = e^{-2.76 + 0.0391 \times 1}\)</span></p>
+<p><span class="math inline">\(e^{logit} = odds = \frac{\pi_i}{1 - \pi_i}\)</span></p>
+<p>so</p>
+<p>Odds <span class="math inline">\(= \frac{\hat\pi_i}{1-\hat\pi_i} = e^{-2.76 + 0.0391 \times 1}\)</span></p>
 </div>
 </section>
 <section id="from-odds-to-probability" class="slide level2">
 <h2>From odds to probability</h2>
 <p><span class="math inline">\(\pi_i = \frac{odds}{1+odds}\)</span></p>
-<p><span class="math inline">\(\pi_i = \frac{\frac{\pi_i}{1-\pi_i}}{1+\frac{\pi_i}{1-\pi_i}}\)</span></p>
 <p><span class="math inline">\(\hat\pi_i = \frac{e^{-2.76 + 0.0391 \times 1}}{1+e^{-2.76 + 0.0391 \times 1}} = 0.0618\)</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href=""></a><span class="fu">exp</span>(<span class="sc">-</span><span class="fl">2.76</span> <span class="sc">+</span> <span class="fl">0.0391</span> <span class="sc">*</span> <span class="dv">1</span>) <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(<span class="sc">-</span><span class="fl">2.76</span> <span class="sc">+</span> <span class="fl">0.0391</span> <span class="sc">*</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.0617513</code></pre>
+</div>
+</div>
+<div class="fragment">
 <p>Note you can use <code>exp()</code> function in R for exponentiating number e.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href=""></a><span class="fu">exp</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a><span class="fu">exp</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.718282</code></pre>
+</div>
 </div>
 </div>
 </section>
@@ -796,17 +804,17 @@ $ job_city          &lt;chr&gt; "Chicago", "Chicago", "Chicago", "Chicago", "Chi
 <section id="section-11" class="slide level2">
 <h2></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a>model_ryc <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
-<span id="cb37-2"><a href=""></a>  received_callback <span class="sc">~</span> race <span class="sc">+</span> years_experience <span class="sc">+</span> job_city,</span>
-<span id="cb37-3"><a href=""></a>  <span class="at">data =</span> resume,</span>
-<span id="cb37-4"><a href=""></a>  <span class="at">family =</span> binomial</span>
-<span id="cb37-5"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href=""></a>model_ryc <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
+<span id="cb39-2"><a href=""></a>  received_callback <span class="sc">~</span> race <span class="sc">+</span> years_experience <span class="sc">+</span> job_city,</span>
+<span id="cb39-3"><a href=""></a>  <span class="at">data =</span> resume,</span>
+<span id="cb39-4"><a href=""></a>  <span class="at">family =</span> binomial</span>
+<span id="cb39-5"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="section-12" class="slide level2">
 <h2></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href=""></a><span class="fu">tidy</span>(model_ryc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href=""></a><span class="fu">tidy</span>(model_ryc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 5
   term             estimate std.error statistic  p.value
@@ -823,9 +831,9 @@ $ job_city          &lt;chr&gt; "Chicago", "Chicago", "Chicago", "Chicago", "Chi
 <p>The estimated probability that a Black candidate with 10 years of experience, residing in Boston, would receive a callback.</p>
 <p><span class="math inline">\(\large{\hat\pi_i = \frac{e^{-2.78 + (0.0440 \times 0) + (0.0332\times10) + (-0.0329\times 0)}}{1+e^{-2.78 + (0.0440 \times 0) + (0.0332\times10) + (-0.0329\times 0)}} = 0.0796}\)</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href=""></a>large_exponent <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">2.78</span> <span class="sc">+</span> (<span class="fl">0.0440</span> <span class="sc">*</span> <span class="dv">0</span>) <span class="sc">+</span> (<span class="fl">0.0332</span> <span class="sc">*</span> <span class="dv">10</span>) <span class="sc">+</span> (<span class="sc">-</span><span class="fl">0.0329</span> <span class="sc">*</span> <span class="dv">0</span>)</span>
-<span id="cb40-2"><a href=""></a></span>
-<span id="cb40-3"><a href=""></a><span class="fu">exp</span>(large_exponent) <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(large_exponent))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href=""></a>large_exponent <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">2.78</span> <span class="sc">+</span> (<span class="fl">0.0440</span> <span class="sc">*</span> <span class="dv">0</span>) <span class="sc">+</span> (<span class="fl">0.0332</span> <span class="sc">*</span> <span class="dv">10</span>) <span class="sc">+</span> (<span class="sc">-</span><span class="fl">0.0329</span> <span class="sc">*</span> <span class="dv">0</span>)</span>
+<span id="cb42-2"><a href=""></a></span>
+<span id="cb42-3"><a href=""></a><span class="fu">exp</span>(large_exponent) <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(large_exponent))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.07958493</code></pre>
 </div>
@@ -845,17 +853,17 @@ $ job_city          &lt;chr&gt; "Chicago", "Chicago", "Chicago", "Chicago", "Chi
 <h2>Model evaluation example</h2>
 <p>Let’s model probability of low baby birth weight on gestation</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href=""></a><span class="co"># Creating binary variable</span></span>
-<span id="cb42-2"><a href=""></a>babies <span class="ot">&lt;-</span> babies <span class="sc">|&gt;</span> </span>
-<span id="cb42-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">low_bwt =</span> <span class="fu">case_when</span>(bwt <span class="sc">&lt;</span> <span class="dv">88</span> <span class="sc">~</span> <span class="cn">TRUE</span>, bwt <span class="sc">&gt;=</span> <span class="dv">88</span><span class="sc">~</span> <span class="cn">FALSE</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb42-4"><a href=""></a>  <span class="fu">drop_na</span>(gestation)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href=""></a><span class="co"># Creating binary variable</span></span>
+<span id="cb44-2"><a href=""></a>babies <span class="ot">&lt;-</span> babies <span class="sc">|&gt;</span> </span>
+<span id="cb44-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">low_bwt =</span> <span class="fu">case_when</span>(bwt <span class="sc">&lt;</span> <span class="dv">88</span> <span class="sc">~</span> <span class="cn">TRUE</span>, bwt <span class="sc">&gt;=</span> <span class="dv">88</span><span class="sc">~</span> <span class="cn">FALSE</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb44-4"><a href=""></a>  <span class="fu">drop_na</span>(gestation)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>low_bwt</code> is a binary variable, either <code>TRUE</code> or <code>FALSE</code></p>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href=""></a><span class="co"># Fitting logistic regression model</span></span>
-<span id="cb43-2"><a href=""></a>model_g <span class="ot">&lt;-</span> <span class="fu">glm</span>(low_bwt <span class="sc">~</span> gestation, <span class="at">data =</span> babies, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
-<span id="cb43-3"><a href=""></a><span class="fu">tidy</span>(model_g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href=""></a><span class="co"># Fitting logistic regression model</span></span>
+<span id="cb45-2"><a href=""></a>model_g <span class="ot">&lt;-</span> <span class="fu">glm</span>(low_bwt <span class="sc">~</span> gestation, <span class="at">data =</span> babies, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb45-3"><a href=""></a><span class="fu">tidy</span>(model_g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 5
   term        estimate std.error statistic  p.value
@@ -890,9 +898,9 @@ $ job_city          &lt;chr&gt; "Chicago", "Chicago", "Chicago", "Chicago", "Chi
 <section id="section-16" class="slide level2">
 <h2></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href=""></a>model_g <span class="ot">&lt;-</span> <span class="fu">glm</span>(low_bwt <span class="sc">~</span> gestation, <span class="at">data =</span> babies, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
-<span id="cb45-2"><a href=""></a></span>
-<span id="cb45-3"><a href=""></a><span class="fu">tidy</span>(model_g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href=""></a>model_g <span class="ot">&lt;-</span> <span class="fu">glm</span>(low_bwt <span class="sc">~</span> gestation, <span class="at">data =</span> babies, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb47-2"><a href=""></a></span>
+<span id="cb47-3"><a href=""></a><span class="fu">tidy</span>(model_g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 5
   term        estimate std.error statistic  p.value
@@ -901,8 +909,8 @@ $ job_city          &lt;chr&gt; "Chicago", "Chicago", "Chicago", "Chicago", "Chi
 2 gestation    -0.0758   0.00846     -8.96 3.27e-19</code></pre>
 </div>
 </div>
-<p><span class="math inline">\(\hat p = \frac{\exp(b_0 +b_1x)}{1+\exp(b_0 + b_1x)}\)</span></p>
-<p><span class="math inline">\(\hat p\)</span> when gestation is 284 oz = <span class="math inline">\(\frac{\exp(17.5 -0.0758 \cdot 284)}{1+\exp(17.5 -0.0758 \cdot 284)} = \frac{\exp(-4.0272)}{1+ \exp(-4.0272)} = 0.01751203\)</span></p>
+<p><span class="math inline">\(\hat{\pi} = \frac{\exp(b_0 +b_1x)}{1+\exp(b_0 + b_1x)}\)</span></p>
+<p><span class="math inline">\(\hat{\pi}\)</span> when gestation is 284 oz = <span class="math inline">\(\frac{\exp(17.5 -0.0758 \cdot 284)}{1+\exp(17.5 -0.0758 \cdot 284)} = \frac{\exp(-4.0272)}{1+ \exp(-4.0272)} = 0.01751203\)</span></p>
 <div class="fragment">
 <p><em>We won’t actually do this ourselves, we can use a function!</em></p>
 </div>
@@ -910,24 +918,24 @@ $ job_city          &lt;chr&gt; "Chicago", "Chicago", "Chicago", "Chicago", "Chi
 <section id="section-17" class="slide level2">
 <h2></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href=""></a>babies <span class="ot">&lt;-</span> babies <span class="sc">|&gt;</span> </span>
-<span id="cb47-2"><a href=""></a>  <span class="fu">add_predictions</span>(model_g) </span>
-<span id="cb47-3"><a href=""></a></span>
-<span id="cb47-4"><a href=""></a><span class="fu">select</span>(babies, pred) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href=""></a>babies <span class="ot">&lt;-</span> babies <span class="sc">|&gt;</span> </span>
+<span id="cb49-2"><a href=""></a>  <span class="fu">add_predictions</span>(model_g) </span>
+<span id="cb49-3"><a href=""></a></span>
+<span id="cb49-4"><a href=""></a><span class="fu">select</span>(babies, low_bwt, pred) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,223 × 1
-     pred
-    &lt;dbl&gt;
- 1 -4.02 
- 2 -3.87 
- 3 -3.64 
- 4 -3.87 
- 5 -4.17 
- 6 -0.986
- 7 -1.06 
- 8 -4.40 
- 9 -5.15 
-10 -9.10 
+<pre><code># A tibble: 1,223 × 2
+   low_bwt   pred
+   &lt;lgl&gt;    &lt;dbl&gt;
+ 1 FALSE   -4.02 
+ 2 FALSE   -3.87 
+ 3 FALSE   -3.64 
+ 4 FALSE   -3.87 
+ 5 FALSE   -4.17 
+ 6 FALSE   -0.986
+ 7 FALSE   -1.06 
+ 8 FALSE   -4.40 
+ 9 FALSE   -5.15 
+10 FALSE   -9.10 
 # ℹ 1,213 more rows</code></pre>
 </div>
 </div>
@@ -935,25 +943,25 @@ $ job_city          &lt;chr&gt; "Chicago", "Chicago", "Chicago", "Chicago", "Chi
 <section id="section-18" class="slide level2">
 <h2></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href=""></a>babies <span class="ot">&lt;-</span> babies <span class="sc">|&gt;</span></span>
-<span id="cb49-2"><a href=""></a>  <span class="fu">add_predictions</span>(model_g) <span class="sc">|&gt;</span> </span>
-<span id="cb49-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">pred_p =</span> <span class="fu">exp</span>(pred)<span class="sc">/</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(pred)))</span>
-<span id="cb49-4"><a href=""></a></span>
-<span id="cb49-5"><a href=""></a><span class="fu">select</span>(babies, pred, pred_p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href=""></a>babies <span class="ot">&lt;-</span> babies <span class="sc">|&gt;</span></span>
+<span id="cb51-2"><a href=""></a>  <span class="fu">add_predictions</span>(model_g) <span class="sc">|&gt;</span> </span>
+<span id="cb51-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">pred_p =</span> <span class="fu">exp</span>(pred)<span class="sc">/</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(pred)))</span>
+<span id="cb51-4"><a href=""></a></span>
+<span id="cb51-5"><a href=""></a><span class="fu">select</span>(babies, low_bwt, pred, pred_p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,223 × 2
-     pred   pred_p
-    &lt;dbl&gt;    &lt;dbl&gt;
- 1 -4.02  0.0177  
- 2 -3.87  0.0205  
- 3 -3.64  0.0256  
- 4 -3.87  0.0205  
- 5 -4.17  0.0152  
- 6 -0.986 0.272   
- 7 -1.06  0.257   
- 8 -4.40  0.0122  
- 9 -5.15  0.00574 
-10 -9.10  0.000112
+<pre><code># A tibble: 1,223 × 3
+   low_bwt   pred   pred_p
+   &lt;lgl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+ 1 FALSE   -4.02  0.0177  
+ 2 FALSE   -3.87  0.0205  
+ 3 FALSE   -3.64  0.0256  
+ 4 FALSE   -3.87  0.0205  
+ 5 FALSE   -4.17  0.0152  
+ 6 FALSE   -0.986 0.272   
+ 7 FALSE   -1.06  0.257   
+ 8 FALSE   -4.40  0.0122  
+ 9 FALSE   -5.15  0.00574 
+10 FALSE   -9.10  0.000112
 # ℹ 1,213 more rows</code></pre>
 </div>
 </div>
@@ -961,12 +969,12 @@ $ job_city          &lt;chr&gt; "Chicago", "Chicago", "Chicago", "Chicago", "Chi
 <section id="cutoff" class="slide level2">
 <h2>Cutoff</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href=""></a>babies <span class="ot">&lt;-</span> babies <span class="sc">|&gt;</span> </span>
-<span id="cb51-2"><a href=""></a>  <span class="fu">add_predictions</span>(model_g) <span class="sc">|&gt;</span> </span>
-<span id="cb51-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">pred_p =</span> <span class="fu">exp</span>(pred)<span class="sc">/</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(pred))) <span class="sc">|&gt;</span> </span>
-<span id="cb51-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">pred_y =</span> <span class="fu">case_when</span>(pred_p <span class="sc">&lt;</span> <span class="fl">0.5</span> <span class="sc">~</span> <span class="cn">FALSE</span>, pred_p <span class="sc">&gt;=</span> <span class="fl">0.5</span> <span class="sc">~</span> <span class="cn">TRUE</span>))</span>
-<span id="cb51-5"><a href=""></a></span>
-<span id="cb51-6"><a href=""></a><span class="fu">select</span>(babies, low_bwt, pred, pred_p, pred_y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href=""></a>babies <span class="ot">&lt;-</span> babies <span class="sc">|&gt;</span> </span>
+<span id="cb53-2"><a href=""></a>  <span class="fu">add_predictions</span>(model_g) <span class="sc">|&gt;</span> </span>
+<span id="cb53-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">pred_p =</span> <span class="fu">exp</span>(pred)<span class="sc">/</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(pred))) <span class="sc">|&gt;</span> </span>
+<span id="cb53-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">pred_y =</span> <span class="fu">case_when</span>(pred_p <span class="sc">&lt;</span> <span class="fl">0.5</span> <span class="sc">~</span> <span class="cn">FALSE</span>, pred_p <span class="sc">&gt;=</span> <span class="fl">0.5</span> <span class="sc">~</span> <span class="cn">TRUE</span>))</span>
+<span id="cb53-5"><a href=""></a></span>
+<span id="cb53-6"><a href=""></a><span class="fu">select</span>(babies, low_bwt, pred, pred_p, pred_y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1,223 × 4
    low_bwt   pred   pred_p pred_y
@@ -988,10 +996,10 @@ $ job_city          &lt;chr&gt; "Chicago", "Chicago", "Chicago", "Chicago", "Chi
 <section id="confusion-matrix" class="slide level2">
 <h2>Confusion Matrix</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href=""></a>caret<span class="sc">::</span><span class="fu">confusionMatrix</span>(</span>
-<span id="cb53-2"><a href=""></a>  <span class="fu">as.factor</span>(babies<span class="sc">$</span>pred_y), <span class="co"># Predicted response</span></span>
-<span id="cb53-3"><a href=""></a>  <span class="fu">as.factor</span>(babies<span class="sc">$</span>low_bwt) <span class="co"># Actual response (from our data)</span></span>
-<span id="cb53-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href=""></a>caret<span class="sc">::</span><span class="fu">confusionMatrix</span>(</span>
+<span id="cb55-2"><a href=""></a>  <span class="fu">as.factor</span>(babies<span class="sc">$</span>pred_y), <span class="co"># Predicted response</span></span>
+<span id="cb55-3"><a href=""></a>  <span class="fu">as.factor</span>(babies<span class="sc">$</span>low_bwt) <span class="co"># Actual response (from our data)</span></span>
+<span id="cb55-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Confusion Matrix and Statistics
 
@@ -1037,28 +1045,32 @@ Prediction FALSE TRUE
 <section id="split-data" class="slide level2">
 <h2>Split data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href=""></a><span class="fu">set.seed</span>(<span class="dv">8236</span>)</span>
-<span id="cb55-2"><a href=""></a><span class="fu">library</span>(rsample)</span>
-<span id="cb55-3"><a href=""></a></span>
-<span id="cb55-4"><a href=""></a>babies_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(babies, <span class="at">prop =</span> <span class="fl">0.60</span>) <span class="do">## 60% to 40% split</span></span>
-<span id="cb55-5"><a href=""></a>babies_train_data <span class="ot">&lt;-</span> <span class="fu">training</span>(babies_split)</span>
-<span id="cb55-6"><a href=""></a>babies_test_data <span class="ot">&lt;-</span> <span class="fu">testing</span>(babies_split)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href=""></a><span class="fu">set.seed</span>(<span class="dv">8236</span>)</span>
+<span id="cb57-2"><a href=""></a><span class="fu">library</span>(rsample)</span>
+<span id="cb57-3"><a href=""></a></span>
+<span id="cb57-4"><a href=""></a>babies_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(babies, <span class="at">prop =</span> <span class="fl">0.60</span>) <span class="do">## 60% to 40% split</span></span>
+<span id="cb57-5"><a href=""></a>babies_train_data <span class="ot">&lt;-</span> <span class="fu">training</span>(babies_split)</span>
+<span id="cb57-6"><a href=""></a>babies_test_data <span class="ot">&lt;-</span> <span class="fu">testing</span>(babies_split)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="fit-model-and-convert-predictions" class="slide level2">
 <h2>Fit model and convert predictions</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href=""></a>model_g <span class="ot">&lt;-</span> <span class="fu">glm</span>(low_bwt <span class="sc">~</span> gestation, <span class="at">data =</span> babies_train_data, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
-<span id="cb56-2"><a href=""></a></span>
-<span id="cb56-3"><a href=""></a>babies_test_data <span class="ot">&lt;-</span> babies_test_data <span class="sc">|&gt;</span> </span>
-<span id="cb56-4"><a href=""></a>  <span class="fu">add_predictions</span>(model_g) <span class="sc">|&gt;</span> </span>
-<span id="cb56-5"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">pred_p =</span> <span class="fu">exp</span>(pred)<span class="sc">/</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(pred))) <span class="sc">|&gt;</span> </span>
-<span id="cb56-6"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">pred_y =</span> <span class="fu">case_when</span>(pred_p <span class="sc">&lt;</span> <span class="fl">0.5</span> <span class="sc">~</span> <span class="cn">FALSE</span>, pred_p <span class="sc">&gt;=</span> <span class="fl">0.5</span> <span class="sc">~</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href=""></a>model_g <span class="ot">&lt;-</span> <span class="fu">glm</span>(low_bwt <span class="sc">~</span> gestation, <span class="at">data =</span> babies_train_data, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb58-2"><a href=""></a></span>
+<span id="cb58-3"><a href=""></a>babies_test_data <span class="ot">&lt;-</span> babies_test_data <span class="sc">|&gt;</span> </span>
+<span id="cb58-4"><a href=""></a>  <span class="fu">add_predictions</span>(model_g) <span class="sc">|&gt;</span> </span>
+<span id="cb58-5"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">pred_p =</span> <span class="fu">exp</span>(pred)<span class="sc">/</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(pred))) <span class="sc">|&gt;</span> </span>
+<span id="cb58-6"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">pred_y =</span> <span class="fu">case_when</span>(pred_p <span class="sc">&lt;</span> <span class="fl">0.5</span> <span class="sc">~</span> <span class="cn">FALSE</span>, pred_p <span class="sc">&gt;=</span> <span class="fl">0.5</span> <span class="sc">~</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="out-of-sample-prediction-accuracy" class="slide level2">
 <h2>Out-of-sample prediction accuracy</h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href=""></a>caret<span class="sc">::</span><span class="fu">confusionMatrix</span>(</span>
+<span id="cb59-2"><a href=""></a>  <span class="fu">as.factor</span>(babies_test_data<span class="sc">$</span>pred_y), <span class="co"># Predicted response</span></span>
+<span id="cb59-3"><a href=""></a>  <span class="fu">as.factor</span>(babies_test_data<span class="sc">$</span>low_bwt) <span class="co"># Actual response (from our data)</span></span>
+<span id="cb59-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Confusion Matrix and Statistics
 
