@@ -1,0 +1,35 @@
+---
+title: "Data 200: Lab 11"
+subtitle: "Predictive modeling competion"
+author: "Your name here"
+format: pdf
+---
+
+All of the packages listed below have been preinstalled, so please do not install packages again. You can just run the r chunk below to load all of the packages.
+```{r}
+library(tidyverse)
+library(broom)
+library(rsample)
+library(bayesrules)
+library(modelr)
+
+data("bikes")
+```
+
+
+In lab 10 we used bike rental data to predict number of bike rides by temperature.
+
+$$Expected Number Rides = \beta_0 + \beta_1 Temperature_i$$
+
+We found that this model did not meet the conditions for simple linear regression.
+In this lab I challenge you to create a linear regression model to predict number of bike rides, with the lowest out-of-sample predictive error (root mean squared error) in the class.
+
+This means you will:
+
+1. Split the bike data into a training (60% of your sample) and a testing set (40% of your sample). Before you do this make sure to set your seed to 20251105.
+2. Build a model. You can use more $X$ variables in your model from the dataset. You can consider transformations of your $X$ and $Y$ variables.
+3. Check that the modeling conditions are met (rethink your model if not).
+4. Asses out-of-sample predictive error on the test data set.
+5. The top 5 people (top 3 in section 2 of Data 200) that achieve the lowest out-of-sample predictive error during class will get extra credit. To win you have to write out your model, explain why you think the conditions are met, and show how you computed your out-of-sample predictive error.
+
+
