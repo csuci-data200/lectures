@@ -1,0 +1,99 @@
+---
+title: "Data 200: Lab 11 Solution"
+subtitle: "Predictive modeling competion"
+author: "Your name here"
+format: pdf
+---
+
+All of the packages listed below have been preinstalled, so please do not install packages again. You can just run the r chunk below to load all of the packages.
+```{r}
+library(tidyverse)
+library(broom)
+library(rsample)
+library(bayesrules)
+library(modelr)
+
+data("bikes")
+```
+
+
+In lab 10 we used bike rental data to predict number of bike rides by temperature.
+
+$$Expected Number Rides = \beta_0 + \beta_1 Temperature_i$$
+
+We found that this model did not meet the conditions for simple linear regression.
+In this lab I challenge you to create a linear regression model to predict number of bike rides, with the lowest out-of-sample predictive error (root mean squared error) in the class.
+
+This means you will:
+
+1. Split the bike data into a training (60% of your sample) and a testing set (40% of your sample). Before you do this make sure to set your seed to 20251105.
+2. Build a model. You can use more $X$ variables in your model from the dataset. You can consider transformations of your $X$ and $Y$ variables.
+3. Check that the modeling conditions are met (rethink your model if not).
+4. Asses out-of-sample predictive error on the test data set.
+5. The top 5 people (top 3 in section 2 of Data 200) that achieve the lowest out-of-sample predictive error during class will get extra credit. To win you have to write out your model, explain why you think the conditions are met, and show how you computed your out-of-sample predictive error.
+
+**Solution:**
+
+My solution is not necessarily the linear model with the lowest RMSE possible. My solution is meant to show all of the steps.
+
+First we randomly split the data into a training and testing dataset.
+```{r}
+set.seed(20251105)
+
+bike_split <- initial_split(bikes, prop = 0.60) 
+bike_train_data <- training(bike_split)
+bike_test_data <- testing(bike_split)
+```
+
+Then we fit the model with the training data. This is the part where everyone probably chose different variables.
+
+```{r}
+bike_model_1 <- lm(
+  rides ~ weather_cat + holiday + temp_actual,
+  data = bike_train_data
+)
+```
+
+Check modeling conditions
+```{r}
+bike_model_1 |> 
+  fortify() |> 
+  ggplot(aes(x = .fitted, y = .resid)) +
+  geom_point()
+```
+
+We assumed that the independence condition is met. 
+The linearity condition appears to be met since the residuals appear to be randomly distributed around 0.
+The constant variance condition is not met because there is distinct fanning behavior, increase in the spread of the residuals for higher predicted/fitted values.
+
+Let's try a different model instead.
+
+```{r}
+bike_model_2 <- lm(
+  rides ~ holiday + temp_actual,
+  data = bike_train_data
+)
+```
+
+Check modeling conditions
+```{r}
+bike_model_2 |> 
+  fortify() |> 
+  ggplot(aes(x = .fitted, y = .resid)) +
+  geom_point()
+```
+
+These residuals appear to be a lot better with less fanning (aka increase in spread of the residuals). 
+We also have a large sample size so I am not concerned with normally distributed residuals.
+Let's proceed with this model.
+
+
+```{r}
+predicted_rides <- predict(bike_model_2, newdata = bike_test_data)
+actual_rides <- bike_test_data$rides
+
+# RMSE
+sqrt(mean((predicted_rides - actual_rides)^2))
+```
+
+My second model had an out-of-sample root mean squared error (RMSE), essentially average predictive error, of 1243 rides.

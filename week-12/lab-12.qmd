@@ -1,0 +1,28 @@
+---
+title: "Data 200: Lab 12"
+subtitle: "Logistic predictive modeling competion"
+author: "Your name here"
+format: pdf
+---
+
+All of the packages listed below have been preinstalled, so please do not install packages again. You can just run the r chunk below to load all of the packages.
+```{r}
+library(broom)
+library(rsample)
+library(openintro)
+library(modelr)
+library(caret)
+library(tidyverse)
+
+data("email")
+```
+
+
+This week we are going to build predictive logistic models to detect if emails are spam, using the `email` dataset.
+
+This means you will:
+
+1. Split the email data into a training (65% of your sample) and a testing set (35% of your sample). Before you do this make sure to set your seed to 20251112.
+2. Build a model. It is up to you to choose which variables available in the data you are going to include in your model.
+3. Asses out-of-sample predictive error, accuracy, on the test data set. I was able to get an out-of-sample predictive accuracy of 0.9104, can you beat that?
+4. If you can beat that accuracy, or at least get close, submit your lab 12 on Canvas/CI Learn by the end of the day for extra credit.

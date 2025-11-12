@@ -31,5 +31,3 @@ This means you will:
 3. Check that the modeling conditions are met (rethink your model if not).
 4. Asses out-of-sample predictive error on the test data set.
 5. The top 5 people (top 3 in section 2 of Data 200) that achieve the lowest out-of-sample predictive error during class will get extra credit. To win you have to write out your model, explain why you think the conditions are met, and show how you computed your out-of-sample predictive error.
-
-
