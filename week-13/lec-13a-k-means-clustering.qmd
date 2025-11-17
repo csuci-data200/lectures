@@ -80,7 +80,7 @@ Examples:
 
 # K-mean clustering
 
-**K-means clustering** is an unsupervised machine learning method to partition $n$ observations into $k$ clusters/groups, where each observation belongs to the cluster with the nearest mean
+**K-means clustering** is an unsupervised machine learning method to split $n$ observations into $k$ clusters/groups, where each observation belongs to the cluster with the nearest mean
 
 ## K- means clustering example
 
@@ -92,6 +92,129 @@ Suppose a streaming service wants to understand its customer base better to tail
 ![Clustered data](img/k-means clustering - final.png)
 :::
 
-## K-means clustering
+## K-means clustering steps
+
+You decide on $k$, the number of clusters/groups and the algorithm will:
+
+2. Choose 3 random centers, starting points
+3. Group each observation  with the center it is closest to
+4. Calculate new centers based on clusters
+5. Repeat steps 3-4 until not much is changing
+
+## European country job markets 1979
+
+- `Agr` - % of workforce employed in agriculture
+- `Min` - % in mining
+- `Man` - % in manufacturing
+- `PS` - % in power supplies industries
+- `Con` - % in construction
+- `SI` - % in service industries
+- `Fin` - % in finance
+- `SPS` - % in social and personal services
+- `TC` - % in transportation and communications
+
+## European country job markets
+
+```{r}
+jobs <- read_csv(
+  "http://csuci-data200.github.io/lectures/data/Eurojobs.csv",
+  show_col_types = FALSE
+)
+glimpse(jobs)
+```
+
+## European country job markets
+
+```{r}
+set.seed(20251117)
+
+clustered_jobs <- jobs |> 
+  select(Agr, Min) |>  # I am using only 2 columns
+  scale() |>  # Standardize data
+  kmeans(centers = 2) # Cluster data
+
+jobs |> 
+  mutate(cluster = clustered_jobs$cluster)
+```
+
+##
+
+```{r}
+jobs |> 
+  mutate(cluster = factor(clustered_jobs$cluster)) |> 
+  ggplot(aes(x = Agr, y = Min, color = cluster)) +
+  geom_point() +
+  labs(x = "% in Agriculture", y = "% in Mining")
+```
 
 
+## 
+
+Recall that the algorithm starts with random starting centers.
+
+We can have the algorithm run multiple times with different starting centers, to find a better clustering.
+
+- To do this we specify use the `nstart` argument
+
+```{r}
+clustered_jobs2 <- jobs |> 
+  select(Agr, Min) |>  # I am using only 2 columns
+  scale() |>  # Standardize data
+  kmeans(centers = 2, nstart = 10) # Cluster data 10 times
+```
+
+##
+
+```{r}
+jobs |> 
+  mutate(cluster = factor(clustered_jobs2$cluster)) |> 
+  ggplot(aes(x = Agr, y = Min, color = cluster)) +
+  geom_point() +
+  labs(x = "% in Agriculture", y = "% in Mining")
+```
+
+## 
+
+We chose 2 clusters ahead of time, what if we consider 3 clusters now?
+
+```{r}
+clustered_jobs3 <- jobs |> 
+  select(Agr, Min) |>  # I am using only 2 columns
+  scale() |>  # Standardize data
+  kmeans(centers = 3, nstart = 10) # Cluster data 10 times
+```
+
+
+##
+
+```{r}
+jobs |> 
+  mutate(cluster = factor(clustered_jobs3$cluster)) |> 
+  ggplot(aes(x = Agr, y = Min, color = cluster, shape = cluster)) +
+  geom_point() +
+  labs(x = "% in Agriculture", y = "% in Mining")
+```
+
+## What is the "best" number of clusters?
+
+```{r}
+jobs |> 
+  select(Agr, Min) |>  # I am using only 2 columns
+  scale() |> 
+  factoextra::fviz_nbclust(kmeans, method = "wss")
+```
+
+##
+
+```{r}
+#| echo: false
+
+jobs |> 
+  select(Agr, Min) |>  # I am using only 2 columns
+  scale() |> 
+  factoextra::fviz_nbclust(kmeans, method = "wss")
+```
+
+We want to balance better clustering (lower Total Sum of Squares) with number of clusters
+
+It seems like after 3 clusters, behavior becomes relatively steady

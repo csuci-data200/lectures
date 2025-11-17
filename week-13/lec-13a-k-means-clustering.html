@@ -29,6 +29,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="lec-13a-k-means-clustering_files/libs/revealjs/dist/theme/quarto.css">
   <link href="lec-13a-k-means-clustering_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -422,7 +487,7 @@ Professor Catalina Medina
 <section>
 <section id="k-mean-clustering" class="title-slide slide level1 center">
 <h1>K-mean clustering</h1>
-<p><strong>K-means clustering</strong> is an unsupervised machine learning method to partition <span class="math inline">\(n\)</span> observations into <span class="math inline">\(k\)</span> clusters/groups, where each observation belongs to the cluster with the nearest mean</p>
+<p><strong>K-means clustering</strong> is an unsupervised machine learning method to split <span class="math inline">\(n\)</span> observations into <span class="math inline">\(k\)</span> clusters/groups, where each observation belongs to the cluster with the nearest mean</p>
 </section>
 <section id="k--means-clustering-example" class="slide level2">
 <h2>K- means clustering example</h2>
@@ -448,8 +513,157 @@ Professor Catalina Medina
 </div>
 </div>
 </section>
-<section id="k-means-clustering" class="slide level2">
-<h2>K-means clustering</h2>
+<section id="k-means-clustering-steps" class="slide level2">
+<h2>K-means clustering steps</h2>
+<p>You decide on <span class="math inline">\(k\)</span>, the number of clusters/groups and the algorithm will:</p>
+<ol start="2" type="1">
+<li>Choose 3 random centers, starting points</li>
+<li>Group each observation with the center it is closest to</li>
+<li>Calculate new centers based on clusters</li>
+<li>Repeat steps 3-4 until not much is changing</li>
+</ol>
+</section>
+<section id="european-country-job-markets-1979" class="slide level2">
+<h2>European country job markets 1979</h2>
+<ul>
+<li><code>Agr</code> - % of workforce employed in agriculture</li>
+<li><code>Min</code> - % in mining</li>
+<li><code>Man</code> - % in manufacturing</li>
+<li><code>PS</code> - % in power supplies industries</li>
+<li><code>Con</code> - % in construction</li>
+<li><code>SI</code> - % in service industries</li>
+<li><code>Fin</code> - % in finance</li>
+<li><code>SPS</code> - % in social and personal services</li>
+<li><code>TC</code> - % in transportation and communications</li>
+</ul>
+</section>
+<section id="european-country-job-markets" class="slide level2">
+<h2>European country job markets</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>jobs <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb1-2"><a href=""></a>  <span class="st">"http://csuci-data200.github.io/lectures/data/Eurojobs.csv"</span>,</span>
+<span id="cb1-3"><a href=""></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span></span>
+<span id="cb1-4"><a href=""></a>)</span>
+<span id="cb1-5"><a href=""></a><span class="fu">glimpse</span>(jobs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 26
+Columns: 11
+$ Country &lt;chr&gt; "Austria", "Belgium", "Bulgaria", "Czechoslovakia", "Denmark",…
+$ Agr     &lt;dbl&gt; 12.7, 3.3, 23.6, 16.5, 9.2, 4.2, 13.0, 10.8, 41.4, 21.7, 23.2,…
+$ Min     &lt;dbl&gt; 1.1, 0.9, 1.9, 2.9, 0.1, 2.9, 0.4, 0.8, 0.6, 3.1, 1.0, 0.6, 3.…
+$ Man     &lt;dbl&gt; 30.2, 27.6, 32.3, 35.5, 21.8, 41.2, 25.9, 27.5, 17.6, 29.6, 20…
+$ PS      &lt;dbl&gt; 1.4, 0.9, 0.6, 1.2, 0.6, 1.3, 1.3, 0.9, 0.6, 1.9, 1.3, 0.5, 0.…
+$ Con     &lt;dbl&gt; 9.0, 8.2, 7.9, 8.7, 8.3, 7.6, 7.4, 8.9, 8.1, 8.2, 7.5, 10.0, 9…
+$ SI      &lt;dbl&gt; 16.8, 19.1, 8.0, 9.2, 14.6, 11.2, 14.7, 16.8, 11.5, 9.4, 16.8,…
+$ Fin     &lt;dbl&gt; 4.9, 6.2, 0.7, 0.9, 6.5, 1.2, 5.5, 6.0, 2.4, 0.9, 2.8, 1.6, 4.…
+$ SPS     &lt;dbl&gt; 16.8, 26.6, 18.2, 17.9, 32.2, 22.1, 24.3, 22.6, 11.0, 17.2, 20…
+$ TC      &lt;dbl&gt; 7.0, 7.2, 6.7, 7.0, 7.1, 8.4, 7.6, 5.7, 6.7, 8.0, 6.1, 5.7, 6.…
+$ cluster &lt;dbl&gt; 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1, 2, 1, 2, 2, 2,…</code></pre>
+</div>
+</div>
+</section>
+<section id="european-country-job-markets-1" class="slide level2">
+<h2>European country job markets</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="fu">set.seed</span>(<span class="dv">20251117</span>)</span>
+<span id="cb3-2"><a href=""></a></span>
+<span id="cb3-3"><a href=""></a>clustered_jobs <span class="ot">&lt;-</span> jobs <span class="sc">|&gt;</span> </span>
+<span id="cb3-4"><a href=""></a>  <span class="fu">select</span>(Agr, Min) <span class="sc">|&gt;</span>  <span class="co"># I am using only 2 columns</span></span>
+<span id="cb3-5"><a href=""></a>  <span class="fu">scale</span>() <span class="sc">|&gt;</span>  <span class="co"># Standardize data</span></span>
+<span id="cb3-6"><a href=""></a>  <span class="fu">kmeans</span>(<span class="at">centers =</span> <span class="dv">2</span>) <span class="co"># Cluster data</span></span>
+<span id="cb3-7"><a href=""></a></span>
+<span id="cb3-8"><a href=""></a>jobs <span class="sc">|&gt;</span> </span>
+<span id="cb3-9"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">cluster =</span> clustered_jobs<span class="sc">$</span>cluster)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 26 × 11
+   Country          Agr   Min   Man    PS   Con    SI   Fin   SPS    TC cluster
+   &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;int&gt;
+ 1 Austria         12.7   1.1  30.2   1.4   9    16.8   4.9  16.8   7         2
+ 2 Belgium          3.3   0.9  27.6   0.9   8.2  19.1   6.2  26.6   7.2       2
+ 3 Bulgaria        23.6   1.9  32.3   0.6   7.9   8     0.7  18.2   6.7       1
+ 4 Czechoslovakia  16.5   2.9  35.5   1.2   8.7   9.2   0.9  17.9   7         1
+ 5 Denmark          9.2   0.1  21.8   0.6   8.3  14.6   6.5  32.2   7.1       2
+ 6 E. Germany       4.2   2.9  41.2   1.3   7.6  11.2   1.2  22.1   8.4       1
+ 7 Finland         13     0.4  25.9   1.3   7.4  14.7   5.5  24.3   7.6       2
+ 8 France          10.8   0.8  27.5   0.9   8.9  16.8   6    22.6   5.7       2
+ 9 Greece          41.4   0.6  17.6   0.6   8.1  11.5   2.4  11     6.7       1
+10 Hungary         21.7   3.1  29.6   1.9   8.2   9.4   0.9  17.2   8         1
+# ℹ 16 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>jobs <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">cluster =</span> <span class="fu">factor</span>(clustered_jobs<span class="sc">$</span>cluster)) <span class="sc">|&gt;</span> </span>
+<span id="cb5-3"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Agr, <span class="at">y =</span> Min, <span class="at">color =</span> cluster)) <span class="sc">+</span></span>
+<span id="cb5-4"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb5-5"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"% in Agriculture"</span>, <span class="at">y =</span> <span class="st">"% in Mining"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="lec-13a-k-means-clustering_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<p>Recall that the algorithm starts with random starting centers.</p>
+<p>We can have the algorithm run multiple times with different starting centers, to find a better clustering.</p>
+<ul>
+<li>To do this we specify use the <code>nstart</code> argument</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a>clustered_jobs2 <span class="ot">&lt;-</span> jobs <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a href=""></a>  <span class="fu">select</span>(Agr, Min) <span class="sc">|&gt;</span>  <span class="co"># I am using only 2 columns</span></span>
+<span id="cb6-3"><a href=""></a>  <span class="fu">scale</span>() <span class="sc">|&gt;</span>  <span class="co"># Standardize data</span></span>
+<span id="cb6-4"><a href=""></a>  <span class="fu">kmeans</span>(<span class="at">centers =</span> <span class="dv">2</span>, <span class="at">nstart =</span> <span class="dv">10</span>) <span class="co"># Cluster data 10 times</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="section-2" class="slide level2">
+<h2></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>jobs <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">cluster =</span> <span class="fu">factor</span>(clustered_jobs2<span class="sc">$</span>cluster)) <span class="sc">|&gt;</span> </span>
+<span id="cb7-3"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Agr, <span class="at">y =</span> Min, <span class="at">color =</span> cluster)) <span class="sc">+</span></span>
+<span id="cb7-4"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb7-5"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"% in Agriculture"</span>, <span class="at">y =</span> <span class="st">"% in Mining"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="lec-13a-k-means-clustering_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
+<section id="section-3" class="slide level2">
+<h2></h2>
+<p>We chose 2 clusters ahead of time, what if we consider 3 clusters now?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>clustered_jobs3 <span class="ot">&lt;-</span> jobs <span class="sc">|&gt;</span> </span>
+<span id="cb8-2"><a href=""></a>  <span class="fu">select</span>(Agr, Min) <span class="sc">|&gt;</span>  <span class="co"># I am using only 2 columns</span></span>
+<span id="cb8-3"><a href=""></a>  <span class="fu">scale</span>() <span class="sc">|&gt;</span>  <span class="co"># Standardize data</span></span>
+<span id="cb8-4"><a href=""></a>  <span class="fu">kmeans</span>(<span class="at">centers =</span> <span class="dv">3</span>, <span class="at">nstart =</span> <span class="dv">10</span>) <span class="co"># Cluster data 10 times</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="section-4" class="slide level2">
+<h2></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>jobs <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">cluster =</span> <span class="fu">factor</span>(clustered_jobs3<span class="sc">$</span>cluster)) <span class="sc">|&gt;</span> </span>
+<span id="cb9-3"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Agr, <span class="at">y =</span> Min, <span class="at">color =</span> cluster, <span class="at">shape =</span> cluster)) <span class="sc">+</span></span>
+<span id="cb9-4"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb9-5"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"% in Agriculture"</span>, <span class="at">y =</span> <span class="st">"% in Mining"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="lec-13a-k-means-clustering_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
+<section id="what-is-the-best-number-of-clusters" class="slide level2">
+<h2>What is the “best” number of clusters?</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a>jobs <span class="sc">|&gt;</span> </span>
+<span id="cb10-2"><a href=""></a>  <span class="fu">select</span>(Agr, Min) <span class="sc">|&gt;</span>  <span class="co"># I am using only 2 columns</span></span>
+<span id="cb10-3"><a href=""></a>  <span class="fu">scale</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb10-4"><a href=""></a>  factoextra<span class="sc">::</span><span class="fu">fviz_nbclust</span>(kmeans, <span class="at">method =</span> <span class="st">"wss"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="lec-13a-k-means-clustering_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
+<section id="section-5" class="slide level2">
+<h2></h2>
+
+<img data-src="lec-13a-k-means-clustering_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"><p>We want to balance better clustering (lower Total Sum of Squares) with number of clusters</p>
+<p>It seems like after 3 clusters, behavior becomes relatively steady</p>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
