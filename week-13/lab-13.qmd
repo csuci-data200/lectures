@@ -1,0 +1,24 @@
+---
+title: "Data 200: Lab 13"
+subtitle: "Clustering"
+author: "Your name here"
+format: pdf
+---
+
+All of the packages listed below have been preinstalled, so please do not install packages again. You can just run the r chunk below to load all of the packages.
+```{r}
+library(factoextra)
+library(NbClust)
+library(tidyverse)
+
+data("USArrests")
+```
+
+
+This week we are going to find clusters of states by their crime statistics.
+
+1. Identify the "optimal/best" number of clusters using the murder and population variables.
+
+2. Cluster the data with the "best" number of clusters using the murder and population variables.
+
+3. Repeat steps 1-2 with your own choice of the available variables.
