@@ -1,0 +1,70 @@
+---
+title: "Data 200: Lab 12 Solution"
+subtitle: "Logistic predictive modeling competion"
+author: "Your name here"
+format: pdf
+---
+
+All of the packages listed below have been preinstalled, so please do not install packages again. You can just run the r chunk below to load all of the packages.
+```{r}
+library(broom)
+library(rsample)
+library(openintro)
+library(modelr)
+library(caret)
+library(tidyverse)
+
+data("email")
+```
+
+
+This week we are going to build predictive logistic models to detect if emails are spam, using the `email` dataset.
+
+This means you will:
+
+1. Split the email data into a training (65% of your sample) and a testing set (35% of your sample). Before you do this make sure to set your seed to 20251112.
+2. Build a model. It is up to you to choose which variables available in the data you are going to include in your model.
+3. Asses out-of-sample predictive error, accuracy, on the test data set. I was able to get an out-of-sample predictive accuracy of 0.9104, can you beat that?
+4. Submit your lab 12 on Canvas/CI Learn by the end of the day for extra credit.
+
+
+**Solution**
+
+Split data
+```{r}
+set.seed(20251112)
+
+email_split <- initial_split(email, prop = 0.65) 
+email_train_data <- training(email_split)
+email_test_data <- testing(email_split)
+```
+
+Fit the logistic model. This is where it is up to you to choose which predictors to incorporate.
+```{r}
+spam_model <- glm(
+  spam ~ to_multiple + winner + format +
+    re_subj + exclaim_subj +
+    cc + attach + dollar +
+    inherit + password,
+  data = email_train_data,
+  family = binomial
+)
+
+```
+
+Compute confusion matrix
+```{r}
+email_test_data <- email_test_data |> 
+  add_predictions(spam_model) |> 
+  mutate(pred_p = exp(pred)/(1 + exp(pred))) |> 
+  mutate(pred_y = case_when(pred_p < 0.5 ~ 0, pred_p >= 0.5 ~ 1))
+
+confusionMatrix(
+  as.factor(email_test_data$pred_y),
+  as.factor(email_test_data$spam)
+)
+```
+
+The out-of-sample accuracy of my model is 0.9104.
+
+

@@ -1,0 +1,167 @@
+---
+title: "Data 200 Final Project Instructions"
+format: 
+  html:
+    embed-resources: true
+    toc: true
+    toc-depth: 4
+---
+
+For the final project you will be working in teams.
+A team project does not necessarily mean everyone doing separate parts of the project then gluing it together.
+I expect each and every one of you to understand every single piece of code written, every decision made, anything written.
+
+## Short Description
+
+Pick a topic that interest you and find a dataset on it.
+Ask questions that you are curious about and answer them using this data.
+
+## Picking your Data
+
+The dataset you pick should have at least 100 observations and 10 variables.\
+Be careful for this requirement.
+The idea here is for you to have a rich dataset that can answer multiple interesting questions.
+So, for instance, if a dataset has three separate variables `day`, `month`, `year` it is not really telling you much it is telling you `date`.
+Such dataset should have at least 9 additional variables.
+This can also happen for instance if you have a dataset that has two variables one that shows temperature in Celcius and another one in Fahrenheit.
+Once again, these two variables are sharing a single set of information.
+In such cases, make sure there is additional information in the dataset that can derive a final project that you will work on for the next three weeks.
+
+### Data Sources
+
+You can find data from other sources but here are some recommendations.
+Note unreliable data sources like Kaggle are not allowed.
+You will have to identify where the data came from so we know it was not made up.
+
+[UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/index.php)
+
+[Harvard Dataverse](https://dataverse.harvard.edu/)
+
+[Data.gov](https://www.data.gov/)
+
+[US Government Data](https://sctyner.github.io/static/presentations/Misc/GraphicsteamISU/2018-11-16-us-govt-data.html)
+
+[California Open Data](https://data.ca.gov/)
+
+[Los Angeles Open Data](https://data.lacity.org/browse)
+
+[NYC OpenData](https://opendata.cityofnewyork.us/)
+
+[Data is Plural](https://docs.google.com/spreadsheets/d/1wZhPLMCHKJvwOkP4juclhjFgqIY8fQFMemwKL2c64vk/edit#gid=0)
+
+[UN data](http://data.un.org/)
+
+[Million Song Dataset](http://millionsongdataset.com/)
+
+[IPUMS survey data from around the world](https://ipums.org/)
+
+[CORGIS: The Collection of Really Great, Interesting, Situated Datasets](https://think.cs.vt.edu/corgis/csv/)
+
+[PISA data](https://www.oecd.org/pisa/data/)
+
+[Museum of Modern Art](https://github.com/MuseumofModernArt/collection)
+
+[Google Dataset Search](https://datasetsearch.research.google.com/)
+
+[Los Angeles Open Data](https://data.lacity.org/browse)
+
+## File structure
+
+Each team has their own repo created for them in the course organization in Posit Cloud.
+Everything related to final projects will always go in that repo, from now on until the end of the semester.
+
+By the end of the semester, your repo will look something like this:
+
+```         
+data/
+|-- some-data.csv
+|-- data-description.qmd
+|-- data-description.html
+presentation/
+|-- presentation.qmd
+|-- presentation.html
+proposal/
+|-- proposal.qmd
+|-- proposal.html
+```
+
+You will have a data folder which will have the datasets you are using.
+Presentation folder will have your final presentation.
+Proposal folder will have your proposal.
+
+I expect to see the following in your final project repo for the proposal stage.
+
+```         
+data/
+|-- some-data.csv
+|-- data-description.qmd
+|-- data-description.html
+proposal/
+|-- proposal.qmd
+|-- proposal.html
+```
+
+### The dataset
+
+The dataset should be in the data folder, as it is downloaded.
+Do not make any changes by hand to the data.
+All the changes will have to be made in R.
+Any format of the dataset is fine (e.g. `.csv`, `.xlsx`) as long as you can read into R that specific format.
+
+### data-description.qmd
+
+In this file you will write,
+
+-   the source of the data, including any links. Your description need to be clear enough that I can download the data too.
+-   the number of variables.
+-   the number of observations.
+-   data dictionary (what each variable represents)
+
+This file should be in the data folder as it is only about the data you are using.
+This file should not contain any code.
+
+### proposal.qmd
+
+The `proposal.qmd` file should have
+
+-   Introduction
+-   Data
+-   Data Analysis Plan
+
+#### Introduction
+
+In this part you introduce the questions you are interested in answering with the data frame.
+What observations and variables these questions are concerned with.
+If you can argue why these questions interests you, or why it is important, even better.
+
+#### Data
+
+Read in and `glimpse()` the data.
+
+#### Data Analysis Plan
+
+What is your primary variable of interest?
+(Response variable)
+
+What other variables (explanatory variables) will you be using to understand the response variable?
+
+Run preliminary analysis (including a couple visuals and descriptive summary statistics) to get some idea about answers to your questions.
+
+I will provide feedback on your research questions about how to rephrase them so you can investigate them with the statistical modeling techniques we have learned.
+
+## Grading
+
+You will submit your proposal.html document to Canvas / CI Learn, but keep in mind I will still be checking your files on Posit Cloud.
+
+| concept | points | criteria |
+|------------------------|------------------------|------------------------|
+| data | 16 pts | - Data are provided. <br> - `data-description.qmd` contains data dictionary <br>- Information on data download source, number of variables, and observations are provided. |
+| proposal | 26 pts | - Structure of the proposal.qmd is well organized as outlined here. <br> - All the content parts are provided. <br> - The code provided follows tidyverse style. <br> - Visuals and numerical summaries are appropriate for the research questions. <br> - Accessibility is considered. |
+| workflow | 8 pts | - Your proposal.qmd document renders <br> - Your folder structure follows instructions |
+
+I expect all teams to share work and collaborate efficiently.
+Everyone should get an opportunity to learn and grow through these projects.
+If there is evidence that a teammate has not contributed enough to the project, I hold the right to assign a different grade for the team member at any stage of the project (proposal or final submission).
+If you run into any conflicts that you cannot resolve among yourselves, please e-mail me to let me know what is going on.
+Also, let me know how you resolved the conflict.
+For instance, if a teammate has been unresponsive, let me know how and when you tried reaching the teammate.
