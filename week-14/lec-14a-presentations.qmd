@@ -1,0 +1,229 @@
+---
+title: "Data 200: Lecture 14a"
+subtitle: "Presentations"
+author: "Professor Catalina Medina"
+execute:
+  echo: true
+format: 
+  revealjs:
+    theme: [sky, ../slide-style.scss]
+    slide-number: true
+    toc: true
+    toc-depth: 1
+---
+
+```{r}
+library(tidyverse)
+```
+
+
+# Making slides with Quarto
+
+## Why use Quarto?
+
+1. We are using Quarto to make the slides for our final project presentations so we can learn how to communicate our findings reproducibly.
+
+. . .
+
+- *Why is this important?*
+
+. . .
+
+2. It's simple now that we are already familiar with Quarto!
+
+## Types of Quarto slides
+
+We are able to make 3 different types of presentations using Quarto documents. 
+
+- For our final projects we will be making HTML slides (called Reavel JS), just like the lecture slides!
+
+## Let's start our presentations!
+
+1. In your final project repo on Posit Cloud create a *Quarto Presentation* and select *Reveal JS* option (to produce html slides). Your slides should have this header/yaml:
+
+```{}
+---
+title: "Untitled"
+format: revealjs
+---
+```
+
+2. Add an R chunk to your document after the yaml. This is where you will load all of the R packages you use
+3. Render your presentation and look at your slides. Save the document as `presentation.qmd`
+
+## 
+
+To add a new slide you use double `##`, followed by the slide name. Add a blank line, then specify the contents of your slide
+
+```{}
+---
+title: "Untitled"
+format: revealjs
+---
+
+## Slide 1 title
+
+Stuff
+
+## Another label for next slide
+
+More stuff
+```
+
+## 
+
+To add header slides you can use a single `#`
+
+```{}
+---
+title: "Untitled"
+format: revealjs
+---
+
+# Research Question 1
+
+## Approach
+
+## Results
+
+# Research Question 2
+
+## Data filtering
+
+##
+
+```
+
+. . .
+
+You can also choose to leave a slide header blank
+
+## yaml details
+
+You can change the title, add a subtitle, add authors, and more!
+
+```{}
+---
+title: "Investigating roller coaster speeds"
+subtitle: "Team 8"
+author: "Catalina Medina, Federica Ricci, and Sakshi Agarwal"
+format: revealjs
+---
+```
+
+
+## Presentation guidelines
+
+Think about what you 
+
+- want to show on the slides (e.g., main points, plots, hypotheses...)
+- do not want to show on the slides (e.g., large blocks of text, most code, direct output, default plot axes)
+
+In these slides you will want to use **inline R code** and **execution arguments**
+
+# Execution options
+
+You may have noticed some undesirable things, like messages from loading packages, or even just R code that you don't want to show.
+
+- We can specify certain options globally (i.e., across the entire document). This is done in the yaml.
+- Or we can specify options for a certain chunk. This is done at the top of the chunk
+
+
+## Global arguments
+
+When you look at our homework, we often specified that we did not want package loading messages or warnings to show in our rendered document. 
+
+```{}
+---
+title: "Untitled"
+format: revealjs
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+```
+
+- `echo` specifies if we want the code printed
+- both `warning` and `message` should be set to `false` to suppress the package loading messages
+
+## Chunk arguments
+
+There are many different chunk arguments we can specify. I use them mostly for figures.
+
+```{r}
+#| echo: fenced
+#| fig-width: 4
+#| fig-height: 3
+#| fig-align: center
+#| fig-cap: "Penguins feature lengths by species"
+#| fig-alt: "Scatterplot of bill length by flipper length, colored by species. There appears to be a positive linear relationship for each of the three species: Adelie, Chinstrap, and Gentoo."
+
+ggplot(penguins, aes(x = flipper_len, y = bill_dep, color = species)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    x = "Flipper length (mm)",
+    y = "Bill Depth (mm)",
+    color = "Species"
+  )
+```
+
+##
+
+```{r}
+#| echo: false
+#| fig-width: 4
+#| fig-height: 3
+#| fig-align: center
+#| fig-cap: "Penguins feature lengths by species"
+#| fig-alt: "Scatterplot of bill length by flipper length, colored by species. There appears to be a positive linear relationship for each of the three species: Adelie, Chinstrap, and Gentoo."
+
+ggplot(penguins, aes(x = flipper_len, y = bill_dep, color = species)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    x = "Flipper length (mm)",
+    y = "Bill Depth (mm)",
+    color = "Species"
+  )
+```
+
+## Customizing
+
+Make your slides something you are proud to share with others!
+
+- [Quarto basics](https://quarto.org/docs/presentations/)
+
+I encourage you to customize your slides (e.g., specifying the theme, adding images, making things appear incrementally)
+
+- [Quarto extra capabilities](https://quarto.org/docs/presentations/revealjs/)
+
+
+# Missing data
+
+The reason behind why some data entries are missing determines what approach you should take.
+
+- For our final project we will assume that data are missing completely at random, the reason for the missingness is not related to the variables we are measuring. For example:
+
+  - someone forgot to answer all questions on a survey
+  - data entry error occurred and was deleted
+  - someone's sample was lost
+
+## Handling missing data
+
+Since we are assuming the data are missing completely at random, we can delete incomplete observations (aka rows with any `NA`'s).
+
+```{r}
+penguins_cleaned <- penguins |> 
+  drop_na()
+```
+
+## Data cleaning
+
+Data cleaning should be done at the top of your document without showing the code in the presentation. 
+
+You should have a slide or two describing how you cleaned your data 
+
+  - For example: "We dropped observations with missing data, filtered to only observations from 2007, and converted species to a factor."
+
