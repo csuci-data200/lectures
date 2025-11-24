@@ -1,5 +1,5 @@
 ---
-title: "Data 200 Final Project Instructions"
+title: "Data 200 Final Project Proposal Instructions"
 format: 
   html:
     embed-resources: true

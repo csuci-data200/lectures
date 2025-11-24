@@ -1,0 +1,47 @@
+---
+title: "Data 200: Final Project Presentation Instructions"
+subtitle: "Fall 2025"
+format: html
+---
+
+## Presentation details
+
+- Your presentation should be 5-7 minutes long
+- All group members should contribute substantially to creating the slides and presenting
+- All data cleaning and analysis should be in the `presentation.qmd` document, but not all/any of it should be visible in the slideshow
+- Use inline R code when reporting values, instead of just printing output
+
+### Peer Evaluation
+
+You will present your projects during our final time. 
+Each of you (as an individual) will evaluate other teams' presentations using the following rubric. 
+
+Category      | Descriptor   | Scale
+------------- | -------------|---------
+Content       | Are the research question(s) well designed and is the data being used relevant to the research question(s)? | 0 or 1
+Content       | Did the team use appropriate statistical procedures and interpretations of results accurately? | 0 or 1
+Creativity and Critical Thought | Is the project carefully thought out? Are the limitations carefully considered? Does it appear that time and effort went into the planning and implementation of the project? | 0 or 1
+Slides        | Are the slides well organized, readable, not full of text, featuring figures with legible labels, legends, etc.? | 0 or 1
+Professionalism | How well did the team present? Does the presentation appear to be well practiced? Are they reading off of a script? Did everyone get a chance to say something meaningful about the project? | 0 or 1
+Comments      | *Summarize your understanding of the project and provide constructive feedback to the team.*
+
+If I detect that you are only assigning full points to everyone in the class then I reserve the right eliminate your evaluation unless I agree that everyone in the class has given a perfect presentation.
+
+### Professor evaluation
+
+I will evaluate each project using the following rubric.
+
+Category      | Descriptor   | Scale
+------------- | -------------|---------
+Content       | Are the research question(s) well designed and is the data being used relevant to the research question(s)? | 0 - 5
+Content       | Did the team use appropriate statistical procedures and interpretations of results accurately? | 0 - 10
+Creativity and Critical Thought | Is the project carefully thought out? Are the limitations carefully considered? Does it appear that time and effort went into the planning and implementation of the project? | 0 - 5
+Slides        | Are the slides well organized, readable, not full of text, featuring figures with legible labels, legends, alternate text, color-blind friendly colors etc.? | 0 - 5
+Professionalism | How well did the team present? Does the presentation appear to be well practiced? Are they reading off of a script? Did everyone get a chance to say something meaningful about the project? | 0 - 5
+Teamwork      | Did the team present a unified story, or did it seem like independent pieces of work patched together? | 0 - 3
+Time management | Did the team divide the time well amongst themselves or got cut off going over time? | 0 - 2
+Executive summary | Does it follow guidance? Is it concise but detailed enough? | 0 - 5
+Repository on Posit Cloud | The structure should be as suggested in proposal and in these instructions. All team members receiving credit should contribute to the repo. | 0 - 5
+Code in `presentation.qmd` | Tiderverse style should be used throughout. The data cleaning and analysis should be reproducible. From your data description file and your slides I should be able to collect the same data and reproduce you analysis. | 0 - 5 
+Comments      | *Optional*
+
